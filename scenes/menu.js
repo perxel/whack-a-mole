@@ -18,8 +18,11 @@ class Menu extends Phaser.Scene{
 
         this.text = this.add.text(this.CONFIG.centerX, this.CONFIG.centerY, 'Menu', {
             fontSize: '80px',
+            fontFamily: 'LuckiestGuy',
+            color: '#f8e8ce',
+            strokeThickness: 10,
+            stroke: '#805B2D'
         });
         this.text.setOrigin(0.5);
-        this.text.setColor('#000');
     }
 }

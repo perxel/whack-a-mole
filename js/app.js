@@ -27,7 +27,7 @@ App.prototype.start = function(){
             mode: Phaser.Scale.RESIZE,
         },
         scene: scenes,
-        backgroundColor: '#fff'
+        backgroundColor: '#c8e082'
     };
 
     // Create game app
@@ -36,6 +36,7 @@ App.prototype.start = function(){
     // Globals
     game.IS_DEV = this.IS_DEV;
     game.VERSION = this.VERSION;
+    game.URL = '';
     game.gameVersion = this.VERSION;
 
     game.CONFIG = {

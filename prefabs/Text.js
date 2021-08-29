@@ -1,5 +1,5 @@
 class Text{
-    constructor(ctx, x, y, string, style, origin){
+    constructor(ctx, x, y, string, key, origin){
         this.ctx = ctx;
 
         this.x = x;
@@ -7,35 +7,13 @@ class Text{
 
         this.text = string;
 
-        this.style = this.initStyle(style);
+        this.style = new TextStyle(key);
         this.origin = this.initOrigin(origin);
 
         this.obj = this.createText();
     }
 
     // Init -----------------
-    initStyle(key){
-        let style = {
-            align: 'center',
-            fontSize: '80px',
-            fontFamily: 'LuckiestGuy',
-            color: '#f8e8ce',
-            strokeThickness: 10,
-            stroke: '#805b2d'
-        }
-
-        switch(key.toLowerCase()){
-            case 'title':
-                style.fontSize = 30;
-                break;
-            case 'preload':
-                style.fontSize = 60;
-                break;
-        }
-
-        return style;
-    }
-
     initOrigin(origin){
         if(typeof origin === 'number'){
             return {x: origin, y: origin};
@@ -68,36 +46,11 @@ class Text{
         this.obj = false;
     }
 
-    // Setters -----------------
-    setText(string){
-        this.text = string;
-        this.obj.setText(string);
-    }
-
-    setX(x){
-        this.x = x;
-        this.obj.setX(x);
-    }
-
-    setY(y){
-        this.y = y;
-        this.obj.setY(y);
-    }
-
-    setOrigin(origin){
-        this.origin = this.initOrigin(origin);
-        this.obj.setOrigin(origin);
-    }
-
-    setDepth(depth){
-        this.obj.setDepth(depth);
-    }
-
-    setScrollFactor(scrollX, scrollY){
-        this.obj.setScrollFactor(scrollX, scrollY);
-    }
-
     // Getters -----------------
+    get(){
+        return this.obj;
+    }
+
     getCenter(){
         return this.obj.getCenter();
     }

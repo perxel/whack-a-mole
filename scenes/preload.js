@@ -14,20 +14,16 @@ class Preload extends Phaser.Scene{
         console.log('Scene: Preload preload()');
 
         // Load background image
-        for(let i = 0; i < 50; i++){
+        this.load.image('desktopBg', 'assets/img/desktop-bg.jpg');
+        for(let i = 0; i < 40; i++){
             this.load.image('desktopBg_' + i, 'assets/img/test-load.png');
         }
-        this.load.image('desktopBg', 'assets/img/test-load.png');
 
         // Create loading bar
         this.createLoadingBar();
 
-        // Spritesheets
-        //this.load.setPath(this.URL + 'assets/img');
-
         // Progress callback
         this.load.on('progress', this.onProgress, this);
-        //this.load.on('complete', this.onComplete, this);
     }
 
     create(){
@@ -48,36 +44,22 @@ class Preload extends Phaser.Scene{
         this.title = new Text(
             this,
             this.CONFIG.centerX,
-            this.CONFIG.centerY,
-            'Loading Game',
+            this.CONFIG.centerY - 20,
+            'Loading',
             'preload',
             0.5
-        );
+        ).get();
         this.title.setDepth(1);
 
-        // Progress text
-        this.text_progress = new Text(
-            this,
-            this.CONFIG.centerX,
-            this.CONFIG.centerY * .2,
-            'Loading ...',
-            'preload',
-            0.5
-        );
-        this.text_progress.setDepth(1);
-
         // Progress bar
-        this.progress = new Progress(this, 100, 100);
-        this.progress.setDepth(2);
+        this.progress = new Progress(this, this.CONFIG.centerX - 220, this.CONFIG.centerY + 30);
+        this.progressContainer = this.progress.get();
+        this.progressContainer.setDepth(2);
     }
 
     onProgress(val){
-        // Width of progress bar
+        // update progress bar
         this.progress.setPercentage(val);
-
-        // Percentage
-        this.text_progress.setText(Math.round(val * 100) + '%');
-
-        console.log(this.text_progress.text);
+        this.progress.setText(Math.round(val * 100) + '%');
     }
 }

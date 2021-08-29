@@ -21,8 +21,8 @@ class Menu extends Phaser.Scene{
         music.play();
 
         // Music Control todo: clean up
-        const soundOn = this.add.image(100, 100, 'soundOn').setInteractive();
-        const soundOff = this.add.image(100, 100, 'soundOff').setInteractive().setAlpha(0);
+        const soundOn = this.add.image(0, 0, 'soundOn').setInteractive();
+        const soundOff = this.add.image(0, 0, 'soundOff').setInteractive().setAlpha(0);
         soundOff.setDepth(3)
         soundOn.setDepth(4)
 
@@ -51,6 +51,20 @@ class Menu extends Phaser.Scene{
 
         soundOn.on('pointerup', soundCheck);
         soundOff.on('pointerup', soundCheck);
+
+
+        /**
+         * Anchor
+         */
+        this.plugins.get('rexanchorplugin').add(soundOn, {
+            right: 'right-30',
+            top: 'top+30'
+        });
+        this.plugins.get('rexanchorplugin').add(soundOff, {
+            right: 'right-30',
+            top: 'top+30'
+        });
+
 
         // Add background
         const image = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'desktopBg');
@@ -94,5 +108,9 @@ class Menu extends Phaser.Scene{
             yoyo: true,
             repeat: -1
         });
+    }
+
+    goPlay(){
+        this.scene.start("Play");
     }
 }

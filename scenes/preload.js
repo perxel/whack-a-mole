@@ -13,6 +13,10 @@ class Preload extends Phaser.Scene{
     preload(){
         console.log('Scene: Preload preload()');
 
+        /**
+         * Plugins
+         */
+        this.load.plugin('rexanchorplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexanchorplugin.min.js', true);
 
         this.load.svg('soundOn', 'assets/img/sound-on.svg');
         this.load.svg('soundOff', 'assets/img/sound-off.svg');
@@ -24,9 +28,6 @@ class Preload extends Phaser.Scene{
 
         // Load background image
         this.load.image('desktopBg', 'assets/img/desktop-bg.jpg');
-        for(let i = 0; i < 5; i++){
-            this.load.image('desktopBg_' + i, 'assets/img/test-load.png');
-        }
 
         // Create loading bar
         this.createLoadingBar();

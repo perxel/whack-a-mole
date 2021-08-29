@@ -24,7 +24,8 @@ App.prototype.start = function(){
         width: window.innerWidth,
         height: window.innerHeight,
         scale: {
-            mode: Phaser.Scale.RESIZE,
+            mode: Phaser.Scale.ENVELOP,
+            autoCenter: Phaser.Scale.CENTER_BOTH,
         },
         scene: scenes,
         backgroundColor: '#c8e082'
@@ -43,9 +44,7 @@ App.prototype.start = function(){
         width: game.config.width,
         height: game.config.height,
         centerX: Math.round(0.5 * game.config.width),
-        centerY: Math.round(0.5 * game.config.height),
-        //tile: 16, // ??
-        //fps: 12,
+        centerY: Math.round(0.5 * game.config.height)
     };
 
     window.addEventListener('resize', function(){

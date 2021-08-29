@@ -55,3 +55,14 @@ const scaleY = this.cameras.main.height / image.height;
 const scale = Math.max(scaleX, scaleY);
 image.setScale(scale).setScrollFactor(0);
 ```
+
+## Loading
+
+https://www.patchesoft.com/phaser-3-loading-screen
+
+## Graphics
+
+### Rounded Rect
+https://phaser.io/examples/v3/view/game-objects/graphics/fill-rounded-rectangle
+
+https://labs.phaser.io/edit.html?src=src%5Cgame%20objects%5Cgraphics%5Cfill%20rounded%20rectangle.js

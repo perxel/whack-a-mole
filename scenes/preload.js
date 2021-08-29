@@ -14,7 +14,10 @@ class Preload extends Phaser.Scene{
         console.log('Scene: Preload preload()');
 
         // Load background image
-        this.load.image('desktopBg', 'assets/img/desktop-bg.jpg');
+        for(let i = 0; i < 50; i++){
+            this.load.image('desktopBg_' + i, 'assets/img/test-load.png');
+        }
+        this.load.image('desktopBg', 'assets/img/test-load.png');
 
         // Create loading bar
         this.createLoadingBar();
@@ -64,10 +67,13 @@ class Preload extends Phaser.Scene{
         this.text_progress.setDepth(1);
 
         // Progress bar
+        this.progress = new Progress(this, 100, 100);
+        this.progress.setDepth(2);
     }
 
     onProgress(val){
-        // Width
+        // Width of progress bar
+        this.progress.setPercentage(val);
 
         // Percentage
         this.text_progress.setText(Math.round(val * 100) + '%');

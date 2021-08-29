@@ -14,7 +14,6 @@ App.prototype.start = function(){
     scenes.push(Boot);
     scenes.push(Preload);
     scenes.push(Menu);
-    console.log(scenes)
 
     // Game config
     const config = {
@@ -22,9 +21,12 @@ App.prototype.start = function(){
         parent: 'phaser-app',
         title: 'Whack A Mole',
         url: 'https://github.com/phuc-dev/whack-a-mole',
-        width: 1440,
-        height: 1024,
-        scenes: scenes,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        scale: {
+            mode: Phaser.Scale.RESIZE,
+        },
+        scene: scenes,
         backgroundColor: '#fff'
     };
 
@@ -34,18 +36,23 @@ App.prototype.start = function(){
     // Globals
     game.IS_DEV = this.IS_DEV;
     game.VERSION = this.VERSION;
-
-    game.URL = '';
+    game.gameVersion = this.VERSION;
 
     game.CONFIG = {
-        width: config.width,
-        height: config.height,
-        centerX: Math.round(0.5 * config.width),
-        centerY: Math.round(0.5 * config.height),
-        tile: 16, // ??
-        fps: 12,
+        width: game.config.width,
+        height: game.config.height,
+        centerX: Math.round(0.5 * game.config.width),
+        centerY: Math.round(0.5 * game.config.height),
+        //tile: 16, // ??
+        //fps: 12,
     };
+
+    window.addEventListener('resize', function(){
+        console.log(game)
+    });
 
     // Sound
     game.sound_on = true;
+
+    return game;
 };

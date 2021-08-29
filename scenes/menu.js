@@ -4,17 +4,21 @@ class Menu extends Phaser.Scene{
     }
 
     init(){
-        console.log('Scene: Menu');
+        console.log('Scene: Menu init()');
+
         this.CONFIG = this.sys.game.CONFIG;
-        console.log(this.CONFIG)
     }
 
     preload(){
-
+        console.log('Scene: Menu preload()');
     }
 
     create(){
-        this.text = this.add.text(this.CONFIG.centerX, this.CONFIG.centerY, 'Menu');
+        console.log('Scene: Menu create()');
+
+        this.text = this.add.text(this.CONFIG.centerX, this.CONFIG.centerY, 'Menu', {
+            fontSize: '80px',
+        });
         this.text.setOrigin(0.5);
         this.text.setColor('#000');
     }

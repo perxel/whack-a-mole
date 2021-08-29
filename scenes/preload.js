@@ -4,14 +4,16 @@ class Preload extends Phaser.Scene{
     }
 
     init(){
-        console.log('Scene: Preload');
+        console.log('Scene: Preload init()');
     }
 
     preload(){
-
+        console.log('Scene: Preload preload()');
     }
 
     create(){
+        console.log('Scene: Preload create()');
+
         this.scene.start('Menu');
     }
 }

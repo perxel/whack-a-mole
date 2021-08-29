@@ -1,18 +1,13 @@
-function resizeApp(){
-    console.log('App resize()');
-}
-
 function runApp(){
     'use strict';
     console.log('App run()');
 
     // Init the Phaser game app
-    let app = new App();
-    app.start();
+    let app = new App().start();
 
     // Scale to device
-    window.addEventListener('resize', resizeApp);
-    resizeApp();
+    //window.addEventListener('resize', resizeApp);
+    //resizeApp(app);
 }
 
 window.onload = function(){

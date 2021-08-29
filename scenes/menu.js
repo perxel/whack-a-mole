@@ -18,51 +18,92 @@ class Menu extends Phaser.Scene{
 
         // Play music
         const music = this.sound.add('bgMusic');
-        music.play();
-
-        // Music Control todo: clean up
-        const soundOn = this.add.image(0, 0, 'soundOn').setInteractive();
-        const soundOff = this.add.image(0, 0, 'soundOff').setInteractive().setAlpha(0);
-        soundOff.setDepth(3)
-        soundOn.setDepth(4)
-
-        function soundCheck(){
-            // click down
-            this.setScale(1);
-
-            // toggle sound
-            if(music.isPlaying){
-                music.pause();
-                soundOff.setAlpha(1)
-                soundOn.setAlpha(0)
-            }else{
-                music.resume();
-                soundOff.setAlpha(0)
-                soundOn.setAlpha(1)
-            }
+        if(this.CONFIG.soundOn && !music.isPlaying){
+            music.play();
         }
-
-        soundOn.on('pointerdown', function(){
-            this.setScale(0.9);
-        });
-        soundOff.on('pointerdown', function(){
-            this.setScale(0.9);
-        });
-
-        soundOn.on('pointerup', soundCheck);
-        soundOff.on('pointerup', soundCheck);
+        music.loop = true;
 
 
         /**
-         * Anchor
+         * Buttons
          */
-        this.plugins.get('rexanchorplugin').add(soundOn, {
+
+            // Button music
+        let buttonSound = new Button(this, 0, 0, {
+                idleTexture: 'soundOn',
+                activeTexture: 'soundOff',
+                pointerUp: function(){
+                    // toggle sound
+                    if(music.isPlaying){
+                        music.pause();
+                    }else if(music.isPaused){
+                        music.resume();
+                    }else{
+                        music.play();
+                    }
+                }
+            });
+        buttonSound.updateStatus(!music.isPlaying);
+        buttonSound = buttonSound.get();
+        buttonSound.setDepth(3);
+        this.plugins.get('rexanchorplugin').add(buttonSound, {
             right: 'right-30',
             top: 'top+30'
         });
-        this.plugins.get('rexanchorplugin').add(soundOff, {
-            right: 'right-30',
+
+
+        // Button pause
+        const buttonPause = new Button(this, 0, 0, {
+            idleTexture: 'pause',
+            pointerUp: function(){
+                console.log('pause')
+            }
+        }).get();
+        buttonPause.setDepth(3);
+        this.plugins.get('rexanchorplugin').add(buttonPause, {
+            right: 'right-100',
             top: 'top+30'
+        });
+
+        // Button menu
+        const buttonMenu = new Button(this, 0, 0, {
+            idleTexture: 'menu',
+            pointerUp: function(){
+                console.log('menu')
+            }
+        }).get();
+        buttonMenu.setDepth(3);
+        this.plugins.get('rexanchorplugin').add(buttonMenu, {
+            left: 'left+30',
+            top: 'top+30'
+        });
+
+        // Button question
+        const buttonQuestion = new Button(this, 0, 0, {
+            idleTexture: 'question',
+            pointerUp: function(){
+                console.log('question')
+            }
+        }).get();
+        buttonQuestion.setDepth(3);
+        this.plugins.get('rexanchorplugin').add(buttonQuestion, {
+            left: 'left+100',
+            top: 'top+30'
+        });
+
+
+        // Button play
+        const buttonPlay = new Button(this, 0, 0, {
+            idleTexture: 'play',
+            scale: 1.3,
+            pointerUp: function(){
+                console.log('play')
+            }
+        }).get();
+        buttonPlay.setDepth(3);
+        this.plugins.get('rexanchorplugin').add(buttonPlay, {
+            centerX: '50%',
+            centerY: '50%'
         });
 
 
@@ -73,8 +114,13 @@ class Menu extends Phaser.Scene{
         const scale = Math.max(scaleX, scaleY);
         image.setScale(scale).setScrollFactor(0);
 
-        this.text = this.add.text(this.CONFIG.centerX, 0, 'Menu', new TextStyle('preload'));
-        this.text.setOrigin(0.5);
+        // Image: Whack
+        const welcomeWhack = this.add.image(0, 0, 'welcomeWhack');
+        welcomeWhack.setScale(0.6);
+        this.plugins.get('rexanchorplugin').add(welcomeWhack, {
+            centerX: '50%',
+            top: '15%'
+        });
 
 
         // Tweens
@@ -97,16 +143,6 @@ class Menu extends Phaser.Scene{
                 getStart: () => this.CONFIG.centerY - 100,
                 getEnd: () => this.CONFIG.centerY
             },
-        });
-        this.tweens.add({
-            targets: this.text,
-            duration: 300,
-            rotation: {
-                getStart: () => -10,
-                getEnd: () => 10
-            },
-            yoyo: true,
-            repeat: -1
         });
     }
 

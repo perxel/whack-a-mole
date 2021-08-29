@@ -44,15 +44,9 @@ App.prototype.start = function(){
         width: game.config.width,
         height: game.config.height,
         centerX: Math.round(0.5 * game.config.width),
-        centerY: Math.round(0.5 * game.config.height)
+        centerY: Math.round(0.5 * game.config.height),
+        soundOn: true
     };
-
-    window.addEventListener('resize', function(){
-        console.log(game)
-    });
-
-    // Sound
-    game.sound_on = true;
 
     return game;
 };

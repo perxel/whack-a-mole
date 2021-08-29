@@ -20,7 +20,7 @@ App.prototype.start = function(){
         type: Phaser.AUTO,
         parent: 'phaser-app',
         title: 'Whack A Mole',
-        url: 'https://github.com/phuc-dev/whack-a-mole',
+        url: 'https://phuc-dev.github.io/whack-a-mole/',
         width: window.innerWidth,
         height: window.innerHeight,
         scale: {

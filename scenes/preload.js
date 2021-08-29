@@ -13,9 +13,18 @@ class Preload extends Phaser.Scene{
     preload(){
         console.log('Scene: Preload preload()');
 
+
+        this.load.svg('soundOn', 'assets/img/sound-on.svg');
+        this.load.svg('soundOff', 'assets/img/sound-off.svg');
+
+        // Load sound
+        this.load.audio('bgMusic', [
+            'assets/aux/music.mp3',
+        ]);
+
         // Load background image
         this.load.image('desktopBg', 'assets/img/desktop-bg.jpg');
-        for(let i = 0; i < 40; i++){
+        for(let i = 0; i < 5; i++){
             this.load.image('desktopBg_' + i, 'assets/img/test-load.png');
         }
 
@@ -29,14 +38,12 @@ class Preload extends Phaser.Scene{
     create(){
         console.log('Scene: Preload create()');
 
-        // Add background
-        const image = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'desktopBg');
-        const scaleX = this.cameras.main.width / image.width;
-        const scaleY = this.cameras.main.height / image.height;
-        const scale = Math.max(scaleX, scaleY);
-        image.setScale(scale).setScrollFactor(0);
-
-        //this.scene.start('Menu');
+        // Go Menu
+        this.time.addEvent({
+            delay: 1000,
+            callback: () => this.scene.start('Menu'),
+            callbackScope: this
+        });
     }
 
     createLoadingBar(){

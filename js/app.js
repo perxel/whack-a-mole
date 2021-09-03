@@ -9,6 +9,7 @@ class App{
         scenes.push(Preload);
         scenes.push(Menu);
         scenes.push(HowToPlay);
+        scenes.push(ChooseLevel);
 
         // Game config
         const config = {

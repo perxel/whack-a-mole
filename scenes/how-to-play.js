@@ -4,16 +4,16 @@ class HowToPlay extends Phaser.Scene{
     }
 
     init(){
-        if(DEV) console.log('Scene: HowToPlay init()');
+        if(DEV) console.log('HowToPlay init()');
         this.CONFIG = this.sys.game.CONFIG;
     }
 
     preload(){
-        if(DEV) console.log('Scene: HowToPlay preload()');
+        if(DEV) console.log('HowToPlay preload()');
     }
 
     create(){
-        if(DEV) console.log('Scene: HowToPlay create()');
+        if(DEV) console.log('HowToPlay create()');
 
         /**
          * Images

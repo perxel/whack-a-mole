@@ -4,17 +4,17 @@ class Menu extends Phaser.Scene{
     }
 
     init(){
-        if(DEV) console.log('Scene: Menu init()');
+        if(DEV) console.log('Menu init()');
 
         this.CONFIG = this.sys.game.CONFIG;
     }
 
     preload(){
-        if(DEV) console.log('Scene: Menu preload()');
+        if(DEV) console.log('Menu preload()');
     }
 
     create(){
-        if(DEV) console.log('Scene: Menu create()');
+        if(DEV) console.log('Menu create()');
 
 
         // Objects
@@ -76,7 +76,7 @@ class Menu extends Phaser.Scene{
             idleTexture: 'play',
             width: 136, height: 132,
             pointerUp: () => {
-                //this.goPlay();
+                this.goPlay();
             },
             anchor: {
                 centerX: '50%',
@@ -149,10 +149,10 @@ class Menu extends Phaser.Scene{
     }
 
     goPlay(){
-        this.scene.start("Play", {music: this.music});
+        this.scene.start("ChooseLevel");
     }
 
     goHowToPlay(){
-        this.scene.start("HowToPlay", {music: this.music});
+        this.scene.start("HowToPlay");
     }
 }

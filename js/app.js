@@ -14,6 +14,7 @@ App.prototype.start = function(){
     scenes.push(Boot);
     scenes.push(Preload);
     scenes.push(Menu);
+    scenes.push(HowToPlay);
 
     // Game config
     const config = {
@@ -47,8 +48,31 @@ App.prototype.start = function(){
         height: game.config.height,
         centerX: Math.round(0.5 * game.config.width),
         centerY: Math.round(0.5 * game.config.height),
-        container: {top: 30, left: 30},
         soundOn: false
+    };
+
+    game.METHODS = {
+        loadBackground: (ctx, texture) => {
+            // add background to scene
+            const background = ctx.add.image(ctx.cameras.main.width / 2, ctx.cameras.main.height / 2, texture);
+            const scaleX = ctx.cameras.main.width / background.width;
+            const scaleY = ctx.cameras.main.height / background.height;
+            const scale = Math.max(scaleX, scaleY);
+            background.setScale(scale).setScrollFactor(0);
+
+            // animate
+            ctx.tweens.add({
+                targets: background,
+                ease: 'Linear',
+                duration: 600,
+                alpha: {
+                    getStart: () => 0,
+                    getEnd: () => 1
+                },
+            });
+
+            return background;
+        }
     };
 
     return game;

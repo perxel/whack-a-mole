@@ -1,0 +1,95 @@
+{
+	"textures": [
+		{
+			"image": "sprites-0.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 120,
+				"h": 332
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "characters/bomb/1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 120,
+						"h": 116
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 120,
+						"h": 116
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 120,
+						"h": 116
+					},
+					"anchor": {
+						"x": 0.39166667,
+						"y": 0.59482759
+					}
+				},
+				{
+					"filename": "characters/bomb/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 120,
+						"h": 111
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 120,
+						"h": 111
+					},
+					"frame": {
+						"x": 0,
+						"y": 116,
+						"w": 120,
+						"h": 111
+					},
+					"anchor": {
+						"x": 0.40833333,
+						"y": 0.53153153
+					}
+				},
+				{
+					"filename": "characters/bomb/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 120,
+						"h": 105
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 120,
+						"h": 105
+					},
+					"frame": {
+						"x": 0,
+						"y": 227,
+						"w": 120,
+						"h": 105
+					},
+					"anchor": {
+						"x": 0.44166667,
+						"y": 0.48571429
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:2f9871caed1b44046d1e8dd31b781685:b5f06c7e30847cb994db0eee4e8abec3:af6e57a991ea0b4b415dbcb7eb72ce12$"
+	}
+}

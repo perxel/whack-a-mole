@@ -32,12 +32,7 @@ class Progress{
         fill.setDepth(3);
 
         // Progress text
-        const text = this.ctx.add.text(
-            0,
-            0,
-            '...',
-            new TextStyle('progress')
-        );
+        const text = new Text(this.ctx, 0, 0, '...', 'progress').get();
 
         // Container
         const container = this.ctx.add.container(this.x, this.y, [shadow, border, fill, text]);

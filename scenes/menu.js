@@ -7,6 +7,7 @@ class Menu extends Phaser.Scene{
         console.log('Scene: Menu init()');
 
         this.CONFIG = this.sys.game.CONFIG;
+        this.METHODS = this.sys.game.METHODS;
     }
 
     preload(){
@@ -15,6 +16,7 @@ class Menu extends Phaser.Scene{
 
     create(){
         console.log('Scene: Menu create()');
+
 
         // Objects
         this.btnPlay = null;
@@ -34,11 +36,7 @@ class Menu extends Phaser.Scene{
          * Images
          */
         // background
-        this.bg = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'desktopBg');
-        const scaleX = this.cameras.main.width / this.bg.width;
-        const scaleY = this.cameras.main.height / this.bg.height;
-        const scale = Math.max(scaleX, scaleY);
-        this.bg.setScale(scale).setScrollFactor(0);
+        this.bg = this.METHODS.loadBackground(this, 'desktopBg');
 
         // title
         this.titleImage = this.add.image(0, 0, 'welcomeWhack').setScale(0.9);
@@ -61,7 +59,6 @@ class Menu extends Phaser.Scene{
     }
 
     createButtons(){
-        console.log(this.titleImage)
         // Button play
         this.btnPlay = new Button(this, 0, 0, {
             idleTexture: 'play',
@@ -81,8 +78,8 @@ class Menu extends Phaser.Scene{
         this.btnHowTo = new Button(this, 0, 0, {
             idleTexture: 'question',
             width: 94, height: 90,
-            pointerUp: function(){
-                console.log('question')
+            pointerUp: () => {
+                this.goHowToPlay();
             },
             anchor: {
                 centerX: '50%',
@@ -94,17 +91,6 @@ class Menu extends Phaser.Scene{
 
     createAnimations(){
         this.timeline = this.tweens.createTimeline();
-
-        // Background
-        this.timeline.add({
-            targets: this.bg,
-            ease: 'Linear',
-            duration: 600,
-            alpha: {
-                getStart: () => 0,
-                getEnd: () => 1
-            },
-        });
 
         // Title image
         this.titleImage.setAlpha(0);
@@ -140,7 +126,7 @@ class Menu extends Phaser.Scene{
             targets: this.btnHowTo,
             ease: 'Power4',
             duration: 600,
-            offset: '-=400',
+            offset: '-=600',
             alpha: {
                 getStart: () => 0,
                 getEnd: () => 1
@@ -152,5 +138,9 @@ class Menu extends Phaser.Scene{
 
     goPlay(){
         this.scene.start("Play");
+    }
+
+    goHowToPlay(){
+        this.scene.start("HowToPlay");
     }
 }

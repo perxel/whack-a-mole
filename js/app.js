@@ -28,7 +28,9 @@ App.prototype.start = function(){
             autoCenter: Phaser.Scale.CENTER_BOTH,
         },
         scene: scenes,
-        backgroundColor: '#c8e082'
+        backgroundColor: '#c8e082',
+        pixelArt: false,
+        //resolution: window.devicePixelRatio
     };
 
     // Create game app
@@ -45,7 +47,8 @@ App.prototype.start = function(){
         height: game.config.height,
         centerX: Math.round(0.5 * game.config.width),
         centerY: Math.round(0.5 * game.config.height),
-        soundOn: true
+        container: {top: 30, left: 30},
+        soundOn: false
     };
 
     return game;

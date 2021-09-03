@@ -22,15 +22,20 @@ class Preload extends Phaser.Scene{
         /**
          * Load SVG
          */
-        this.load.svg('soundOn', 'assets/img/btn/sound-on.svg');
-        this.load.svg('soundOff', 'assets/img/btn/sound-off.svg');
-        this.load.svg('play', 'assets/img/btn/play.svg');
-        this.load.svg('pause', 'assets/img/btn/pause.svg');
-        this.load.svg('menu', 'assets/img/btn/menu.svg');
-        this.load.svg('prev', 'assets/img/btn/prev.svg');
-        this.load.svg('next', 'assets/img/btn/next.svg');
-        this.load.svg('question', 'assets/img/btn/question.svg');
-        this.load.svg('close', 'assets/img/btn/close.svg');
+        const btnSize = {
+            small: {width: 55, height: 55},
+            medium: {width: 100, height: 100},
+            big: {width: 150, height: 150},
+        };
+        this.load.svg('soundOn', 'assets/img/btn/sound-on.svg', btnSize.small);
+        this.load.svg('soundOff', 'assets/img/btn/sound-off.svg', btnSize.small);
+        this.load.svg('play', 'assets/img/btn/play.svg', btnSize.big);
+        this.load.svg('pause', 'assets/img/btn/pause.svg', btnSize.small);
+        this.load.svg('menu', 'assets/img/btn/menu.svg', btnSize.small);
+        this.load.svg('prev', 'assets/img/btn/prev.svg', btnSize.small);
+        this.load.svg('next', 'assets/img/btn/next.svg', btnSize.small);
+        this.load.svg('question', 'assets/img/btn/question.svg', btnSize.medium);
+        this.load.svg('close', 'assets/img/btn/close.svg', btnSize.small);
 
         /**
          * Load sound

@@ -72,10 +72,10 @@ class Preload extends Phaser.Scene{
 
 
         // Add music
-        this.sys.game.CONFIG.sound.set(this.sound.add('bgMusic', {volume: 0.5, loop: true}));
+        this.sys.game.CONFIG.sound.set(this.sound.add('bgMusic', {volume: MUSIC_VOL, loop: true}));
 
         // Add sound
-        this.sys.game.CONFIG.sound.setSoundFx('click', this.sound.add('click', {volume: 0.3}));
+        this.sys.game.CONFIG.sound.setSoundFx('click', this.sound.add('click', {volume: SOUND_FX_VOL}));
 
 
         // Go Menu

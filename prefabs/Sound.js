@@ -1,7 +1,7 @@
 class Sound{
     constructor(){
         this.music = null;
-        this.musicOn = true;
+        this.musicOn = MUSIC;
         this.isResume = false;
 
         // sound effects
@@ -25,21 +25,19 @@ class Sound{
     }
 
     play(){
-        if(DEV) console.log(this.music);
-
         if(!this.isResume){
             this.music.play();
-            if(DEV) console.log(`music play`);
+            if(DEV) console.log(`Music play()`);
         }else{
             this.music.resume();
-            if(DEV) console.log(`music resume`);
+            if(DEV) console.log(`Music resume()`);
         }
 
         this.musicOn = true;
     }
 
     pause(){
-        if(DEV) console.log(`music pause`);
+        if(DEV) console.log(`Music pause()`);
 
         this.music.pause();
         this.musicOn = false;
@@ -75,6 +73,6 @@ class Sound{
     }
 
     playSoundFx(name){
-        this.soundFx[name].play();
+        if(SOUND_FX) this.soundFx[name].play();
     }
 }

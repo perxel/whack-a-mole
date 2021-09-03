@@ -1,5 +1,10 @@
-const DEV = true;
+const DEV = false;
 const VERSION = '0.0.1';
+
+const MUSIC = false;
+const MUSIC_VOL = 0.5;
+const SOUND_FX = true;
+const SOUND_FX_VOL = 0.5;
 
 window.onload = function(){
     'use strict';

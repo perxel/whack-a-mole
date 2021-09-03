@@ -5,8 +5,6 @@ class Preload extends Phaser.Scene{
 
     init(){
         console.log('Scene: Preload init()');
-
-        this.URL = this.sys.game.URL;
         this.CONFIG = this.sys.game.CONFIG;
     }
 
@@ -48,9 +46,7 @@ class Preload extends Phaser.Scene{
          * Load sound
          */
         // Load sound
-        this.load.audio('bgMusic', [
-            'assets/aux/music.mp3',
-        ]);
+        this.load.audio('bgMusic', ['assets/aux/music.mp3']);
 
         /**
          * Load image
@@ -73,10 +69,15 @@ class Preload extends Phaser.Scene{
     create(){
         console.log('Scene: Preload create()');
 
+
+        // Add music
+        this.sys.game.CONFIG.sound.set(this.sound.add('bgMusic', {volume: 0.5, loop: true}));
+
+
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            callback: () => this.scene.start('HowToPlay'),
+            callback: () => this.scene.start('Menu'),
             callbackScope: this
         });
     }

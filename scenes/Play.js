@@ -10,7 +10,6 @@ class Play extends Phaser.Scene{
     }
 
     create(){
-
         // Button music
         let buttonSound = new Button(this, 0, 0, {
             idleTexture: 'soundOn',

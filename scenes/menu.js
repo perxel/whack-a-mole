@@ -7,7 +7,6 @@ class Menu extends Phaser.Scene{
         console.log('Scene: Menu init()');
 
         this.CONFIG = this.sys.game.CONFIG;
-        this.METHODS = this.sys.game.METHODS;
     }
 
     preload(){
@@ -24,19 +23,29 @@ class Menu extends Phaser.Scene{
         this.titleImage = null;
         this.bg = null;
 
-        // Play music
-        const music = this.sound.add('bgMusic');
-        if(this.CONFIG.soundOn && !music.isPlaying){
-            music.play();
+
+        /**
+         * Music
+         */
+        if(this.CONFIG.sound.isMusicOn() && !this.CONFIG.sound.isPlaying()){
+            // play
+            if(!this.CONFIG.sound.get().locked){
+                // already unlocked so play
+                this.CONFIG.sound.play();
+            }else{
+                // wait for 'unlocked' to fire and then play
+                this.CONFIG.sound.get().once(Phaser.Sound.Events.UNLOCKED, () => {
+                    this.CONFIG.sound.play();
+                })
+            }
         }
-        music.loop = true;
 
 
         /**
          * Images
          */
         // background
-        this.bg = this.METHODS.loadBackground(this, 'desktopBg');
+        this.bg = this.CONFIG.loadBackground(this, 'desktopBg');
 
         // title
         this.titleImage = this.add.image(0, 0, 'welcomeWhack').setScale(0.9);
@@ -59,6 +68,9 @@ class Menu extends Phaser.Scene{
     }
 
     createButtons(){
+        // Button music
+        this.btnMusic = this.CONFIG.sound.getButton(this);
+
         // Button play
         this.btnPlay = new Button(this, 0, 0, {
             idleTexture: 'play',
@@ -137,10 +149,10 @@ class Menu extends Phaser.Scene{
     }
 
     goPlay(){
-        this.scene.start("Play");
+        this.scene.start("Play", {music: this.music});
     }
 
     goHowToPlay(){
-        this.scene.start("HowToPlay");
+        this.scene.start("HowToPlay", {music: this.music});
     }
 }

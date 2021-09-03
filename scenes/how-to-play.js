@@ -5,9 +5,7 @@ class HowToPlay extends Phaser.Scene{
 
     init(){
         console.log('Scene: HowToPlay init()');
-
         this.CONFIG = this.sys.game.CONFIG;
-        this.METHODS = this.sys.game.METHODS;
     }
 
     preload(){
@@ -21,7 +19,7 @@ class HowToPlay extends Phaser.Scene{
          * Images
          */
         // background
-        this.bg = this.METHODS.loadBackground(this, 'desktopBg');
+        this.bg = this.CONFIG.loadBackground(this, 'desktopBg');
 
         // Bomb
         this.bomb = this.add.sprite(400, 400, 'whack', 'characters/bomb/1').setDepth(3);
@@ -107,6 +105,9 @@ class HowToPlay extends Phaser.Scene{
     }
 
     createButtons(){
+        // Button music
+        this.btnMusic = this.CONFIG.sound.getButton(this);
+
         // Button back
         this.btnBack = new Button(this, 0, 0, {
             idleTexture: 'back',

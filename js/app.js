@@ -48,10 +48,6 @@ App.prototype.start = function(){
         height: game.config.height,
         centerX: Math.round(0.5 * game.config.width),
         centerY: Math.round(0.5 * game.config.height),
-        soundOn: false
-    };
-
-    game.METHODS = {
         loadBackground: (ctx, texture) => {
             // add background to scene
             const background = ctx.add.image(ctx.cameras.main.width / 2, ctx.cameras.main.height / 2, texture);
@@ -72,7 +68,8 @@ App.prototype.start = function(){
             });
 
             return background;
-        }
+        },
+        sound: new Sound()
     };
 
     return game;

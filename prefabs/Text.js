@@ -41,7 +41,6 @@ class Text{
             color: '#f8e8ce',
             strokeThickness: 10,
             stroke: '#805b2d',
-            lineSpacing: -30
         }
 
         switch(styleKey.toLowerCase()){
@@ -49,11 +48,15 @@ class Text{
                 // how to play, choose level
                 style.fontSize = 96;
                 style.strokeThickness = 20;
+                style.lineSpacing = -30;
+                this.text = this.text.toUpperCase();
                 break;
             case 'subtitle':
                 // loading title, how to text
                 style.fontSize = 36;
                 style.strokeThickness = 8;
+                style.lineSpacing = -5;
+                this.text = this.text.toUpperCase();
                 break;
             case 'progress':
                 // progress value

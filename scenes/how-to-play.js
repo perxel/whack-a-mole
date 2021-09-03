@@ -49,6 +49,61 @@ class HowToPlay extends Phaser.Scene{
          * Buttons
          */
         this.createButtons();
+
+        /**
+         * Slides
+         */
+        this.activeIndex = 0;
+        this.createSlides();
+    }
+
+    createSlides(){
+        this.slides = [
+            {
+                string: 'dont hit the boom.\n' +
+                    'they will damage your hammer.'
+            },
+            {
+                string: 'Score and Win with Just a Click!\n' +
+                    'Each Porcupine Has Different Rarity and Point Level.\n' +
+                    'Good Luck!'
+            },
+            {
+                string: 'YOU HAVE ONLY 1 MINUTE TO PLAY EACH LEVEL\n' +
+                    'HURRY UP AND SCORE THE HIGHEST POINT TOTAL POSSIBLE!'
+            },
+            {
+                string: 'You can use your points to buy\n' +
+                    'stronger hammers.'
+            },
+            {
+                string: 'Are you ready?\n' +
+                    'Let\'s play!'
+            }
+        ];
+
+
+        // generate objects
+        for(let i = 0; i < this.slides.length; i++){
+            // create text
+            this.slides[i].text = new Text(this, 0, 0, this.slides[i].string, 'subtitle').get();
+            this.slides[i].text.setDepth(3);
+            this.plugins.get('rexanchorplugin').add(this.slides[i].text, {
+                centerX: '50%',
+                bottom: 'bottom-150'
+            });
+
+            // set active
+            if(i !== this.activeIndex){
+                this.slides[i].text.setVisible(false);
+            }
+        }
+
+        // dots
+        this.drawDots(this.slides.length);
+
+        // activate
+        this.moveTo(this.activeIndex);
     }
 
     createButtons(){
@@ -64,5 +119,65 @@ class HowToPlay extends Phaser.Scene{
             },
             depth: 3
         }).get();
+
+        // Button prev
+        this.btnPrev = new Button(this, 0, 0, {
+            idleTexture: 'prev',
+            pointerUp: () => {
+                this.moveTo(this.activeIndex - 1);
+            },
+            anchor: {
+                centerX: 'center-40',
+                bottom: 'bottom-30'
+            },
+            depth: 3
+        }).get();
+
+        // Button next
+        this.btnNext = new Button(this, 0, 0, {
+            idleTexture: 'next',
+            pointerUp: () => {
+                this.moveTo(this.activeIndex + 1);
+            },
+            anchor: {
+                centerX: 'center+40',
+                bottom: 'bottom-30'
+            },
+            depth: 3
+        }).get();
+    }
+
+    drawDots(){
+        this.dots = [];
+        const dotW = 10;
+        const dotMargin = 16;
+        const containerWidth = dotW + this.slides.length * dotW + (this.slides.length - 1) * dotMargin;
+
+        // dots
+        for(let i = 0; i < this.slides.length; i++){
+            const dotX = i * dotW + i * dotMargin;
+            this.dots[i] = this.add.graphics();
+            this.dots[i].clear();
+            this.dots[i].fillStyle(i === this.activeIndex ? 0x805B2D : 0xffffff);
+            this.dots[i].fillRoundedRect(dotX, 0, dotW, dotW, 2);
+        }
+
+        // Dots container
+        // todo: align container
+        this.plugins.get('rexanchorplugin').add(this.add.container(0, 0, this.dots), {
+            centerX: '50%-' + (containerWidth / 2),
+            bottom: 'bottom-125'
+        });
+    }
+
+    moveTo(slideIndex){
+        slideIndex = Math.min(this.slides.length - 1, Math.max(0, slideIndex));
+        this.activeIndex = slideIndex;
+
+        for(let i = 0; i < this.slides.length; i++){
+            this.slides[i].text.setVisible(i === slideIndex);
+        }
+
+        this.drawDots();
     }
 }

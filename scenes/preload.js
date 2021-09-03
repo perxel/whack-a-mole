@@ -94,6 +94,7 @@ class Preload extends Phaser.Scene{
         this.title.setDepth(1);
 
         // Progress bar
+        // todo: align container
         this.progress = new Progress(this, this.CONFIG.centerX - 220, this.CONFIG.centerY + 20);
         this.progressContainer = this.progress.get();
         this.progressContainer.setDepth(2);

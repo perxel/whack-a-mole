@@ -3,6 +3,9 @@ class Sound{
         this.music = null;
         this.musicOn = true;
         this.isResume = false;
+
+        // sound effects
+        this.soundFx = [];
     }
 
     isMusicOn(){
@@ -65,5 +68,13 @@ class Sound{
         button.updateStatus(!ctx.sys.game.CONFIG.sound.isPlaying());
 
         return button;
+    }
+
+    setSoundFx(name, obj){
+        this.soundFx[name] = obj;
+    }
+
+    playSoundFx(name){
+        this.soundFx[name].play();
     }
 }

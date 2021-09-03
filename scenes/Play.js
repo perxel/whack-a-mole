@@ -37,7 +37,7 @@ class Play extends Phaser.Scene{
         const buttonPause = new Button(this, 0, 0, {
             idleTexture: 'pause',
             pointerUp: function(){
-                console.log('pause')
+                if(DEV) console.log('pause')
             },
             anchor: {
                 right: 'right-100',
@@ -50,7 +50,7 @@ class Play extends Phaser.Scene{
         const buttonMenu = new Button(this, 0, 0, {
             idleTexture: 'menu',
             pointerUp: function(){
-                console.log('menu')
+                if(DEV) console.log('menu')
             },
             anchor: {
                 left: 'left+30',

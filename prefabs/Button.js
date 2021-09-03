@@ -25,9 +25,11 @@ class Button{
                 obj.pointerDown();
             }
 
-            // effect
-            //this.button.setScale(this.originalScale * 0.9);
+            // click effect
             this.button.setDisplaySize(this.width * 0.9, this.height * 0.9);
+
+            // click sound
+            this.ctx.sys.game.CONFIG.sound.playSoundFx('click');
         }, this);
 
         // pointer up
@@ -37,7 +39,7 @@ class Button{
                 obj.pointerUp();
             }
 
-            // effect
+            // release effect
             this.button.setDisplaySize(this.width, this.height);
 
             // change texture

@@ -76,7 +76,7 @@ class Menu extends Phaser.Scene{
             idleTexture: 'play',
             width: 136, height: 132,
             pointerUp: () => {
-                this.goPlay();
+                //this.goPlay();
             },
             anchor: {
                 centerX: '50%',

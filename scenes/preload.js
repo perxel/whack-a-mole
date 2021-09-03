@@ -36,6 +36,13 @@ class Preload extends Phaser.Scene{
         this.load.svg('next', 'assets/img/btn/next.svg', btnSize.small);
         this.load.svg('question', 'assets/img/btn/question.svg', btnSize.medium);
         this.load.svg('close', 'assets/img/btn/close.svg', btnSize.small);
+        this.load.svg('back', 'assets/img/btn/back.svg', btnSize.small);
+
+
+        /**
+         * Atlas
+         */
+        this.load.multiatlas('whack', 'assets/sprites/sprites.json', 'assets/sprites');
 
         /**
          * Load sound
@@ -69,7 +76,7 @@ class Preload extends Phaser.Scene{
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            callback: () => this.scene.start('Menu'),
+            callback: () => this.scene.start('HowToPlay'),
             callbackScope: this
         });
     }
@@ -79,15 +86,15 @@ class Preload extends Phaser.Scene{
         this.title = new Text(
             this,
             this.CONFIG.centerX,
-            this.CONFIG.centerY - 20,
+            this.CONFIG.centerY - 10,
             'Loading',
-            'preload',
+            'subtitle',
             0.5
         ).get();
         this.title.setDepth(1);
 
         // Progress bar
-        this.progress = new Progress(this, this.CONFIG.centerX - 220, this.CONFIG.centerY + 30);
+        this.progress = new Progress(this, this.CONFIG.centerX - 220, this.CONFIG.centerY + 20);
         this.progressContainer = this.progress.get();
         this.progressContainer.setDepth(2);
     }

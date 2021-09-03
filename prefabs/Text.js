@@ -1,5 +1,5 @@
 class Text{
-    constructor(ctx, x, y, string, key, origin){
+    constructor(ctx, x, y, string, style, origin){
         this.ctx = ctx;
 
         this.x = x;
@@ -7,10 +7,12 @@ class Text{
 
         this.text = string;
 
-        this.style = new TextStyle(key);
+        this.style = this.getStyle(style);
         this.origin = this.initOrigin(origin);
 
-        this.obj = this.createText();
+        // add text object
+        this.obj = this.ctx.add.text(this.x, this.y, this.text, this.style);
+        this.obj.setOrigin(this.origin.x, this.origin.y);
     }
 
     // Init -----------------
@@ -26,48 +28,41 @@ class Text{
         return {x: 0.5, y: 0.5};
     }
 
-    // Text object -----------------
-    createText(){
-        let obj = this.ctx.add.text(
-            this.x,
-            this.y,
-            this.text,
-            this.style
-        );
-
-        obj.setOrigin(this.origin.x, this.origin.y);
-
-        return obj;
-    }
-
-    destroy(){
-        this.obj.destroy();
-
-        this.obj = false;
-    }
-
     // Getters -----------------
     get(){
         return this.obj;
     }
 
-    getCenter(){
-        return this.obj.getCenter();
-    }
+    getStyle(styleKey){
+        let style = {
+            align: 'center',
+            fontSize: '80px',
+            fontFamily: 'LuckiestGuy',
+            color: '#f8e8ce',
+            strokeThickness: 10,
+            stroke: '#805b2d',
+            lineSpacing: -30
+        }
 
-    getTopLeft(){
-        return this.obj.getTopLeft();
-    }
+        switch(styleKey.toLowerCase()){
+            case 'title':
+                // how to play, choose level
+                style.fontSize = 96;
+                style.strokeThickness = 20;
+                break;
+            case 'subtitle':
+                // loading title, how to text
+                style.fontSize = 36;
+                style.strokeThickness = 8;
+                break;
+            case 'progress':
+                // progress value
+                style.fontSize = 20;
+                style.stroke = '#fff';
+                style.strokeThickness = 11;
+                style.color = '#00b7ed';
+        }
 
-    getTopRight(){
-        return this.obj.getTopRight();
-    }
-
-    getBottomLeft(){
-        return this.obj.getBottomLeft();
-    }
-
-    getBottomRight(){
-        return this.obj.getBottomRight();
+        return style;
     }
 }

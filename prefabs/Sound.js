@@ -22,20 +22,21 @@ class Sound{
     }
 
     play(){
-        console.log(this.music)
+        if(DEV) console.log(this.music);
+
         if(!this.isResume){
             this.music.play();
-            console.log(`music play`);
+            if(DEV) console.log(`music play`);
         }else{
             this.music.resume();
-            console.log(`music resume`);
+            if(DEV) console.log(`music resume`);
         }
 
         this.musicOn = true;
     }
 
     pause(){
-        console.log(`music pause`);
+        if(DEV) console.log(`music pause`);
 
         this.music.pause();
         this.musicOn = false;

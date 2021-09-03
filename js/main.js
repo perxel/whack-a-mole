@@ -1,14 +1,5 @@
-function runApp(){
-    'use strict';
-    console.log('App run()');
-
-    // Init the Phaser game app
-    let app = new App().start();
-
-    // Scale to device
-    //window.addEventListener('resize', resizeApp);
-    //resizeApp(app);
-}
+const DEV = true;
+const VERSION = '0.0.1';
 
 window.onload = function(){
     'use strict';
@@ -22,6 +13,6 @@ window.onload = function(){
         return false;
     }
 
-    // Launch the gap
-    runApp();
+    // Init the Phaser game app
+    let app = new App();
 };

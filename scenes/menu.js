@@ -4,17 +4,17 @@ class Menu extends Phaser.Scene{
     }
 
     init(){
-        console.log('Scene: Menu init()');
+        if(DEV) console.log('Scene: Menu init()');
 
         this.CONFIG = this.sys.game.CONFIG;
     }
 
     preload(){
-        console.log('Scene: Menu preload()');
+        if(DEV) console.log('Scene: Menu preload()');
     }
 
     create(){
-        console.log('Scene: Menu create()');
+        if(DEV) console.log('Scene: Menu create()');
 
 
         // Objects

@@ -3,7 +3,7 @@
  * https://browsergameshub.com/scale-html5-games-on-any-device/
  */
 function resizeApp_James(){
-    console.log('App resize()');
+    if(DEV) console.log('App resize()');
 
     // Width-height-ratio of game resolution
     // Replace 360 with your game width, and replace 640 with your game height

@@ -4,12 +4,12 @@ class Preload extends Phaser.Scene{
     }
 
     init(){
-        console.log('Scene: Preload init()');
+        if(DEV) console.log('Scene: Preload init()');
         this.CONFIG = this.sys.game.CONFIG;
     }
 
     preload(){
-        console.log('Scene: Preload preload()');
+        if(DEV) console.log('Scene: Preload preload()');
 
         /**
          * Plugins
@@ -67,7 +67,7 @@ class Preload extends Phaser.Scene{
     }
 
     create(){
-        console.log('Scene: Preload create()');
+        if(DEV) console.log('Scene: Preload create()');
 
 
         // Add music

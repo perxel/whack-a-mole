@@ -1,76 +1,69 @@
-const App = function(){
-    'use strict';
+class App{
+    constructor(){
+        'use strict';
+        if(DEV) console.log('App start()');
 
-    this.VERSION = '0.0.1';
-    this.IS_DEV = true;
-};
+        // Scenes
+        let scenes = [];
+        scenes.push(Boot);
+        scenes.push(Preload);
+        scenes.push(Menu);
+        scenes.push(HowToPlay);
 
-App.prototype.start = function(){
-    'use strict';
-    console.log('App start()');
+        // Game config
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'phaser-app',
+            title: `Whack A Mole v${VERSION}${DEV ? ' (DEV)' : ''}`,
+            url: 'https://phuc-dev.github.io/whack-a-mole/',
+            width: window.innerWidth,
+            height: window.innerHeight,
+            scale: {
+                mode: Phaser.Scale.ENVELOP,
+                autoCenter: Phaser.Scale.CENTER_BOTH,
+            },
+            scene: scenes,
+            backgroundColor: '#c8e082',
+            pixelArt: false,
+            //resolution: window.devicePixelRatio
+        };
 
-    // Scenes
-    let scenes = [];
-    scenes.push(Boot);
-    scenes.push(Preload);
-    scenes.push(Menu);
-    scenes.push(HowToPlay);
+        // Create game app
+        let game = new Phaser.Game(config);
 
-    // Game config
-    const config = {
-        type: Phaser.AUTO,
-        parent: 'phaser-app',
-        title: 'Whack A Mole',
-        url: 'https://phuc-dev.github.io/whack-a-mole/',
-        width: window.innerWidth,
-        height: window.innerHeight,
-        scale: {
-            mode: Phaser.Scale.ENVELOP,
-            autoCenter: Phaser.Scale.CENTER_BOTH,
-        },
-        scene: scenes,
-        backgroundColor: '#c8e082',
-        pixelArt: false,
-        //resolution: window.devicePixelRatio
-    };
+        // Globals
+        game.URL = '';
+        game.gameVersion = VERSION;
 
-    // Create game app
-    let game = new Phaser.Game(config);
+        game.CONFIG = {
+            width: game.config.width,
+            height: game.config.height,
+            centerX: Math.round(0.5 * game.config.width),
+            centerY: Math.round(0.5 * game.config.height),
+            loadBackground: (ctx, texture) => {
+                // add background to scene
+                const background = ctx.add.image(ctx.cameras.main.width / 2, ctx.cameras.main.height / 2, texture);
+                const scaleX = ctx.cameras.main.width / background.width;
+                const scaleY = ctx.cameras.main.height / background.height;
+                const scale = Math.max(scaleX, scaleY);
+                background.setScale(scale).setScrollFactor(0);
 
-    // Globals
-    game.IS_DEV = this.IS_DEV;
-    game.VERSION = this.VERSION;
-    game.URL = '';
-    game.gameVersion = this.VERSION;
+                // animate
+                ctx.tweens.add({
+                    targets: background,
+                    ease: 'Linear',
+                    duration: 600,
+                    alpha: {
+                        getStart: () => 0,
+                        getEnd: () => 1
+                    },
+                });
 
-    game.CONFIG = {
-        width: game.config.width,
-        height: game.config.height,
-        centerX: Math.round(0.5 * game.config.width),
-        centerY: Math.round(0.5 * game.config.height),
-        loadBackground: (ctx, texture) => {
-            // add background to scene
-            const background = ctx.add.image(ctx.cameras.main.width / 2, ctx.cameras.main.height / 2, texture);
-            const scaleX = ctx.cameras.main.width / background.width;
-            const scaleY = ctx.cameras.main.height / background.height;
-            const scale = Math.max(scaleX, scaleY);
-            background.setScale(scale).setScrollFactor(0);
+                return background;
+            },
+            sound: new Sound()
+        };
 
-            // animate
-            ctx.tweens.add({
-                targets: background,
-                ease: 'Linear',
-                duration: 600,
-                alpha: {
-                    getStart: () => 0,
-                    getEnd: () => 1
-                },
-            });
-
-            return background;
-        },
-        sound: new Sound()
-    };
-
-    return game;
-};
+        return game;
+    }
+}

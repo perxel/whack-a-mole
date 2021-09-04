@@ -27,11 +27,14 @@ class ChooseLevel extends Phaser.Scene{
          */
         this.createButtons();
 
-
         /**
          * Levels
          */
         this.createLevels();
+
+        /**
+         * Popup
+         */
     }
 
     createButtons(){
@@ -62,7 +65,6 @@ class ChooseLevel extends Phaser.Scene{
             {order: 9, is_unlocked: false,},
             {order: 10, is_unlocked: false,},
         ];
-        const level_title = 'Choose\nLevel';
 
         const cols = 5;
         const rows = Math.ceil(level_count.length / cols);
@@ -97,15 +99,19 @@ class ChooseLevel extends Phaser.Scene{
             height: rows,
             cellWidth: itemWidth + itemMarginSide,
             cellHeight: itemHeight + itemMarginTop,
-            x: itemMarginSide,
-            y: itemMarginTop
+            x: itemMarginSide + 110,
+            y: itemMarginTop + 95
         });
 
-        // Dots container
-        // todo: align container
-        this.plugins.get('rexanchorplugin').add(this.add.container(0, 0, this.levelButtons), {
-            centerX: '50%-' + (width / 2 - 20),
-            centerY: '50%-' + (height / 2)
+
+        // popup
+        const popup = new Popup({
+            scene: this,
+            width: width,
+            height: height,
+            padding: [90, 90, 70, 90],
+            objects: [...this.levelButtons],
+            title: 'Choose\nLevel'
         });
     }
 }

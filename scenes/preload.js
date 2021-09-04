@@ -82,7 +82,7 @@ class Preload extends Phaser.Scene{
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            callback: () => this.scene.start('ChooseLevel'),
+            callback: () => this.scene.start('Menu'),
             callbackScope: this
         });
     }

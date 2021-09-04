@@ -49,14 +49,14 @@ class Text{
                 style.fontSize = 96;
                 style.strokeThickness = 20;
                 style.lineSpacing = -30;
-                this.text = this.text.toUpperCase();
+                //this.text = this.text.toUpperCase();
                 break;
             case 'subtitle':
                 // loading title, how to text
                 style.fontSize = 36;
                 style.strokeThickness = 8;
                 style.lineSpacing = -5;
-                this.text = this.text.toUpperCase();
+                //this.text = this.text.toUpperCase();
                 break;
             case 'progress':
                 // progress value
@@ -64,6 +64,13 @@ class Text{
                 style.stroke = '#fff';
                 style.strokeThickness = 11;
                 style.color = '#00b7ed';
+                break;
+            case 'levelName':
+                // level button
+                style.fontSize = 64;
+                style.strokeThickness = 0;
+                style.color = '#805b2d';
+                break;
         }
 
         return style;

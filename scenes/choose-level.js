@@ -26,6 +26,12 @@ class ChooseLevel extends Phaser.Scene{
          * Buttons
          */
         this.createButtons();
+
+
+        /**
+         * Levels
+         */
+        this.createLevels();
     }
 
     createButtons(){
@@ -41,5 +47,65 @@ class ChooseLevel extends Phaser.Scene{
             },
             depth: 3
         }).get();
+    }
+
+    createLevels(){
+        const level_count = [
+            {order: 1, is_unlocked: true,},
+            {order: 2, is_unlocked: true,},
+            {order: 3, is_unlocked: false,},
+            {order: 4, is_unlocked: false,},
+            {order: 5, is_unlocked: false,},
+            {order: 6, is_unlocked: false,},
+            {order: 7, is_unlocked: false,},
+            {order: 8, is_unlocked: false,},
+            {order: 9, is_unlocked: false,},
+            {order: 10, is_unlocked: false,},
+        ];
+        const level_title = 'Choose\nLevel';
+
+        const cols = 5;
+        const rows = Math.ceil(level_count.length / cols);
+        const itemWidth = window.innerWidth > 1024 ? 116 : 80;
+        const itemHeight = window.innerWidth > 1024 ? 112 : 60;
+        const itemMarginSide = 16;
+        const itemMarginTop = 40;
+        const width = itemWidth * cols + (cols - 1) * itemMarginSide;
+        const height = itemHeight * rows + (rows - 1) * itemMarginTop;
+
+        // level buttons
+        this.levelButtons = [];
+        for(let i = 0; i < level_count.length; i++){
+            // Button level
+            this.levelButtons[i] = new Button(this, 0, 0, {
+                atlas: 'whack',
+                idleTexture: level_count[i].is_unlocked ? 'levels/btn/' + (i + 1) : "levels/btn/0",
+                disabled: !level_count[i].is_unlocked,
+                width: itemWidth, height: itemHeight,
+                pointerUp: () => {
+                    if(DEV) console.log(`Go to level ${i + 1}`);
+                },
+                depth: 3
+            });
+            this.levelButtons[i] = this.levelButtons[i].get();
+        }
+
+        // align to grid
+        // https://photonstorm.github.io/phaser3-docs/Phaser.Types.Actions.html#.GridAlignConfig
+        Phaser.Actions.GridAlign(this.levelButtons, {
+            width: cols,
+            height: rows,
+            cellWidth: itemWidth + itemMarginSide,
+            cellHeight: itemHeight + itemMarginTop,
+            x: itemMarginSide,
+            y: itemMarginTop
+        });
+
+        // Dots container
+        // todo: align container
+        this.plugins.get('rexanchorplugin').add(this.add.container(0, 0, this.levelButtons), {
+            centerX: '50%-' + (width / 2 - 20),
+            centerY: '50%-' + (height / 2)
+        });
     }
 }

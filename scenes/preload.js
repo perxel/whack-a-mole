@@ -23,6 +23,7 @@ class Preload extends Phaser.Scene{
         const btnSize = {
             small: {width: 55, height: 55},
             medium: {width: 100, height: 100},
+            level: {width: 120, height: 120},
             big: {width: 150, height: 150},
         };
         this.load.svg('soundOn', 'assets/img/btn/sound-on.svg', btnSize.small);
@@ -81,7 +82,7 @@ class Preload extends Phaser.Scene{
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            callback: () => this.scene.start('Menu'),
+            callback: () => this.scene.start('ChooseLevel'),
             callbackScope: this
         });
     }

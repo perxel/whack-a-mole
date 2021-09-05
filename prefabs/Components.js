@@ -7,6 +7,7 @@ class Components{
         }
 
         this.scene = config.scene;
+        this.previousScene = this.scene.sceneData.previousScene || undefined;
         this.sceneKey = this.scene.scene.key;
         this.key = config.key;
         this.anchor = config.anchor || undefined;
@@ -14,7 +15,6 @@ class Components{
 
         // for background
         this.texture = config.texture;
-        this.prevTexture = config.prevTexture || undefined;
 
         // switch
         switch(this.key){
@@ -28,19 +28,17 @@ class Components{
     }
 
     getGoBackButton(){
-        this.previousScene = this.scene.sceneData.previousScene.name;
-
         return new Button(this.scene, 0, 0, {
             idleTexture: 'back',
             pointerUp: () => {
-                if(!this.previousScene){
-                    this.previousScene = "Menu";
-                    if(DEV) console.log(`Undefined previous scene. Go back from ${this.sceneKey} to ${this.previousScene}.`);
+                if(!this.previousScene.name){
+                    this.previousScene.name = "Menu";
+                    if(DEV) console.log(`Undefined previous scene. Go back from ${this.sceneKey} to ${this.previousScene.name}.`);
                 }else{
-                    if(DEV) console.log(`Go back from ${this.sceneKey} to ${this.previousScene}`);
+                    if(DEV) console.log(`Go back from ${this.sceneKey} to ${this.previousScene.name}`);
                 }
 
-                this.scene.scene.start(this.previousScene, {previousScene: this.scene.sceneData});
+                this.scene.scene.start(this.previousScene.name, {previousScene: this.scene.sceneData});
             },
             anchor: this.anchor,
             depth: this.depth
@@ -48,7 +46,11 @@ class Components{
     }
 
     getBackgroundImage(){
-        const hasBgTransition = this.texture !== this.prevTexture;
+        let hasBgTransition = true;
+        if(this.previousScene){
+            hasBgTransition = this.texture !== this.previousScene.background;
+        }
+
         if(DEV) console.log(`Add background image [${this.texture}] to scene ${this.sceneKey} ${hasBgTransition ? "with" : "without"} transition.`);
 
         // add background to scene

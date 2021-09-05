@@ -38,6 +38,7 @@ class Preload extends Phaser.Scene{
         this.load.svg('question', 'assets/img/btn/question.svg', btnSize.medium);
         this.load.svg('close', 'assets/img/btn/close.svg', btnSize.small);
         this.load.svg('back', 'assets/img/btn/back.svg', btnSize.small);
+        this.load.svg('fullscreen', 'assets/img/btn/fullscreen.svg', btnSize.small);
 
 
         /**
@@ -84,8 +85,8 @@ class Preload extends Phaser.Scene{
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            callback: () => this.scene.start("Menu"),
-            //callback: () => this.scene.start("GamePlay", {levelId: 1}),
+            //callback: () => this.scene.start("Menu"),
+            callback: () => this.scene.start("GamePlay", {levelId: 1}),
             callbackScope: this
         });
     }

@@ -4,15 +4,15 @@ class Boot extends Phaser.Scene{
     }
 
     init(){
-        if(DEV) console.log('Boot init()');
+        //if(DEV) console.log('Boot init()');
     }
 
     preload(){
-        if(DEV) console.log('Boot preload()');
+        //if(DEV) console.log('Boot preload()');
     }
 
     create(){
-        if(DEV) console.log('Boot create()');
+        //if(DEV) console.log('Boot create()');
 
         this.scene.start('Preload');
     }

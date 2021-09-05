@@ -114,3 +114,14 @@ function generatePreviousSceneData(scene, data){
     }
     return undefined;
 }
+
+
+/**
+ * Generate ID
+ * @param suffix
+ * @returns {string}
+ */
+function generateID(suffix = ''){
+    return (+new Date()).toString(16) +
+        (Math.random() * 100000000 | 0).toString(16) + suffix;
+}

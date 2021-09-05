@@ -10,6 +10,7 @@ class App{
         scenes.push(Menu);
         scenes.push(HowToPlay);
         scenes.push(ChooseLevel);
+        scenes.push(GamePlay);
 
         // Game config
         const config = {
@@ -41,27 +42,6 @@ class App{
             height: game.config.height,
             centerX: Math.round(0.5 * game.config.width),
             centerY: Math.round(0.5 * game.config.height),
-            loadBackground: (ctx, texture) => {
-                // add background to scene
-                const background = ctx.add.image(ctx.cameras.main.width / 2, ctx.cameras.main.height / 2, texture);
-                const scaleX = ctx.cameras.main.width / background.width;
-                const scaleY = ctx.cameras.main.height / background.height;
-                const scale = Math.max(scaleX, scaleY);
-                background.setScale(scale).setScrollFactor(0);
-
-                // animate
-                ctx.tweens.add({
-                    targets: background,
-                    ease: 'Linear',
-                    duration: 600,
-                    alpha: {
-                        getStart: () => 0,
-                        getEnd: () => 1
-                    },
-                });
-
-                return background;
-            },
             sound: new Sound()
         };
 

@@ -33,6 +33,11 @@ class GamePlay extends Phaser.Scene{
          * Buttons
          */
         this.createButtons();
+
+        /**
+         * Create holes
+         */
+        this.createHoles();
     }
 
     createButtons(){
@@ -61,5 +66,41 @@ class GamePlay extends Phaser.Scene{
             },
             depth: 3
         }).get();
+
+        // Button full screen
+        this.btnQuestion = new Button(this, 0, 0, {
+            idleTexture: 'fullscreen',
+            pointerUp: () => {
+                this.scale.toggleFullscreen();
+            },
+            anchor: {
+                left: 'left+160',
+                top: 'top+30'
+            },
+            depth: 3
+        }).get();
+    }
+
+    createHoles(){
+        // Bomb
+        this.purcupine = new Character({
+            scene: this,
+            name: 'one',
+            showHitArea: true,
+            anchor: {
+                centerX: '40%',
+                centerY: '50%',
+            }
+        });
+
+        this.purcupine2 = new Character({
+            scene: this,
+            name: 'two',
+            showHitArea: true,
+            anchor: {
+                centerX: '70%',
+                centerY: '50%',
+            }
+        });
     }
 }

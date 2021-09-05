@@ -27,6 +27,10 @@ class Components{
         }
     }
 
+    /**
+     * Get Go Back Button
+     * @returns {*}
+     */
     getGoBackButton(){
         return new Button(this.scene, 0, 0, {
             idleTexture: 'back',
@@ -45,6 +49,10 @@ class Components{
         }).get();
     }
 
+    /**
+     * Get Background Image
+     * @returns {*}
+     */
     getBackgroundImage(){
         let hasBgTransition = true;
         if(this.previousScene){

@@ -8,8 +8,8 @@ class ChooseLevel extends Phaser.Scene{
 
         this.sceneData = {
             name: this.scene.key,
-            previousScene: data.previousScene,
-            background: 'desktopBg'
+            background: 'desktopBg',
+            previousScene: generatePreviousSceneData(this, data)
         };
 
         if(DEV) console.log('--------------------');

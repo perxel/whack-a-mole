@@ -29,11 +29,6 @@ function resizeApp_James(){
 }
 
 
-function resizeApp(){
-
-}
-
-
 /**
  * Get container size todo: need re-calc
  * https://phasergames.com/phaser-3-container-size-get-height-and-width/
@@ -95,4 +90,27 @@ function getContainerSize(container, game){
     container.setSize(w, h);
 
     return {width: w, height: h};
+}
+
+
+/**
+ * Generate previous scene data object (exclude the {previousScene} to avoid too much data)
+ * @param scene
+ * @param data
+ * @returns {{}|undefined}
+ */
+function generatePreviousSceneData(scene, data){
+    const prevScene = data.previousScene;
+    if(prevScene){
+        const object = {};
+
+        for(let key in prevScene){
+            if(prevScene.hasOwnProperty(key) && key !== 'previousScene'){
+                object[key] = prevScene[key];
+            }
+        }
+
+        return object;
+    }
+    return undefined;
 }

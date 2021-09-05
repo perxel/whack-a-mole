@@ -3,26 +3,25 @@ class Menu extends Phaser.Scene{
         super({key: "Menu", active: false});
     }
 
-    init(){
-        if(DEV) console.log('Menu init()');
-
+    init(data){
         this.CONFIG = this.sys.game.CONFIG;
+
+        this.sceneData = {
+            name: this.scene.key,
+            previousScene: data.previousScene,
+            background: 'desktopBg'
+        };
+
+        if(DEV) console.log('--------------------');
+        if(DEV) console.log(`${this.sceneData.name} init()`, this.sceneData);
     }
 
     preload(){
-        if(DEV) console.log('Menu preload()');
+        //if(DEV) console.log('Menu preload()');
     }
 
     create(){
-        if(DEV) console.log('Menu create()');
-
-
-        // Objects
-        this.btnPlay = null;
-        this.btnHowTo = null;
-        this.titleImage = null;
-        this.bg = null;
-
+        //if(DEV) console.log('Menu create()');
 
         /**
          * Music
@@ -45,7 +44,7 @@ class Menu extends Phaser.Scene{
          * Images
          */
         // background
-        this.bg = this.CONFIG.loadBackground(this, 'desktopBg');
+        this.bg = new Components({scene: this, key: 'getBackgroundImage', texture: this.sceneData.background});
 
         // title
         this.titleImage = this.add.image(0, 0, 'welcomeWhack').setScale(0.9);
@@ -149,10 +148,10 @@ class Menu extends Phaser.Scene{
     }
 
     goPlay(){
-        this.scene.start("ChooseLevel");
+        this.scene.start("ChooseLevel", {previousScene: this.sceneData});
     }
 
     goHowToPlay(){
-        this.scene.start("HowToPlay");
+        this.scene.start("HowToPlay", {previousScene: this.sceneData});
     }
 }

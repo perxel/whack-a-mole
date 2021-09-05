@@ -3,24 +3,31 @@ class ChooseLevel extends Phaser.Scene{
         super({key: "ChooseLevel", active: false});
     }
 
-    init(){
-        if(DEV) console.log('ChooseLevel init()');
-
+    init(data){
         this.CONFIG = this.sys.game.CONFIG;
+
+        this.sceneData = {
+            name: this.scene.key,
+            previousScene: data.previousScene,
+            background: 'desktopBg'
+        };
+
+        if(DEV) console.log('--------------------');
+        if(DEV) console.log(`${this.sceneData.name} init()`, this.sceneData);
     }
 
     preload(){
-        if(DEV) console.log('ChooseLevel preload()');
+        //if(DEV) console.log('ChooseLevel preload()');
     }
 
     create(){
-        if(DEV) console.log('ChooseLevel create()');
+        //if(DEV) console.log('ChooseLevel create()');
 
         /**
          * Images
          */
         // background
-        this.bg = this.CONFIG.loadBackground(this, 'desktopBg');
+        this.bg = new Components({scene: this, key: 'getBackgroundImage', texture: this.sceneData.background});
 
         /**
          * Buttons
@@ -39,17 +46,14 @@ class ChooseLevel extends Phaser.Scene{
 
     createButtons(){
         // Button back
-        this.btnBack = new Button(this, 0, 0, {
-            idleTexture: 'back',
-            pointerUp: () => {
-                this.scene.start("Menu");
-            },
+        this.btnBack = new Components({
+            scene: this,
+            key: 'goBackButton',
             anchor: {
                 left: 'left+30',
                 top: 'top+30'
             },
-            depth: 3
-        }).get();
+        });
     }
 
     createLevels(){
@@ -85,7 +89,7 @@ class ChooseLevel extends Phaser.Scene{
                 disabled: !level_count[i].is_unlocked,
                 width: itemWidth, height: itemHeight,
                 pointerUp: () => {
-                    if(DEV) console.log(`Go to level ${i + 1}`);
+                    this.goPlay(i + 1);
                 },
                 depth: 3
             });
@@ -113,5 +117,10 @@ class ChooseLevel extends Phaser.Scene{
             objects: [...this.levelButtons],
             title: 'Choose\nLevel'
         });
+    }
+
+    goPlay(level){
+        if(DEV) console.log(`Go to level ${level}`);
+        this.scene.start("GamePlay", {previousScene: this.sceneData, levelId: level});
     }
 }

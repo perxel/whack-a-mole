@@ -3,23 +3,31 @@ class HowToPlay extends Phaser.Scene{
         super({key: "HowToPlay", active: false});
     }
 
-    init(){
-        if(DEV) console.log('HowToPlay init()');
+    init(data){
         this.CONFIG = this.sys.game.CONFIG;
+
+        this.sceneData = {
+            name: this.scene.key,
+            previousScene: data.previousScene,
+            background: 'desktopBg'
+        };
+
+        if(DEV) console.log('--------------------');
+        if(DEV) console.log(`${this.sceneData.name} init()`, this.sceneData);
     }
 
     preload(){
-        if(DEV) console.log('HowToPlay preload()');
+        //if(DEV) console.log('HowToPlay preload()');
     }
 
     create(){
-        if(DEV) console.log('HowToPlay create()');
+        //if(DEV) console.log('HowToPlay create()');
 
         /**
          * Images
          */
         // background
-        this.bg = this.CONFIG.loadBackground(this, 'desktopBg');
+        this.bg = new Components({scene: this, key: 'getBackgroundImage', texture: this.sceneData.background});
 
         // Bomb
         this.bomb = this.add.sprite(400, 400, 'whack', 'characters/bomb/1').setDepth(3);
@@ -109,17 +117,14 @@ class HowToPlay extends Phaser.Scene{
         this.btnMusic = this.CONFIG.sound.getButton(this);
 
         // Button back
-        this.btnBack = new Button(this, 0, 0, {
-            idleTexture: 'back',
-            pointerUp: () => {
-                this.scene.start("Menu");
-            },
+        this.btnBack = new Components({
+            scene: this,
+            key: 'goBackButton',
             anchor: {
                 left: 'left+30',
                 top: 'top+30'
             },
-            depth: 3
-        }).get();
+        });
 
         // Button prev
         this.btnPrev = new Button(this, 0, 0, {

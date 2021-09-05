@@ -4,12 +4,14 @@ class Preload extends Phaser.Scene{
     }
 
     init(){
-        if(DEV) console.log('Preload init()');
         this.CONFIG = this.sys.game.CONFIG;
+
+        if(DEV) console.log('--------------------');
+        if(DEV) console.log('Preload init()');
     }
 
     preload(){
-        if(DEV) console.log('Preload preload()');
+        ///if(DEV) console.log('Preload preload()');
 
         /**
          * Plugins
@@ -69,7 +71,7 @@ class Preload extends Phaser.Scene{
     }
 
     create(){
-        if(DEV) console.log('Preload create()');
+        //if(DEV) console.log('Preload create()');
 
 
         // Add music
@@ -82,7 +84,8 @@ class Preload extends Phaser.Scene{
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            callback: () => this.scene.start('Menu'),
+            callback: () => this.scene.start("Menu"),
+            //callback: () => this.scene.start("GamePlay", {levelId: 1}),
             callbackScope: this
         });
     }

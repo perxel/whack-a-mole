@@ -82,7 +82,11 @@ class GamePlay extends Phaser.Scene{
     }
 
     createHoles(){
-        // Bomb
+        // Hammer
+        this.hammer = new Hammer({scene: this, name: '4'});
+
+
+        // Character
         this.purcupine = new Character({
             scene: this,
             name: 'one',

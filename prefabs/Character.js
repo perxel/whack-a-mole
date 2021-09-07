@@ -49,20 +49,25 @@ class Character{
     createPorcupine(){
         this.character = this.scene.add.sprite(this.x, this.y, 'whack', `characters/${this.name}/normal-1`);
         this.hurtTimer = undefined;
+        this.ratio = this.character.height / this.character.width;
+        this.width = 250;
+        this.height = this.width * this.ratio;
+        this.character.setDisplaySize(this.width, this.height);
 
-        // Set interactive
-        this.character.setInteractive();
-        this.character.input.hitArea.setTo(this.character.x, this.character.y, this.character.width, this.character.height);
+        // adjust the hit area
+        const hitAreaDiameter = this.height * 0.8;
+        const hitAreaX = this.width * 0.6;
+        const shape = new Phaser.Geom.Circle(hitAreaX, this.height * 0.8, hitAreaDiameter * 0.5);
+        this.character.setInteractive(shape, Phaser.Geom.Circle.Contains);
 
         // Play idle animation
         this.playAnimation('idle');
 
         // Show hit area
         if(this.showHitArea){
-            const hitArea = this.character.input.hitArea;
-            const hitAreaGraphic = this.scene.add.rectangle(this.character.x, this.character.y, hitArea.width, hitArea.height, 0x00ff00, 0.15);
-            hitAreaGraphic.setOrigin(this.character.originX, this.character.originY);
+            this.scene.input.enableDebug(this.character, 0xffff00);
         }
+
 
         // On attack
         this.character.on('pointerdown', () => {

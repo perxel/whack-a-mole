@@ -125,3 +125,29 @@ function generateID(suffix = ''){
     return (+new Date()).toString(16) +
         (Math.random() * 100000000 | 0).toString(16) + suffix;
 }
+
+
+/**
+ * Background cover
+ * https://github.com/studiometa/background-cover
+ *
+ * @param elementSizes
+ * @param containerSizes
+ * @returns {{width: number, height: number}}
+ */
+function backgroundCover(elementSizes, containerSizes){
+    const elementRatio = elementSizes.width / elementSizes.height
+    const containerRatio = containerSizes.width / containerSizes.height
+
+    let width, height
+
+    if(containerRatio > elementRatio){
+        width = containerSizes.width
+        height = containerSizes.width / elementRatio
+    }else{
+        width = containerSizes.height * elementRatio
+        height = containerSizes.height
+    }
+
+    return {width, height}
+}

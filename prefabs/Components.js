@@ -54,20 +54,26 @@ class Components{
      * @returns {*}
      */
     getBackgroundImage(){
-        let hasBgTransition = true;
-        if(this.previousScene){
-            hasBgTransition = this.texture !== this.previousScene.background;
-        }
-
+        // check if the prev scene is available
+        const hasBgTransition = this.previousScene && this.texture !== this.previousScene.background;
         if(DEV) console.log(`Add background image [${this.texture}] to scene ${this.sceneKey} ${hasBgTransition ? "with" : "without"} transition.`);
 
         // add background to scene
-        const cameras = this.scene.cameras.main;
-        const background = this.scene.add.image(cameras.width / 2, cameras.height / 2, this.texture);
-        const scaleX = cameras.width / background.width;
-        const scaleY = cameras.height / background.height;
-        const scale = Math.max(scaleX, scaleY);
-        background.setScale(scale).setScrollFactor(0);
+        const background = this.scene.add.image(0, 0, this.texture);
+        this.scene.plugins.get('rexanchorplugin').add(background, {
+            centerX: '50%',
+            centerY: '50%',
+        });
+
+        // background cover screen
+        const newSize = backgroundCover(background, {width: window.innerWidth, height: window.innerHeight});
+        background.setDisplaySize(newSize.width, newSize.height);
+
+        // on game resize
+        this.scene.scale.on('resize', function(gameSize, baseSize, displaySize, previousWidth, previousHeight){
+            const newSize = backgroundCover(background, {width: window.innerWidth, height: window.innerHeight});
+            background.setDisplaySize(newSize.width, newSize.height);
+        });
 
         // animate
         if(hasBgTransition){

@@ -52,6 +52,8 @@ class Preload extends Phaser.Scene{
         // background music
         this.load.audio('bgMusic', ['assets/aux/music.mp3']);
         this.load.audio('click', ['assets/aux/click.mp3']);
+        this.load.audio('zap', ['assets/aux/hammer-flesh.mp3']);
+        this.load.audio('die', ['assets/aux/die.mp3']);
 
         /**
          * Load image
@@ -80,6 +82,8 @@ class Preload extends Phaser.Scene{
 
         // Add sound
         this.sys.game.CONFIG.sound.setSoundFx('click', this.sound.add('click', {volume: SOUND_FX_VOL}));
+        this.sys.game.CONFIG.sound.setSoundFx('zap', this.sound.add('zap', {volume: SOUND_FX_VOL}));
+        this.sys.game.CONFIG.sound.setSoundFx('die', this.sound.add('die', {volume: 1.5}));
 
 
         // Go Menu

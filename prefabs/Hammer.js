@@ -41,6 +41,10 @@ class Hammer{
         this.attackTimer = undefined;
 
         this.scene.input.on("pointerdown", (data) => {
+            // sound fx
+            this.scene.sys.game.CONFIG.sound.playSoundFx('zap');
+
+            // update position
             this.hammer.setPosition(data.position.x + this.hammer.displayWidth * 0.5, data.position.y + this.hammer.displayHeight * 0.5).setAlpha(1);
 
             // play attach anim

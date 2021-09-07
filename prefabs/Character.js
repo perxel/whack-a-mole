@@ -81,6 +81,9 @@ class Character{
 
         // on attack
         if(key === 'attack'){
+            // sound fx
+            this.scene.sys.game.CONFIG.sound.playSoundFx('die');
+
             // play hurt state
             setTimeout(() => {
                 this.playAnimation('hurt');

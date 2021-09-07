@@ -135,7 +135,7 @@ function generateID(suffix = ''){
  * @param containerSizes
  * @returns {{width: number, height: number}}
  */
-function backgroundCover(elementSizes, containerSizes){
+function getBackgroundCoverSizes(elementSizes, containerSizes){
     const elementRatio = elementSizes.width / elementSizes.height
     const containerRatio = containerSizes.width / containerSizes.height
 
@@ -150,4 +150,29 @@ function backgroundCover(elementSizes, containerSizes){
     }
 
     return {width, height}
+}
+
+
+/**
+ * Keep background size cover the screen
+ * @param scene
+ * @param image
+ */
+function keepBackgroundCover(scene, image){
+    // align center both
+    scene.plugins.get('rexanchorplugin').add(image, {
+        centerX: '50%',
+        centerY: '50%',
+    });
+
+    // resize background to cover the screen
+    function resize(){
+        const newSize = getBackgroundCoverSizes(image, {width: window.innerWidth, height: window.innerHeight});
+        image.setDisplaySize(newSize.width, newSize.height);
+    }
+
+    resize();
+
+    // on game resize
+    scene.scale.on('resize', resize);
 }

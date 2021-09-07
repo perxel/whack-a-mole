@@ -60,20 +60,9 @@ class Components{
 
         // add background to scene
         const background = this.scene.add.image(0, 0, this.texture);
-        this.scene.plugins.get('rexanchorplugin').add(background, {
-            centerX: '50%',
-            centerY: '50%',
-        });
 
-        // background cover screen
-        const newSize = backgroundCover(background, {width: window.innerWidth, height: window.innerHeight});
-        background.setDisplaySize(newSize.width, newSize.height);
-
-        // on game resize
-        this.scene.scale.on('resize', function(gameSize, baseSize, displaySize, previousWidth, previousHeight){
-            const newSize = backgroundCover(background, {width: window.innerWidth, height: window.innerHeight});
-            background.setDisplaySize(newSize.width, newSize.height);
-        });
+        // resize background to cover the screen
+        keepBackgroundCover(this.scene, background);
 
         // animate
         if(hasBgTransition){

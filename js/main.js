@@ -20,4 +20,7 @@ window.onload = function(){
 
     // Init the Phaser game app
     let app = new App();
+
+    // Update page title
+    document.title = `Whack Game ${VERSION}`;
 };

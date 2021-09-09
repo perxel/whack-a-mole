@@ -89,22 +89,30 @@ class GamePlay extends Phaser.Scene{
         // Character
         this.purcupine = new Character({
             scene: this,
-            name: 'one',
-            showHitArea: true,
-            anchor: {
-                centerX: '40%',
-                centerY: '50%',
-            }
+            name: 'one'
         });
 
         this.purcupine2 = new Character({
             scene: this,
-            name: 'two',
-            showHitArea: true,
+            name: 'two'
+        });
+
+        this.hole = new Hole({
+            scene: this,
+            character: this.purcupine,
+            anchor: {
+                centerX: '40%',
+                centerY: '50%',
+            }
+        })
+
+        this.hole2 = new Hole({
+            scene: this,
+            character: this.purcupine2,
             anchor: {
                 centerX: '70%',
                 centerY: '50%',
             }
-        });
+        })
     }
 }

@@ -176,3 +176,26 @@ function keepBackgroundCover(scene, image){
     // on game resize
     scene.scale.on('resize', resize);
 }
+
+
+/**
+ * Check if pointer is inside zone
+ * @param pointerX
+ * @param pointerY
+ * @param zoneX
+ * @param zoneY
+ * @param zoneWidth
+ * @param zoneHeight
+ * @returns {boolean}
+ */
+function isPointerInsideZone(pointerX, pointerY, zoneX, zoneY, zoneWidth, zoneHeight){
+    const insideHorizontally = pointerX >= zoneX && pointerX <= zoneX + zoneWidth;
+    const insideVertically = pointerY >= zoneY && pointerY <= zoneY + zoneHeight;
+
+    // draw debug
+    // const fill = scene.add.graphics();
+    // fill.fillStyle(0xffffff, 1);
+    // fill.fillRect(zoneX, zoneY, zoneWidth, zoneHeight);
+
+    return insideHorizontally && insideVertically;
+}

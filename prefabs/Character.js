@@ -14,9 +14,8 @@ class Character{
         this.id = config.id || generateID();
         this.x = config.x || 0;
         this.y = config.y || 0;
-        this.showHitArea = config.showHitArea || false;
+        this.showHitArea = config.showHitArea || DEV;
         this.name = config.name || '';
-        this.anchor = config.anchor || {};
         this.hurtTime = 2000; // ms
 
         this.createAnimations();
@@ -57,8 +56,11 @@ class Character{
         // adjust the hit area
         const hitAreaDiameter = this.height * 0.8;
         const hitAreaX = this.width * 0.6;
-        const shape = new Phaser.Geom.Circle(hitAreaX, this.height * 0.8, hitAreaDiameter * 0.5);
+        const hitAreaY = this.height * 0.8;
+        const hitAreaRadius = hitAreaDiameter * 0.5;
+        const shape = new Phaser.Geom.Circle(hitAreaX, hitAreaY, hitAreaRadius);
         this.character.setInteractive(shape, Phaser.Geom.Circle.Contains);
+
 
         // Play idle animation
         this.playAnimation('idle');
@@ -70,8 +72,8 @@ class Character{
 
 
         // On attack
-        this.character.on('pointerdown', () => {
-            this.attack();
+        this.character.on('pointerdown', (pointer) => {
+            this.attack(pointer);
         });
     }
 
@@ -100,12 +102,22 @@ class Character{
                 }
             });
         }
-
-        // re-align
-        this.scene.plugins.get('rexanchorplugin').add(this.character, this.anchor);
     }
 
-    attack(){
-        this.playAnimation('attack');
+    attack(pointer){
+        const container = this.character.parentContainer;
+        const isGoodAttack = isPointerInsideZone(
+            pointer.x,
+            pointer.y,
+            container.x - container.originX * container.width,
+            container.y - container.originY * container.height,
+            container.width,
+            container.height
+        );
+
+        if(isGoodAttack){
+            this.playAnimation('attack');
+            if(DEV) console.log(`Attack ${this.name}`);
+        }
     }
 }

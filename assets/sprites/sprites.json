@@ -4,8 +4,8 @@
 			"image": "sprites-0.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 2005,
-				"h": 1077
+				"w": 1972,
+				"h": 1073
 			},
 			"scale": 1,
 			"frames": [
@@ -110,28 +110,28 @@
 					}
 				},
 				{
-					"filename": "hammers/3/2",
+					"filename": "hammers/1/2",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 200,
-						"h": 230
+						"h": 226
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 200,
-						"h": 230
+						"h": 226
 					},
 					"frame": {
 						"x": 0,
 						"y": 847,
 						"w": 200,
-						"h": 230
+						"h": 226
 					},
 					"anchor": {
-						"x": 0.11,
-						"y": 0.926087
+						"x": 0.09,
+						"y": 0.938053
 					}
 				},
 				{
@@ -785,78 +785,28 @@
 					}
 				},
 				{
-					"filename": "characters/bomb/1",
+					"filename": "hammers/3/2",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 120,
-						"h": 116
+						"w": 200,
+						"h": 230
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 120,
-						"h": 116
-					},
-					"frame": {
-						"x": 1861,
-						"y": 0,
-						"w": 120,
-						"h": 116
-					},
-					"anchor": {
-						"x": 0.391667,
-						"y": 0.594828
-					}
-				},
-				{
-					"filename": "characters/bomb/2",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 120,
-						"h": 111
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 120,
-						"h": 111
-					},
-					"frame": {
-						"x": 1861,
-						"y": 116,
-						"w": 120,
-						"h": 111
-					},
-					"anchor": {
-						"x": 0.408333,
-						"y": 0.531532
-					}
-				},
-				{
-					"filename": "characters/one/normal-1",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 350,
-						"h": 350
-					},
-					"spriteSourceSize": {
-						"x": 73,
-						"y": 117,
-						"w": 197,
-						"h": 233
+						"w": 200,
+						"h": 230
 					},
 					"frame": {
 						"x": 1077,
 						"y": 432,
-						"w": 197,
-						"h": 233
+						"w": 200,
+						"h": 230
 					},
 					"anchor": {
-						"x": 0.512,
-						"y": 0.993266
+						"x": 0.11,
+						"y": 0.926087
 					}
 				},
 				{
@@ -874,7 +824,7 @@
 						"h": 229
 					},
 					"frame": {
-						"x": 1274,
+						"x": 1277,
 						"y": 437,
 						"w": 200,
 						"h": 229
@@ -885,28 +835,28 @@
 					}
 				},
 				{
-					"filename": "hammers/1/2",
+					"filename": "characters/bomb/1",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 200,
-						"h": 226
+						"w": 120,
+						"h": 116
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 200,
-						"h": 226
+						"w": 120,
+						"h": 116
 					},
 					"frame": {
-						"x": 1474,
-						"y": 464,
-						"w": 200,
-						"h": 226
+						"x": 1477,
+						"y": 437,
+						"w": 120,
+						"h": 116
 					},
 					"anchor": {
-						"x": 0.09,
-						"y": 0.938053
+						"x": 0.391667,
+						"y": 0.594828
 					}
 				},
 				{
@@ -924,7 +874,7 @@
 						"h": 229
 					},
 					"frame": {
-						"x": 1674,
+						"x": 1597,
 						"y": 464,
 						"w": 200,
 						"h": 229
@@ -935,7 +885,82 @@
 					}
 				},
 				{
+					"filename": "characters/bomb/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 120,
+						"h": 111
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 120,
+						"h": 111
+					},
+					"frame": {
+						"x": 1477,
+						"y": 553,
+						"w": 120,
+						"h": 111
+					},
+					"anchor": {
+						"x": 0.408333,
+						"y": 0.531532
+					}
+				},
+				{
 					"filename": "levels/btn/2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 175,
+						"h": 170
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 175,
+						"h": 170
+					},
+					"frame": {
+						"x": 1797,
+						"y": 464,
+						"w": 175,
+						"h": 170
+					},
+					"anchor": {
+						"x": 0.466667,
+						"y": 0.517241
+					}
+				},
+				{
+					"filename": "levels/btn/3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 175,
+						"h": 170
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 175,
+						"h": 170
+					},
+					"frame": {
+						"x": 1797,
+						"y": 634,
+						"w": 175,
+						"h": 170
+					},
+					"anchor": {
+						"x": 0.466667,
+						"y": 0.517241
+					}
+				},
+				{
+					"filename": "levels/btn/4",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -960,103 +985,28 @@
 					}
 				},
 				{
-					"filename": "levels/btn/3",
+					"filename": "characters/one/normal-1",
 					"rotated": false,
-					"trimmed": false,
+					"trimmed": true,
 					"sourceSize": {
-						"w": 175,
-						"h": 170
+						"w": 350,
+						"h": 350
 					},
 					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 175,
-						"h": 170
+						"x": 73,
+						"y": 117,
+						"w": 197,
+						"h": 233
 					},
 					"frame": {
 						"x": 1230,
 						"y": 666,
-						"w": 175,
-						"h": 170
+						"w": 197,
+						"h": 233
 					},
 					"anchor": {
-						"x": 0.466667,
-						"y": 0.517241
-					}
-				},
-				{
-					"filename": "holes/1-mask-2",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 250,
-						"h": 87
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 250,
-						"h": 87
-					},
-					"frame": {
-						"x": 1405,
-						"y": 690,
-						"w": 250,
-						"h": 87
-					},
-					"anchor": {
-						"x": 0.497143,
-						"y": 0.988571
-					}
-				},
-				{
-					"filename": "holes/1-mask",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 250,
-						"h": 87
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 250,
-						"h": 87
-					},
-					"frame": {
-						"x": 1405,
-						"y": 777,
-						"w": 250,
-						"h": 87
-					},
-					"anchor": {
-						"x": 0.497143,
-						"y": 0.988571
-					}
-				},
-				{
-					"filename": "levels/btn/4",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 175,
-						"h": 170
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 175,
-						"h": 170
-					},
-					"frame": {
-						"x": 1655,
-						"y": 693,
-						"w": 175,
-						"h": 170
-					},
-					"anchor": {
-						"x": 0.466667,
-						"y": 0.517241
+						"x": 0.512,
+						"y": 0.993266
 					}
 				},
 				{
@@ -1075,7 +1025,7 @@
 					},
 					"frame": {
 						"x": 1150,
-						"y": 846,
+						"y": 899,
 						"w": 175,
 						"h": 170
 					},
@@ -1100,7 +1050,7 @@
 					},
 					"frame": {
 						"x": 1325,
-						"y": 864,
+						"y": 899,
 						"w": 175,
 						"h": 170
 					},
@@ -1124,8 +1074,8 @@
 						"h": 170
 					},
 					"frame": {
-						"x": 1500,
-						"y": 864,
+						"x": 1427,
+						"y": 693,
 						"w": 175,
 						"h": 170
 					},
@@ -1149,39 +1099,14 @@
 						"h": 170
 					},
 					"frame": {
-						"x": 1675,
-						"y": 863,
+						"x": 1602,
+						"y": 693,
 						"w": 175,
 						"h": 170
 					},
 					"anchor": {
 						"x": 0.466667,
 						"y": 0.517241
-					}
-				},
-				{
-					"filename": "holes/1-front",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 250,
-						"h": 87
-					},
-					"spriteSourceSize": {
-						"x": 13,
-						"y": 44,
-						"w": 224,
-						"h": 43
-					},
-					"frame": {
-						"x": 1150,
-						"y": 1034,
-						"w": 224,
-						"h": 43
-					},
-					"anchor": {
-						"x": 0.497143,
-						"y": 0.988571
 					}
 				},
 				{
@@ -1199,8 +1124,8 @@
 						"h": 170
 					},
 					"frame": {
-						"x": 1830,
-						"y": 693,
+						"x": 1500,
+						"y": 863,
 						"w": 175,
 						"h": 170
 					},
@@ -1224,7 +1149,7 @@
 						"h": 105
 					},
 					"frame": {
-						"x": 1850,
+						"x": 1675,
 						"y": 863,
 						"w": 120,
 						"h": 105
@@ -1233,6 +1158,31 @@
 						"x": 0.441667,
 						"y": 0.485714
 					}
+				},
+				{
+					"filename": "holes/1-front",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 250,
+						"h": 87
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 44,
+						"w": 224,
+						"h": 43
+					},
+					"frame": {
+						"x": 1675,
+						"y": 968,
+						"w": 224,
+						"h": 43
+					},
+					"anchor": {
+						"x": 0.497143,
+						"y": 0.988571
+					}
 				}
 			]
 		}
@@ -1240,6 +1190,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:2dd0727287eef612b86185b39620f33a:8704aabdb0d20d8dd57dbf132629eb7c:af6e57a991ea0b4b415dbcb7eb72ce12$"
+		"smartupdate": "$TexturePacker:SmartUpdate:445a555e6fb9b34c65096995a9b4d53b:424ec1893476fbc993f522fa922dcb2b:af6e57a991ea0b4b415dbcb7eb72ce12$"
 	}
 }

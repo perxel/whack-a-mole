@@ -1,5 +1,5 @@
 const DEV = false;
-const VERSION = '0.0.1';
+const VERSION = '0.0.2';
 
 const MUSIC = false;
 const MUSIC_VOL = 0.5;

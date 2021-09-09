@@ -20,10 +20,10 @@ class Hole{
         this.holeBack = this.scene.add.sprite(0, 110, 'whack', `holes/1-back`).setDepth(1);
         this.holeFront = this.scene.add.sprite(0, 110, 'whack', `holes/1-front`).setDepth(3);
 
-        // create hole container
+        // create hole container todo: adjust hole size
         this.hole = this.scene.add.container(0, 0, [this.holeBack, this.character, this.holeFront]).setDepth(2).setSize(200, 200);
 
-        // anim
+        // anim todo: adjust anim
         const y = this.character.y;
         this.scene.tweens.add({
             targets: this.character,
@@ -43,16 +43,23 @@ class Hole{
             this.scene.input.enableDebug(this.hole, 0xffff00);
         }
 
-        // align
+        // align hole
         this.scene.plugins.get('rexanchorplugin').add(this.hole, this.anchor);
 
+        // mask and update on resize
+        this.setMask();
+        this.scene.scale.on('resize', () => {
+            this.setMask();
+        });
+    }
+
+    setMask(){
         // create mask
         const maskShape = this.scene.make.graphics();
         maskShape.fillStyle(0xffffff);
         maskShape.fillRect(this.hole.x - this.hole.width * 0.5, this.hole.y - this.hole.height * 0.5, this.hole.width, this.hole.height);
-        const mask = maskShape.createGeometryMask();
 
         // set mask
-        this.character.setMask(mask);
+        this.character.setMask(maskShape.createGeometryMask());
     }
 }

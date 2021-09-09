@@ -52,6 +52,7 @@ class Character{
         this.width = 250;
         this.height = this.width * this.ratio;
         this.character.setDisplaySize(this.width, this.height);
+        // todo: justify anchor position
 
         // adjust the hit area
         const hitAreaDiameter = this.height * 0.8;

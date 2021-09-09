@@ -14,7 +14,7 @@ class App{
 
         // Game config
         const config = {
-            type: Phaser.AUTO,
+            type: Phaser.WEBGL,
             parent: 'phaser-app',
             title: `Whack A Mole v${VERSION}${DEV ? ' (DEV)' : ''}`,
             url: 'https://phuc-dev.github.io/whack-a-mole/',

@@ -11,12 +11,17 @@ class Hole{
         this.y = config.y || 0;
         this.anchor = config.anchor || {};
         this.character = config.character;
-
-        // create hole container
-        this.hole = this.scene.add.container(0, 0, [this.character]).setDepth(3).setSize(200, 200);
+        this.debug = config.debug || DEV;
 
         // align character
-        this.character.setPosition(0, 100).setDisplayOrigin(0.5, 0.5);
+        this.character.setPosition(0, 100).setDisplayOrigin(0.5, 0.5).setDepth(2);
+
+        // create hole front & back
+        this.holeBack = this.scene.add.sprite(0, 110, 'whack', `holes/1-back`).setDepth(1);
+        this.holeFront = this.scene.add.sprite(0, 110, 'whack', `holes/1-front`).setDepth(3);
+
+        // create hole container
+        this.hole = this.scene.add.container(0, 0, [this.holeBack, this.character, this.holeFront]).setDepth(2).setSize(200, 200);
 
         // anim
         const y = this.character.y;
@@ -33,21 +38,21 @@ class Hole{
         });
 
         // debug
-        this.hole.setInteractive();
-        this.scene.input.enableDebug(this.hole, 0xffff00);
-
+        if(this.debug){
+            this.hole.setInteractive();
+            this.scene.input.enableDebug(this.hole, 0xffff00);
+        }
 
         // align
-        console.log(this.hole)
         this.scene.plugins.get('rexanchorplugin').add(this.hole, this.anchor);
-        console.log(this.hole)
 
-
-        // set mask
+        // create mask
         const maskShape = this.scene.make.graphics();
         maskShape.fillStyle(0xffffff);
         maskShape.fillRect(this.hole.x - this.hole.width * 0.5, this.hole.y - this.hole.height * 0.5, this.hole.width, this.hole.height);
         const mask = maskShape.createGeometryMask();
-        this.hole.setMask(mask);
+
+        // set mask
+        this.character.setMask(mask);
     }
 }

@@ -1,4 +1,4 @@
-const DEV = true;
+const DEV = false;
 const VERSION = '0.0.1';
 
 const MUSIC = false;

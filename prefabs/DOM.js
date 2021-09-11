@@ -10,7 +10,7 @@ class DOM{
         this.previousScene = this.scene.sceneData.previousScene || undefined;
         this.sceneKey = this.scene.scene.key;
 
-
+        // localize
         const scene = this.scene;
         const _this = this;
 
@@ -49,6 +49,9 @@ class DOM{
                     case 'back':
                         _this.goBack();
                         break;
+                    case 'how-to-play':
+                        _this.goHowToPlay();
+                        break;
                 }
             });
         }
@@ -72,5 +75,12 @@ class DOM{
         }
 
         this.scene.scene.start(this.previousScene.name, {previousScene: this.scene.sceneData});
+    }
+
+    /**
+     * Go How To Play
+     */
+    goHowToPlay(){
+        this.scene.scene.start('HowToPlay', {previousScene: this.scene.sceneData});
     }
 }

@@ -21,15 +21,19 @@ class DOM{
             const button = buttons[i];
             const type = button.getAttributeNode("data-button").value;
 
-            switch(type){
-                case 'sound-toggle':
-                    // update on load
-                    if(scene.sys.game.CONFIG.sound.isPlaying()){
-                        button.classList.add("active");
-                    }
+            button.addEventListener('click', function(e){
+                // click sound
+                scene.sys.game.CONFIG.sound.playSoundFx('click');
 
-                    // toggle sound on click
-                    button.addEventListener('click', function(e){
+                // check type
+                switch(type){
+                    case 'sound-toggle':
+                        // update on load
+                        if(scene.sys.game.CONFIG.sound.isPlaying()){
+                            button.classList.add("active");
+                        }
+
+                        // toggle sound on click
                         if(scene.sys.game.CONFIG.sound.isPlaying()){
                             scene.sys.game.CONFIG.sound.pause();
                             button.classList.remove("active");
@@ -37,12 +41,15 @@ class DOM{
                             scene.sys.game.CONFIG.sound.play();
                             button.classList.add("active");
                         }
-
-                        // click sound
-                        scene.sys.game.CONFIG.sound.playSoundFx('click');
-                    });
-                    break;
-            }
+                        break;
+                }
+            });
         }
+    }
+
+    onButtonClick(type, callback){
+        document.querySelectorAll(`[data-button="${type}"]`)[0].addEventListener('click', () => {
+            callback();
+        });
     }
 }

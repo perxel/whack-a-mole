@@ -43,6 +43,8 @@ class Menu extends Phaser.Scene{
          * Load HTML
          */
         const dom = new DOM({scene: this, key: 'sceneMenu'});
+        dom.onButtonClick('how-to-play', () => this.goHowToPlay());
+        dom.onButtonClick('play', () => this.goPlay());
 
 
         /**
@@ -57,49 +59,6 @@ class Menu extends Phaser.Scene{
             centerX: '48%',
             top: '8%'
         });
-
-
-        /**
-         * Buttons
-         */
-        this.createButtons();
-
-
-        /**
-         * Animations
-         */
-        this.createAnimations();
-    }
-
-    createButtons(){
-        // Button play
-        this.btnPlay = new Button(this, 0, 0, {
-            idleTexture: 'play',
-            width: 136, height: 132,
-            pointerUp: () => {
-                this.goPlay();
-            },
-            anchor: {
-                centerX: '50%',
-                top: 'top+' + (this.titleImage.displayHeight * this.titleImage.originY + this.titleImage.y + 65)
-            },
-            depth: 3
-        }).get();
-
-
-        // Button question
-        this.btnHowTo = new Button(this, 0, 0, {
-            idleTexture: 'question',
-            width: 94, height: 90,
-            pointerUp: () => {
-                this.goHowToPlay();
-            },
-            anchor: {
-                centerX: '50%',
-                bottom: 'bottom-30'
-            },
-            depth: 3
-        }).get();
     }
 
     createAnimations(){
@@ -127,19 +86,6 @@ class Menu extends Phaser.Scene{
             targets: this.btnPlay,
             ease: 'Power4',
             duration: 600,
-            alpha: {
-                getStart: () => 0,
-                getEnd: () => 1
-            },
-        });
-
-        // Button how to
-        this.btnHowTo.setAlpha(0);
-        this.timeline.add({
-            targets: this.btnHowTo,
-            ease: 'Power4',
-            duration: 600,
-            offset: '-=600',
             alpha: {
                 getStart: () => 0,
                 getEnd: () => 1

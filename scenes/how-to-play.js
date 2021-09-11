@@ -115,9 +115,6 @@ class HowToPlay extends Phaser.Scene{
     }
 
     createButtons(){
-        // Button music
-        this.btnMusic = this.CONFIG.sound.getButton(this);
-
         // Button back
         this.btnBack = new Components({
             scene: this,

@@ -1,5 +1,5 @@
 const DEV = true;
-const VERSION = '0.0.2';
+const VERSION = '0.0.3';
 
 const MUSIC = !DEV; // sound off in dev mode
 const MUSIC_VOL = 0.5;

@@ -15,13 +15,13 @@ scene {
     display:block;
     position:relative;
     background:transparent;
-}
-.button svg {position:absolute; top:0; left:0; right:0; bottom:0;}
-.button:active svg {transform:scale(.9);}
-
-.button.tool {
     width:60px; height:58px;
 }
+.button svg {position:absolute; top:0; left:0; width:100%;}
+.button:active svg {transform:scale(.9);}
+
+.button.how-to {width:94px; height:90px;}
+.button.play {width:120px; height:120px;}
 
 /* button toggle */
 .button.toggle svg {display:none;}
@@ -32,6 +32,21 @@ scene {
  * Nav
  *******************************/
 .top-nav {
+    position:fixed; top:0; left:0; width:100%;
     display:flex; justify-content:space-between; align-items:center;
     padding:70px 70px 0;
+}
+.bottom-nav {
+    position:fixed; bottom:0; left:0; width:100%;
+    display:flex; justify-content:center;
+    padding:0 70px 70px;
+}
+
+
+/*******************************
+ * Scene: Menu
+ *******************************/
+.welcome {
+    position:fixed; top:50%; left:50%;
+    transform:translate(-50%, 50%);
 }

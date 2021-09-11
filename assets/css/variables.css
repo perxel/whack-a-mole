@@ -1,0 +1,29 @@
+/*******************************
+ * Variables
+ *******************************/
+:root {
+    --game-padding:50px;
+
+    --btn-width:60px;
+    --btn-height:58px;
+    --btn-width-how-to:94px;
+    --btn-height-how-to:90px;
+    --btn-width-play:136px;
+    --btn-height-play:132px;
+}
+
+/*******************************
+ * Responsive
+ *******************************/
+@media only screen and (max-width:768px) {
+    :root {
+        --game-padding:20px;
+
+        --btn-width:48px;
+        --btn-height:46px;
+        --btn-width-how-to:var(--btn-width);
+        --btn-height-how-to:var(--btn-height);
+        --btn-width-play:108px;
+        --btn-height-play:104px;
+    }
+}

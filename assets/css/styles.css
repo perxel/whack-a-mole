@@ -1,4 +1,6 @@
-
+/*******************************
+ * Scene
+ *******************************/
 .scene-container {
     transform:none !important; width:100%;
 }
@@ -12,21 +14,25 @@ scene {
  * Buttons
  *******************************/
 .button {
+    --width:60px;
+    --height:58px;
+
     display:block;
     position:relative;
     background:transparent;
-    width:60px; height:58px;
+    width:var(--width); height:var(--height);
 }
 .button svg {position:absolute; top:0; left:0; width:100%;}
 .button:active svg {transform:scale(.9);}
 
-.button.how-to {width:94px; height:90px;}
-.button.play {width:120px; height:120px;}
+.button.how-to {--width:var(--btn-width-how-to); --height:var(--btn-height-how-to);}
+.button.play {--width:var(--btn-width-play); --height:var(--btn-height-play);}
 
 /* button toggle */
 .button.toggle svg {display:none;}
 .button.toggle.active .on,
 .button.toggle:not(.active) .off {display:block;}
+
 
 /*******************************
  * Nav
@@ -34,12 +40,12 @@ scene {
 .top-nav {
     position:fixed; top:0; left:0; width:100%;
     display:flex; justify-content:space-between; align-items:center;
-    padding:70px 70px 0;
+    padding:var(--game-padding) var(--game-padding) 0;
 }
 .bottom-nav {
-    position:fixed; bottom:0; left:0; width:100%;
-    display:flex; justify-content:center;
-    padding:0 70px 70px;
+    position:fixed; bottom:var(--game-padding); left:50%;
+    transform:translateX(-50%);
+    padding:0 var(--game-padding);
 }
 
 .nav-block {display:flex; flex-wrap:wrap;}

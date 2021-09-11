@@ -8,10 +8,11 @@
 
     <!-- Style -->
     <style>
+        * {box-sizing:border-box; padding:0; margin:0; border:none; outline:none;}
         body {
             margin:0;
             overflow:hidden;
-            background-color:#000;
+            background-color:#c8e082;
         }
         #phaser-app {
             margin:0 auto;
@@ -30,6 +31,7 @@
 
     <!-- Prefabs -->
     <script src="prefabs/Helper.js"></script>
+    <script src="prefabs/DOM.js"></script>
     <script src="prefabs/Text.js"></script>
     <script src="prefabs/Popup.js"></script>
     <script src="prefabs/Button.js"></script>
@@ -55,7 +57,7 @@
 <body>
 
 <div id="phaser-app"></div>
-<div style="font-family:'LuckiestGuy', sans-serif;">LuckiestGuy</div>
+<div style="font-family:'LuckiestGuy', sans-serif; visibility:hidden; position:absolute; top:0; pointer-events:none;">LuckiestGuy</div>
 
 </body>
 </html>

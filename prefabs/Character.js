@@ -17,6 +17,7 @@ class Character{
         this.showHitArea = config.showHitArea || DEV;
         this.name = config.name || '';
         this.hurtTime = 2000; // ms
+        this.point = config.point || 10;
 
         this.createAnimations();
         this.createPorcupine();
@@ -117,8 +118,26 @@ class Character{
         );
 
         if(isGoodAttack){
-            this.playAnimation('attack');
             if(DEV) console.log(`Attack ${this.name}`);
+
+            // play anim
+            this.playAnimation('attack');
+
+            // throw point
+            const style = {
+                'background-color': 'transparent',
+                'width': '220px',
+                'height': '100px',
+                'font': '20vw Arial',
+                'font-weight': 'bold',
+                'color':'#fff'
+            };
+
+            const element = this.scene.add.dom(400, 300, 'div', style, `+${this.point}`).setDepth(3);
+            console.log(`+${this.point}`)
+            setTimeout(function(){
+                element.destroy()
+            },1000);
         }
     }
 }

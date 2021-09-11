@@ -64,6 +64,20 @@ class Preload extends Phaser.Scene{
 
 
         /**
+         * Load HTML
+         */
+        this.load.html('sceneMenu', 'assets/dom/scene-menu.html');
+        this.load.html('howToPlay', 'assets/dom/how-to-play.html');
+        this.load.html('gamePlay', 'assets/dom/game-play.html');
+
+
+        /**
+         * Load CSS
+         */
+        this.load.css('styles', 'assets/css/styles.css');
+
+
+        /**
          * Progress bar
          */
         // Create loading bar

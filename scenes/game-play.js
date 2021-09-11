@@ -29,6 +29,14 @@ class GamePlay extends Phaser.Scene{
         // background
         this.bg = new Components({scene: this, key: 'getBackgroundImage', texture: this.sceneData.background});
 
+        const gamePlay = this.add.dom(0, 0).createFromCache('gamePlay').setClassName('scene-container');
+        gamePlay.addListener('click');
+        const _this = this;
+        gamePlay.on('click', function(event){
+            console.log(event.target)
+            _this.scale.toggleFullscreen();
+        });
+
         /**
          * Buttons
          */

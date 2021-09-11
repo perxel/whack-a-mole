@@ -64,6 +64,8 @@ class HowToPlay extends Phaser.Scene{
     }
 
     createSlides(){
+        const howToPlaySlider = this.add.dom(400, 600).createFromCache('howToPlay');
+
         this.slides = [
             {
                 string: 'dont hit the boom.\n' +

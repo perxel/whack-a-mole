@@ -39,6 +39,11 @@ class Menu extends Phaser.Scene{
             }
         }
 
+        /**
+         * Load HTML
+         */
+        const dom = new DOM({scene: this, key: 'sceneMenu'});
+
 
         /**
          * Images
@@ -67,9 +72,6 @@ class Menu extends Phaser.Scene{
     }
 
     createButtons(){
-        // Button music
-        this.btnMusic = this.CONFIG.sound.getButton(this);
-
         // Button play
         this.btnPlay = new Button(this, 0, 0, {
             idleTexture: 'play',

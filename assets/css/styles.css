@@ -1,0 +1,37 @@
+
+.scene-container {
+    transform:none !important; width:100%;
+}
+scene {
+    display:block;
+    position:absolute; top:0; left:0; right:0; bottom:0;
+    background-color:red;
+}
+
+/*******************************
+ * Buttons
+ *******************************/
+.button {
+    display:block;
+    position:relative;
+    background:transparent;
+}
+.button svg {position:absolute; top:0; left:0; right:0; bottom:0;}
+.button:active svg {transform:scale(.9);}
+
+.button.tool {
+    width:60px; height:58px;
+}
+
+/* button toggle */
+.button.toggle svg {display:none;}
+.button.toggle.active .on,
+.button.toggle:not(.active) .off {display:block;}
+
+/*******************************
+ * Nav
+ *******************************/
+.top-nav {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:70px 70px 0;
+}

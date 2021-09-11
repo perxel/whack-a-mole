@@ -24,6 +24,11 @@ class HowToPlay extends Phaser.Scene{
         //if(DEV) console.log('HowToPlay create()');
 
         /**
+         * Load HTML
+         */
+        const dom = new DOM({scene: this});
+
+        /**
          * Images
          */
         // background
@@ -115,16 +120,6 @@ class HowToPlay extends Phaser.Scene{
     }
 
     createButtons(){
-        // Button back
-        this.btnBack = new Components({
-            scene: this,
-            key: 'goBackButton',
-            anchor: {
-                left: 'left+30',
-                top: 'top+30'
-            },
-        });
-
         // Button prev
         this.btnPrev = new Button(this, 0, 0, {
             idleTexture: 'prev',

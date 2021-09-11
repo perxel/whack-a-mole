@@ -42,7 +42,7 @@ class Menu extends Phaser.Scene{
         /**
          * Load HTML
          */
-        const dom = new DOM({scene: this, key: 'sceneMenu'});
+        const dom = new DOM({scene: this});
         dom.onButtonClick('how-to-play', () => this.goHowToPlay());
         dom.onButtonClick('play', () => this.goPlay());
 

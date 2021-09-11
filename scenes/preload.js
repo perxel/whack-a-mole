@@ -66,9 +66,10 @@ class Preload extends Phaser.Scene{
         /**
          * Load HTML
          */
-        this.load.html('sceneMenu', 'assets/dom/scene-menu.html');
-        this.load.html('howToPlay', 'assets/dom/how-to-play.html');
-        this.load.html('gamePlay', 'assets/dom/game-play.html');
+        this.load.html('Menu', 'assets/dom/scene-menu.html');
+        this.load.html('HowToPlay', 'assets/dom/how-to-play.html');
+        this.load.html('GamePlay', 'assets/dom/game-play.html');
+        this.load.html('ChooseLevel', 'assets/dom/choose-level.html');
 
 
         /**

@@ -7,11 +7,15 @@ class DOM{
         }
 
         this.scene = config.scene;
+        this.previousScene = this.scene.sceneData.previousScene || undefined;
+        this.sceneKey = this.scene.scene.key;
+
+
         const scene = this.scene;
-        this.key = config.key || undefined;
+        const _this = this;
 
         // add DOM
-        this.dom = this.scene.add.dom(0, 0).createFromCache(this.key).setClassName('scene-container');
+        this.dom = this.scene.add.dom(0, 0).createFromCache(this.sceneKey).setClassName('scene-container');
 
         this.dom.addListener('click');
 
@@ -42,6 +46,9 @@ class DOM{
                             button.classList.add("active");
                         }
                         break;
+                    case 'back':
+                        _this.goBack();
+                        break;
                 }
             });
         }
@@ -51,5 +58,19 @@ class DOM{
         document.querySelectorAll(`[data-button="${type}"]`)[0].addEventListener('click', () => {
             callback();
         });
+    }
+
+    /**
+     * Go back
+     */
+    goBack(){
+        if(!this.previousScene.name){
+            this.previousScene.name = "Menu";
+            if(DEV) console.log(`Undefined previous scene. Go back from ${this.sceneKey} to ${this.previousScene.name}.`);
+        }else{
+            if(DEV) console.log(`Go back from ${this.sceneKey} to ${this.previousScene.name}`);
+        }
+
+        this.scene.scene.start(this.previousScene.name, {previousScene: this.scene.sceneData});
     }
 }

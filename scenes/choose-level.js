@@ -30,9 +30,10 @@ class ChooseLevel extends Phaser.Scene{
         this.bg = new Components({scene: this, key: 'getBackgroundImage', texture: this.sceneData.background});
 
         /**
-         * Buttons
+         * Load HTML
          */
-        this.createButtons();
+        const dom = new DOM({scene: this});
+        //dom.onButtonClick('back', () => component.goBack());
 
         /**
          * Levels
@@ -44,17 +45,6 @@ class ChooseLevel extends Phaser.Scene{
          */
     }
 
-    createButtons(){
-        // Button back
-        this.btnBack = new Components({
-            scene: this,
-            key: 'goBackButton',
-            anchor: {
-                left: 'left+30',
-                top: 'top+30'
-            },
-        });
-    }
 
     createLevels(){
         const level_count = [

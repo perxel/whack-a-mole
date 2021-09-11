@@ -18,35 +18,11 @@ class Components{
 
         // switch
         switch(this.key){
-            case 'goBackButton':
-                return this.getGoBackButton();
             case 'getBackgroundImage':
                 return this.getBackgroundImage();
             default:
                 console.warn(`Component ${this.key} is not found!`);
         }
-    }
-
-    /**
-     * Get Go Back Button
-     * @returns {*}
-     */
-    getGoBackButton(){
-        return new Button(this.scene, 0, 0, {
-            idleTexture: 'back',
-            pointerUp: () => {
-                if(!this.previousScene.name){
-                    this.previousScene.name = "Menu";
-                    if(DEV) console.log(`Undefined previous scene. Go back from ${this.sceneKey} to ${this.previousScene.name}.`);
-                }else{
-                    if(DEV) console.log(`Go back from ${this.sceneKey} to ${this.previousScene.name}`);
-                }
-
-                this.scene.scene.start(this.previousScene.name, {previousScene: this.scene.sceneData});
-            },
-            anchor: this.anchor,
-            depth: this.depth
-        }).get();
     }
 
     /**

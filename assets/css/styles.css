@@ -42,6 +42,9 @@ scene {
     padding:0 70px 70px;
 }
 
+.nav-block {display:flex; flex-wrap:wrap;}
+.nav-block > button:not(:last-child) {margin-right:18px;}
+
 
 /*******************************
  * Scene: Menu

@@ -16,7 +16,6 @@ class DOM{
 
         // add DOM
         this.dom = this.scene.add.dom(0, 0).createFromCache(this.sceneKey).setClassName('scene-container');
-
         this.dom.addListener('click');
 
         // assign buttons
@@ -25,7 +24,7 @@ class DOM{
             const button = buttons[i];
             const type = button.getAttributeNode("data-button").value;
 
-            button.addEventListener('click', function(e){
+            button.addEventListener('click', () => {
                 // click sound
                 scene.sys.game.CONFIG.sound.playSoundFx('click');
 
@@ -50,13 +49,25 @@ class DOM{
                         _this.goBack();
                         break;
                     case 'how-to-play':
-                        _this.goHowToPlay();
+                        this.scene.scene.start('HowToPlay', {previousScene: this.scene.sceneData});
+                        break;
+                    case 'choose-level':
+                        this.scene.scene.start('ChooseLevel', {previousScene: this.scene.sceneData});
+                        break;
+                    case 'full-screen-toggle':
+                        // todo: DOM disappear in full screen
+                        this.scene.scale.toggleFullscreen();
                         break;
                 }
             });
         }
     }
 
+    /**
+     * Callback on button click
+     * @param type
+     * @param callback
+     */
     onButtonClick(type, callback){
         document.querySelectorAll(`[data-button="${type}"]`)[0].addEventListener('click', () => {
             callback();
@@ -75,12 +86,5 @@ class DOM{
         }
 
         this.scene.scene.start(this.previousScene.name, {previousScene: this.scene.sceneData});
-    }
-
-    /**
-     * Go How To Play
-     */
-    goHowToPlay(){
-        this.scene.scene.start('HowToPlay', {previousScene: this.scene.sceneData});
     }
 }

@@ -24,23 +24,15 @@ class GamePlay extends Phaser.Scene{
         //if(DEV) console.log('Play create()');
 
         /**
+         * Load HTML
+         */
+        const dom = new DOM({scene: this});
+
+        /**
          * Images
          */
         // background
         this.bg = new Components({scene: this, key: 'getBackgroundImage', texture: this.sceneData.background});
-
-        const gamePlay = this.add.dom(0, 0).createFromCache('gamePlay').setClassName('scene-container');
-        gamePlay.addListener('click');
-        const _this = this;
-        gamePlay.on('click', function(event){
-            console.log(event.target)
-            _this.scale.toggleFullscreen();
-        });
-
-        /**
-         * Buttons
-         */
-        this.createButtons();
 
         /**
          * Create holes
@@ -48,46 +40,6 @@ class GamePlay extends Phaser.Scene{
         this.createHoles();
     }
 
-    createButtons(){
-        // Button choose level
-        this.btnChooseLevel = new Button(this, 0, 0, {
-            idleTexture: 'menu',
-            pointerUp: () => {
-                this.scene.start("ChooseLevel", {previousScene: this.sceneData});
-            },
-            anchor: {
-                left: 'left+30',
-                top: 'top+30'
-            },
-            depth: 3
-        }).get();
-
-        // Button question
-        this.btnQuestion = new Button(this, 0, 0, {
-            idleTexture: 'question',
-            pointerUp: () => {
-                this.scene.start("HowToPlay", {previousScene: this.sceneData});
-            },
-            anchor: {
-                left: 'left+100',
-                top: 'top+30'
-            },
-            depth: 3
-        }).get();
-
-        // Button full screen
-        this.btnQuestion = new Button(this, 0, 0, {
-            idleTexture: 'fullscreen',
-            pointerUp: () => {
-                this.scale.toggleFullscreen();
-            },
-            anchor: {
-                left: 'left+160',
-                top: 'top+30'
-            },
-            depth: 3
-        }).get();
-    }
 
     createHoles(){
         // Hammer

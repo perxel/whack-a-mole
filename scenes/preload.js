@@ -66,7 +66,7 @@ class Preload extends Phaser.Scene{
         /**
          * Load HTML
          */
-        this.load.html('Menu', 'assets/dom/scene-menu.html');
+        this.load.html('Menu', 'assets/dom/menu.html');
         this.load.html('HowToPlay', 'assets/dom/how-to-play.html');
         this.load.html('GamePlay', 'assets/dom/game-play.html');
         this.load.html('ChooseLevel', 'assets/dom/choose-level.html');
@@ -104,8 +104,8 @@ class Preload extends Phaser.Scene{
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            callback: () => this.scene.start("Menu"),
-            //callback: () => this.scene.start("GamePlay", {levelId: 1}),
+            //callback: () => this.scene.start("Menu"),
+            callback: () => this.scene.start("GamePlay", {levelId: 1}),
             callbackScope: this
         });
     }

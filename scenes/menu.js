@@ -43,7 +43,6 @@ class Menu extends Phaser.Scene{
          * Load HTML
          */
         const dom = new DOM({scene: this});
-        dom.onButtonClick('play', () => this.goPlay());
 
 
         /**
@@ -92,13 +91,5 @@ class Menu extends Phaser.Scene{
         });
 
         this.timeline.play();
-    }
-
-    goPlay(){
-        this.scene.start("ChooseLevel", {previousScene: this.sceneData});
-    }
-
-    goHowToPlay(){
-        this.scene.start("HowToPlay", {previousScene: this.sceneData});
     }
 }

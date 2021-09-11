@@ -33,7 +33,6 @@ class ChooseLevel extends Phaser.Scene{
          * Load HTML
          */
         const dom = new DOM({scene: this});
-        //dom.onButtonClick('back', () => component.goBack());
 
         /**
          * Levels

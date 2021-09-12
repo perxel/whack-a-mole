@@ -48,18 +48,15 @@ class ChooseLevel extends Phaser.Scene{
         const level_count = [
             {order: 1, is_unlocked: true,},
             {order: 2, is_unlocked: true,},
-            {order: 3, is_unlocked: false,},
-            {order: 4, is_unlocked: false,},
-            {order: 5, is_unlocked: false,},
-            {order: 6, is_unlocked: false,},
-            {order: 7, is_unlocked: false,},
-            {order: 8, is_unlocked: false,},
-            {order: 9, is_unlocked: false,},
-            {order: 10, is_unlocked: false,},
+            {order: 3, is_unlocked: true,},
+            {order: 4, is_unlocked: true,},
+            {order: 5, is_unlocked: true,},
+            {order: 6, is_unlocked: true,},
+            {order: 7, is_unlocked: true,},
+            {order: 8, is_unlocked: true,},
+            {order: 9, is_unlocked: true,},
+            {order: 10, is_unlocked: true,},
         ];
-
-        const test = this.textures.get('welcomeWhack').getSourceImage().src;
-        console.log(test)
 
         html += '<div class="w-level-grid w-flex w-flex--wrap w-flex--justify-center">';
         for(let i = 0; i < level_count.length; i++){

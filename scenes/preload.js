@@ -63,6 +63,18 @@ class Preload extends Phaser.Scene{
         this.load.image('welcomeWhack', 'assets/img/welcome/whack.png');
 
 
+        this.load.image('level1', 'assets/img/backgrounds/1.jpg');
+        this.load.image('level2', 'assets/img/backgrounds/2.jpg');
+        this.load.image('level3', 'assets/img/backgrounds/3.jpg');
+        this.load.image('level4', 'assets/img/backgrounds/4.jpg');
+        this.load.image('level5', 'assets/img/backgrounds/5.jpg');
+        this.load.image('level6', 'assets/img/backgrounds/6.jpg');
+        this.load.image('level7', 'assets/img/backgrounds/7.jpg');
+        this.load.image('level8', 'assets/img/backgrounds/8.jpg');
+        this.load.image('level9', 'assets/img/backgrounds/9.jpg');
+        this.load.image('level10', 'assets/img/backgrounds/10.jpg');
+
+
         /**
          * Load HTML
          */

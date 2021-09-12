@@ -5,10 +5,10 @@ class GamePlay extends Phaser.Scene{
 
     init(data){
         this.CONFIG = this.sys.game.CONFIG;
-
+        this.level = data.levelId || 1;
         this.sceneData = {
             name: this.scene.key,
-            background: 'desktopBg',
+            background: `level${this.level}`,
             previousScene: generatePreviousSceneData(this, data)
         };
 

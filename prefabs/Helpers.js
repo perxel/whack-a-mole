@@ -45,7 +45,7 @@ class Helpers{
             this.scene.tweens.add({
                 targets: background,
                 ease: 'Linear',
-                duration: 600,
+                duration: 300,
                 alpha: {
                     getStart: () => 0,
                     getEnd: () => 1

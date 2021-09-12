@@ -123,21 +123,34 @@ class Character{
             // play anim
             this.playAnimation('attack');
 
-            // throw point
-            const style = {
-                'background-color': 'transparent',
-                'width': '220px',
-                'height': '100px',
-                'font': '20vw Arial',
-                'font-weight': 'bold',
-                'color':'#fff'
-            };
+            // create html
+            const html = document.createElement('div');
+            html.classList.add('w-point');
+            html.innerText = `+${this.point}`;
+            html.innerHTML = `<svg width="150" height="150"><text x="75" y="75">+${this.point}</text></svg>`;
 
-            const element = this.scene.add.dom(400, 300, 'div', style, `+${this.point}`).setDepth(3);
-            console.log(`+${this.point}`)
-            setTimeout(function(){
-                element.destroy()
-            },1000);
+            // show point
+            const x = Phaser.Math.Between(pointer.x - container.width * 0.5, pointer.x + container.width * 0.5);
+            const y = pointer.y - container.height * 0.5;
+            const point = this.scene.add.dom(x, y, html).setAlpha(1);
+
+            // animate
+            this.scene.tweens.add({
+                targets: point,
+                ease: 'Power1',
+                duration: 500,
+                y: '-=80',
+            });
+            this.scene.tweens.add({
+                targets: point,
+                ease: 'Power1',
+                delay: 300,
+                duration: 200,
+                alpha: 0,
+                onComplete: () => {
+                    point.destroy();
+                }
+            });
         }
     }
 }

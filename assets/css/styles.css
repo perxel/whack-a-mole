@@ -62,6 +62,24 @@ html {-webkit-text-size-adjust:none; font-family:var(--font-primary);}
     var(--swm) 0 0 var(--color-brown);
 }
 
+/* Point */
+.w-point {
+    --sw:14px; /* stroke width */
+    pointer-events:none !important;
+}
+.w-point svg text {
+    stroke:#fff;
+    stroke-width:var(--sw);
+    fill:var(--color-red);
+    paint-order:stroke fill;
+    stroke-linejoin:round;
+    text-anchor:middle;
+
+    font-size:var(--size-64); font-weight:400;
+    color:var(--color-red);
+    font-family:var(--font-primary);
+}
+
 /*******************************
  * Scene
  *******************************/

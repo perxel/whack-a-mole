@@ -9,6 +9,7 @@ class DOM{
         this.scene = config.scene;
         this.previousScene = this.scene.sceneData.previousScene || undefined;
         this.sceneKey = this.scene.scene.key;
+        this.return = config.return || true;
 
         // localize
         const scene = this.scene;
@@ -60,6 +61,11 @@ class DOM{
                         break;
                 }
             });
+        }
+
+        // return
+        if(this.return){
+            return this.dom;
         }
     }
 

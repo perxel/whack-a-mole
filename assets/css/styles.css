@@ -1,4 +1,49 @@
 /*******************************
+ * Pre-defined classes
+ *******************************/
+html {-webkit-text-size-adjust:none;}
+
+/* Background size cover */
+.w-bg-cover {background-size:cover; background-position:center; background-color:#eee;}
+.w-bg-contain {background-size:contain; background-position:center; background-repeat:no-repeat;}
+.w-bg-cover > img, .w-bg-contain > img {opacity:0; max-width:100%; max-height:100%;}
+
+/* Keep aspect ratio using css */
+.w-ratio-container {position:relative; padding-top:56.25%;}
+.w-ratio-element {position:absolute; top:0; left:0; right:0; bottom:0;}
+
+/* Display flex */
+.w-flex {display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+.w-flex--inline {display:-ms-inline-flexbox;display:inline-flex;}
+.w-flex--wrap {-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;}
+.w-flex--align-center {-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;}
+.w-flex--align-start {
+    -webkit-box-align:start;-webkit-align-items:flex-start;
+    -moz-box-align:start;-ms-flex-align:start;align-items:flex-start;
+}
+.w-flex--align-end {-webkit-box-align:end;-webkit-align-items:flex-end;-ms-flex-align:end;align-items:flex-end;}
+.w-flex--justify-space-around {-webkit-justify-content:space-around;-ms-flex-pack:distribute;justify-content:space-around;}
+.w-flex--justify-space-between {
+    -webkit-box-pack:justify;-webkit-justify-content:space-between;
+    -ms-flex-pack:justify;justify-content:space-between;
+}
+.w-flex--justify-center {
+    -webkit-box-pack:center;-webkit-justify-content:center;
+    -moz-box-pack:center;-ms-flex-pack:center;justify-content:center;
+}
+.w-flex--justify-end {
+    -webkit-box-pack:end;-webkit-justify-content:flex-end;
+    -moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;
+}
+.w-flex--column {
+    -webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;
+    -moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;
+}
+
+/* Spacings */
+.w-space-60 {margin-bottom:var(--space-60);}
+
+/*******************************
  * Scene
  *******************************/
 .scene-container {
@@ -17,7 +62,7 @@ scene {
     --width:60px;
     --height:58px;
 
-    display:block;
+    display:inline-block;;
     position:relative;
     background:transparent;
     width:var(--width); height:var(--height);
@@ -40,12 +85,12 @@ scene {
 .top-nav {
     position:fixed; top:0; left:0; width:100%;
     display:flex; justify-content:space-between; align-items:center;
-    padding:var(--game-padding) var(--game-padding) 0;
+    padding:var(--space-h) var(--space-h) 0;
 }
 .bottom-nav {
-    position:fixed; bottom:var(--game-padding); left:50%;
+    position:fixed; bottom:var(--space-h); left:50%;
     transform:translateX(-50%);
-    padding:0 var(--game-padding);
+    padding:0 var(--space-h);
 }
 
 .nav-block {display:flex; flex-wrap:wrap;}
@@ -56,6 +101,12 @@ scene {
  * Scene: Menu
  *******************************/
 .welcome {
-    position:fixed; top:50%; left:50%;
-    transform:translate(-50%, -50%);
+    position:fixed; top:var(--space-30); bottom:var(--space-v); left:50%;
+    transform:translate(-50%, 0);
+}
+.welcome-image {width:95vw; max-width:900px;}
+.welcome-hole {width:60vw; max-width:360px;}
+
+@media only screen and (max-width:768px) {
+    .welcome {top:100px;}
 }

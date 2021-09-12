@@ -50,13 +50,6 @@ class Menu extends Phaser.Scene{
          */
         // background
         this.bg = new Helpers({scene: this, key: 'getBackgroundImage'});
-
-        // title
-        this.titleImage = this.add.image(0, 0, 'welcomeWhack').setScale(0.9);
-        this.plugins.get('rexanchorplugin').add(this.titleImage, {
-            centerX: '48%',
-            top: '8%'
-        });
     }
 
     createAnimations(){

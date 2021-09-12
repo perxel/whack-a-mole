@@ -2,7 +2,6 @@
  * Variables
  *******************************/
 :root {
-    --game-padding:50px;
 
     --btn-width:60px;
     --btn-height:58px;
@@ -10,6 +9,13 @@
     --btn-height-how-to:90px;
     --btn-width-play:136px;
     --btn-height-play:132px;
+
+    --space-h:50px;
+    --space-v:50px;
+
+    --space-60:60px;
+    --space-50:50px;
+    --space-30:30px;
 }
 
 /*******************************
@@ -17,7 +23,8 @@
  *******************************/
 @media only screen and (max-width:768px) {
     :root {
-        --game-padding:20px;
+        --space-h:20px;
+        --space-v:30px;
 
         --btn-width:48px;
         --btn-height:46px;

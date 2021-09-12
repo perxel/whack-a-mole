@@ -16,6 +16,14 @@
     --space-60:60px;
     --space-50:50px;
     --space-30:30px;
+
+    --font-primary:"LuckiestGuy", sans-serif;
+
+    --color-neutral:#f8e8ce;
+    --color-brown:#7d5628;
+    --color-brown-dark:#754c29;
+
+    --size-96:96px;
 }
 
 /*******************************

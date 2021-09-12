@@ -32,7 +32,8 @@ class ChooseLevel extends Phaser.Scene{
         /**
          * Load HTML
          */
-        const dom = new DOM({scene: this});
+        const popup = new DOM({scene: this, html: 'Popup', className: 'popup', depth: 1});
+        const dom = new DOM({scene: this, depth: 2});
 
         /**
          * Levels

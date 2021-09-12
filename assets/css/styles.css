@@ -1,10 +1,10 @@
 /*******************************
  * Pre-defined classes
  *******************************/
-html {-webkit-text-size-adjust:none;}
+html {-webkit-text-size-adjust:none; font-family:var(--font-primary);}
 
 /* Background size cover */
-.w-bg-cover {background-size:cover; background-position:center; background-color:#eee;}
+.w-bg-cover {background-size:cover; background-position:center; background-color:transparent;}
 .w-bg-contain {background-size:contain; background-position:center; background-repeat:no-repeat;}
 .w-bg-cover > img, .w-bg-contain > img {opacity:0; max-width:100%; max-height:100%;}
 
@@ -43,6 +43,25 @@ html {-webkit-text-size-adjust:none;}
 /* Spacings */
 .w-space-60 {margin-bottom:var(--space-60);}
 
+/* Titles */
+.heading-1 {
+    --sw:0.08em; /* stroke width */
+    --swm:calc(-1 * var(--sw)); /* stroke width */
+
+    font-size:var(--size-96); font-weight:400;
+    line-height:0.88; text-align:center;
+    color:var(--color-neutral);
+
+    text-shadow:var(--sw) var(--sw) 0 var(--color-brown),
+    var(--swm) var(--swm) 0 var(--color-brown),
+    var(--sw) var(--swm) 0 var(--color-brown),
+    var(--swm) var(--sw) 0 var(--color-brown),
+    0 var(--sw) 0 var(--color-brown),
+    var(--sw) 0 0 var(--color-brown),
+    0 var(--swm) 0 var(--color-brown),
+    var(--swm) 0 0 var(--color-brown);
+}
+
 /*******************************
  * Scene
  *******************************/
@@ -52,7 +71,6 @@ html {-webkit-text-size-adjust:none;}
 scene {
     display:block;
     position:absolute; top:0; left:0; right:0; bottom:0;
-    background-color:red;
 }
 
 /*******************************
@@ -109,4 +127,25 @@ scene {
 
 @media only screen and (max-width:768px) {
     .welcome {top:100px;}
+}
+
+
+/*******************************
+ * Popup
+ *******************************/
+.w-popup {
+    --border-width:12px;
+    --border-radius:22px;
+    --width:930px;
+    --height:460px;
+
+    position:fixed; top:0; left:0; width:100vw; height:100vh;
+    background-color:rgba(0, 0, 0, .5);
+    padding:var(--space-h);
+}
+.w-popup-title {margin-bottom:-0.65em;}
+.w-popup-content {
+    border:var(--border-width) solid var(--color-brown-dark); border-radius:var(--border-radius);
+    background-color:var(--color-neutral);
+    width:100vw; max-width:var(--width); min-height:var(--height);
 }

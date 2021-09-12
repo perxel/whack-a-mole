@@ -10,13 +10,16 @@ class DOM{
         this.previousScene = this.scene.sceneData.previousScene || undefined;
         this.sceneKey = this.scene.scene.key;
         this.return = config.return || true;
+        this.className = config.className || 'scene-container';
+        this.html = config.html || this.sceneKey;
+        this.depth = config.depth || 1;
 
         // localize
         const scene = this.scene;
         const _this = this;
 
         // add DOM
-        this.dom = this.scene.add.dom(0, 0).createFromCache(this.sceneKey).setClassName('scene-container');
+        this.dom = this.scene.add.dom(0, 0).createFromCache(this.html).setClassName(this.className + ' ' + this.sceneKey).setDepth(this.depth);
         this.dom.addListener('click');
 
         // assign buttons

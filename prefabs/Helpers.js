@@ -1,4 +1,4 @@
-class Components{
+class Helpers{
     constructor(config){
         // validate
         if(!config.scene){
@@ -14,7 +14,7 @@ class Components{
         this.depth = config.depth || 3;
 
         // for background
-        this.texture = config.texture;
+        this.texture = this.scene.sceneData.background;
 
         // switch
         switch(this.key){

@@ -49,7 +49,7 @@ class Menu extends Phaser.Scene{
          * Images
          */
         // background
-        this.bg = new Components({scene: this, key: 'getBackgroundImage', texture: this.sceneData.background});
+        this.bg = new Helpers({scene: this, key: 'getBackgroundImage'});
 
         // title
         this.titleImage = this.add.image(0, 0, 'welcomeWhack').setScale(0.9);

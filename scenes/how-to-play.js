@@ -32,7 +32,7 @@ class HowToPlay extends Phaser.Scene{
          * Images
          */
         // background
-        this.bg = new Components({scene: this, key: 'getBackgroundImage', texture: this.sceneData.background});
+        this.bg = new Helpers({scene: this, key: 'getBackgroundImage'});
 
         // Bomb
         this.bomb = this.add.sprite(400, 400, 'whack', 'characters/bomb/1').setDepth(3);

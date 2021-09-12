@@ -13,12 +13,14 @@ class Hole{
         this.character = config.character;
         this.debug = config.debug || DEV;
 
+        this.level = config.level || 1;
+
         // align character
         this.character.setPosition(0, 100).setDisplayOrigin(0.5, 0.5).setDepth(2);
 
         // create hole front & back
-        this.holeBack = this.scene.add.sprite(0, 110, 'whack', `holes/1-back`).setDepth(1);
-        this.holeFront = this.scene.add.sprite(0, 110, 'whack', `holes/1-front`).setDepth(3);
+        this.holeBack = this.scene.add.sprite(0, 113, 'whack', `bg/${this.level}-0`).setDepth(1);
+        this.holeFront = this.scene.add.sprite(0, 113, 'whack', `bg/${this.level}-1`).setDepth(3);
 
         // create hole container todo: adjust hole size
         this.hole = this.scene.add.container(0, 0, [this.holeBack, this.character, this.holeFront]).setDepth(2).setSize(200, 200);

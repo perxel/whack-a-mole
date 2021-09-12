@@ -62,6 +62,7 @@ class GamePlay extends Phaser.Scene{
         this.hole = new Hole({
             scene: this,
             character: this.purcupine,
+            level: this.level,
             anchor: {
                 centerX: '40%',
                 centerY: '50%',
@@ -70,6 +71,7 @@ class GamePlay extends Phaser.Scene{
 
         this.hole2 = new Hole({
             scene: this,
+            level: this.level,
             character: this.purcupine2,
             anchor: {
                 centerX: '60%',

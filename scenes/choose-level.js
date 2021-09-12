@@ -32,19 +32,53 @@ class ChooseLevel extends Phaser.Scene{
         /**
          * Load HTML
          */
-        const popup = new DOM({scene: this, html: 'Popup', className: 'popup', depth: 1});
+        const $popup = new Popup({
+            scene: this,
+            className: 'popup-choose-level',
+            titleHtml: 'Choose<br>Level',
+            innerHtml: this.getLevelsHtml()
+        });
         const dom = new DOM({scene: this, depth: 2});
-
-        /**
-         * Levels
-         */
-        this.createLevels();
-
-        /**
-         * Popup
-         */
     }
 
+
+    getLevelsHtml(){
+        let html = '';
+
+        const level_count = [
+            {order: 1, is_unlocked: true,},
+            {order: 2, is_unlocked: true,},
+            {order: 3, is_unlocked: false,},
+            {order: 4, is_unlocked: false,},
+            {order: 5, is_unlocked: false,},
+            {order: 6, is_unlocked: false,},
+            {order: 7, is_unlocked: false,},
+            {order: 8, is_unlocked: false,},
+            {order: 9, is_unlocked: false,},
+            {order: 10, is_unlocked: false,},
+        ];
+
+        const test = this.textures.get('welcomeWhack').getSourceImage().src;
+        console.log(test)
+
+        html += '<div class="w-level-grid w-flex w-flex--wrap w-flex--justify-center">';
+        for(let i = 0; i < level_count.length; i++){
+            const imageUrl = level_count[i].is_unlocked ? 'assets/img/btn/level.svg' : 'assets/img/btn/level-locked.svg';
+            const className = level_count[i].is_unlocked ? 'unlocked' : 'locked disabled';
+            const text = level_count[i].is_unlocked ? i + 1 : '';
+
+            html += '<div class="w-level-grid-item">';
+            html += `<button data-button="go-level" data-level="${i + 1}" class="button level ${className}">`;
+            html += `<span class="w-bg-contain w-flex w-flex--justify-center w-flex--align-center" style="background-image:url(${imageUrl})">`;
+            html += text;
+            html += `</span>`;
+            html += `</button>`;
+            html += '</div>';
+        }
+        html += '</div>';
+
+        return html;
+    }
 
     createLevels(){
         const level_count = [

@@ -9,6 +9,8 @@
     --btn-height-how-to:90px;
     --btn-width-play:136px;
     --btn-height-play:132px;
+    --btn-width-level:116px;
+    --btn-height-level:112px;
 
     --space-h:50px;
     --space-v:50px;
@@ -24,6 +26,7 @@
     --color-brown-dark:#754c29;
 
     --size-96:96px;
+    --size-64:64px;
 }
 
 /*******************************

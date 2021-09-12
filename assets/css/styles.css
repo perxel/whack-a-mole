@@ -82,14 +82,22 @@ scene {
 
     display:inline-block;;
     position:relative;
-    background:transparent;
+    background-color:transparent;
     width:var(--width); height:var(--height);
+    font-family:var(--font-primary);
 }
-.button svg {position:absolute; top:0; left:0; width:100%;}
-.button:active svg {transform:scale(.9);}
+
+.button.disabled {cursor:not-allowed;}
+.button.locked {cursor:not-allowed;}
+
+.button svg, .button span {position:absolute; top:0; left:0; width:100%; height:100%;}
+.button:active svg, .button:active span {transform:scale(.9);}
+
+.button span {color:#805b2d; font-size:var(--size-64);}
 
 .button.how-to {--width:var(--btn-width-how-to); --height:var(--btn-height-how-to);}
 .button.play {--width:var(--btn-width-play); --height:var(--btn-height-play);}
+.button.level {--width:var(--btn-width-level); --height:var(--btn-height-level);}
 
 /* button toggle */
 .button.toggle svg {display:none;}
@@ -129,6 +137,12 @@ scene {
     .welcome {top:100px;}
 }
 
+/*******************************
+ * Scene: Choose Level
+ *******************************/
+.popup-choose-level .w-popup {background-color:transparent;}
+.w-level-grid {width:100%; max-width:700px; margin:-15px -8px;}
+.w-level-grid-item {padding:15px 8px;}
 
 /*******************************
  * Popup
@@ -148,4 +162,5 @@ scene {
     border:var(--border-width) solid var(--color-brown-dark); border-radius:var(--border-radius);
     background-color:var(--color-neutral);
     width:100vw; max-width:var(--width); min-height:var(--height);
+    padding:var(--space-60) var(--space-h);
 }

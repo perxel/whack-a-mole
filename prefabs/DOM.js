@@ -9,8 +9,8 @@ class DOM{
         this.scene = config.scene;
         this.previousScene = this.scene.sceneData.previousScene || undefined;
         this.sceneKey = this.scene.scene.key;
-        this.return = config.return || true;
         this.className = config.className || 'scene-container';
+        this.className += ' ' + this.sceneKey;
         this.html = config.html || this.sceneKey;
         this.depth = config.depth || 1;
 
@@ -19,7 +19,7 @@ class DOM{
         const _this = this;
 
         // add DOM
-        this.dom = this.scene.add.dom(0, 0).createFromCache(this.html).setClassName(this.className + ' ' + this.sceneKey).setDepth(this.depth);
+        this.dom = this.scene.add.dom(0, 0).createFromCache(this.html).setClassName(this.className).setDepth(this.depth);
         this.dom.addListener('click');
 
         // assign buttons
@@ -27,10 +27,16 @@ class DOM{
         for(let i = 0; i < buttons.length; i++){
             const button = buttons[i];
             const type = button.getAttributeNode("data-button").value;
+            const isDisabled = button.classList.contains('disabled');
+
 
             button.addEventListener('click', () => {
                 // click sound
                 scene.sys.game.CONFIG.sound.playSoundFx('click');
+
+
+                // skip disabled
+                if(isDisabled) return;
 
                 // check type
                 switch(type){
@@ -62,13 +68,13 @@ class DOM{
                         // todo: DOM disappear in full screen
                         this.scene.scale.toggleFullscreen();
                         break;
+                    case 'go-level':
+                        const level = button.getAttributeNode("data-level").value;
+                        if(DEV) console.log(`Go to level ${level}`);
+                        this.scene.scene.start("GamePlay", {previousScene: this.scene.sceneData, levelId: level});
+                        break;
                 }
             });
-        }
-
-        // return
-        if(this.return){
-            return this.dom;
         }
     }
 

@@ -50,10 +50,10 @@ class Preload extends Phaser.Scene{
          * Music and Sound effects
          */
         // background music
-        this.load.audio('bgMusic', ['assets/aux/music.mp3']);
-        this.load.audio('click', ['assets/aux/click.mp3']);
-        this.load.audio('zap', ['assets/aux/hammer-flesh.mp3']);
-        this.load.audio('die', ['assets/aux/die.mp3']);
+        this.load.audio('bgMusic', ['assets/audio/music.mp3']);
+        this.load.audio('click', ['assets/audio/click.mp3']);
+        this.load.audio('zap', ['assets/audio/hammer-flesh.mp3']);
+        this.load.audio('die', ['assets/audio/die.mp3']);
 
         /**
          * Load image

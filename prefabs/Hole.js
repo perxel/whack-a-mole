@@ -10,46 +10,51 @@ class Hole{
         this.x = config.x || 0;
         this.y = config.y || 0;
         this.anchor = config.anchor || undefined;
-        this.character = config.character;
+        this.characters = config.characters || [];
         this.debug = config.debug || false;
 
         this.level = config.level || 1;
 
         // align character
-        this.character.setPosition(0, 100).setDisplayOrigin(0.5, 0.5).setDepth(2);
+        for(let i = 0; i < this.characters.length; i++){
+            this.characters[i].setPosition(0, 100).setDisplayOrigin(0.5, 0.5).setDepth(2);
+        }
 
         // create hole front & back
         this.holeBack = this.scene.add.sprite(0, 113, 'whack', `bg/${this.level}-0`).setDepth(1);
         this.holeFront = this.scene.add.sprite(0, 113, 'whack', `bg/${this.level}-1`).setDepth(3);
 
         // create hole container todo: adjust hole size
-        this.holeContainer = this.scene.add.container(0, 0, [this.holeBack, this.character, this.holeFront]).setDepth(2).setSize(200, 200);
+        this.holeContainer = this.scene.add.container(0, 0, [this.holeBack, ...this.characters, this.holeFront]).setDepth(2).setSize(200, 200);
 
         // porcupine animation
-        const timeline = this.scene.tweens.createTimeline({loop: -1});
-        const y = this.character.y;
-        // show
-        timeline.add({
-            targets: this.character,
-            ease: 'Power0',
-            duration: 300,
-            y: {
-                getStart: () => this.character.height,
-                getEnd: () => y
-            }
-        });
-        // hide
-        timeline.add({
-            targets: this.character,
-            ease: 'Power0',
-            delay: 500,
-            duration: 300,
-            y: {
-                getStart: () => y,
-                getEnd: () => this.character.height
-            }
-        });
-        timeline.play();
+        for(let i = 0; i < this.characters.length; i++){
+            const timeline = this.scene.tweens.createTimeline({loop: -1});
+            const y = this.characters[i].y;
+
+            // show
+            timeline.add({
+                targets: this.characters[i],
+                ease: 'Power0',
+                duration: 300,
+                y: {
+                    getStart: () => this.characters[i].height,
+                    getEnd: () => y
+                }
+            });
+            // hide
+            timeline.add({
+                targets: this.characters[i],
+                ease: 'Power0',
+                delay: 500,
+                duration: 300,
+                y: {
+                    getStart: () => y,
+                    getEnd: () => this.characters[i].height
+                }
+            });
+            timeline.play();
+        }
 
         // debug
         if(this.debug){
@@ -82,6 +87,8 @@ class Hole{
         maskShape.fillRect(x, y, this.holeContainer.width, this.holeContainer.height);
 
         // set mask
-        this.character.setMask(maskShape.createGeometryMask());
+        for(let i = 0; i < this.characters.length; i++){
+            this.characters[i].setMask(maskShape.createGeometryMask());
+        }
     }
 }

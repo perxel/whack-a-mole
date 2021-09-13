@@ -14,7 +14,7 @@ class Character{
         this.id = config.id || generateID();
         this.x = config.x || 0;
         this.y = config.y || 0;
-        this.debug = config.debug || false;
+        this.debug = config.debug || DEV;
         this.name = config.name || '';
         this.hurtTime = 2000; // ms
         this.point = config.point || 10;

@@ -14,7 +14,7 @@ class Character{
         this.id = config.id || generateID();
         this.x = config.x || 0;
         this.y = config.y || 0;
-        this.showHitArea = config.showHitArea || DEV;
+        this.debug = config.debug || false;
         this.name = config.name || '';
         this.hurtTime = 2000; // ms
         this.point = config.point || 10;
@@ -68,7 +68,7 @@ class Character{
         this.playAnimation('idle');
 
         // Show hit area
-        if(this.showHitArea){
+        if(this.debug){
             this.scene.input.enableDebug(this.character, 0xffff00);
         }
 
@@ -132,7 +132,7 @@ class Character{
             // show point
             const x = Phaser.Math.Between(pointer.x - container.width * 0.5, pointer.x + container.width * 0.5);
             const y = pointer.y - container.height * 0.5;
-            const point = this.scene.add.dom(x, y, html).setAlpha(1);
+            const point = this.scene.add.dom(x, y, html);
 
             // animate
             this.scene.tweens.add({

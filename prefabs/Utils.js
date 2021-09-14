@@ -213,3 +213,16 @@ function formatMillisecond(millis){
 
     return `${minutes}:${seconds}:${ms}`;
 }
+
+function getHtml(key){
+    switch(key){
+        case 'button-yes':
+            return '<button class="button icon" data-button="yes">' +
+                '<span class="w-bg-contain" style="background-image:url(assets/img/btn/yes.svg)">yes</span>' +
+                '</button>';
+        case 'button-no':
+            return '<button class="button icon" data-button="no">' +
+                '<span class="w-bg-contain" style="background-image:url(assets/img/btn/no.svg)">no</span>' +
+                '</button>';
+    }
+}

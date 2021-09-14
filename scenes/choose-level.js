@@ -36,7 +36,8 @@ class ChooseLevel extends Phaser.Scene{
             scene: this,
             className: 'popup-choose-level',
             titleHtml: 'Choose<br>Level',
-            innerHtml: this.getLevelsHtml()
+            innerHtml: this.getLevelsHtml(),
+            visible: true
         });
         const dom = new DOM({scene: this, depth: 2});
     }
@@ -126,17 +127,6 @@ class ChooseLevel extends Phaser.Scene{
             cellHeight: itemHeight + itemMarginTop,
             x: itemMarginSide + 110,
             y: itemMarginTop + 95
-        });
-
-
-        // popup
-        const popup = new Popup({
-            scene: this,
-            width: width,
-            height: height,
-            padding: [90, 90, 70, 90],
-            objects: [...this.levelButtons],
-            title: 'Choose\nLevel'
         });
     }
 

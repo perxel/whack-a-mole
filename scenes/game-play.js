@@ -24,12 +24,6 @@ class GamePlay extends Phaser.Scene{
         //if(DEV) console.log('Play create()');
 
         /**
-         * Load HTML
-         */
-        const dom = new DOM({scene: this});
-        const progress = new DOM({scene: this, html: 'Progress', className: 'game-timer'});
-
-        /**
          * Images
          */
         // background
@@ -47,13 +41,44 @@ class GamePlay extends Phaser.Scene{
         });
         this.gameControl.play();
 
-        // pause
+
+        /**
+         * Load HTML
+         */
+            // Popup pause
+        let pauseHtml = '<div class="pause-html">';
+        pauseHtml += '<div class="txt-center">DO YOU WANT TO CONTINUE?</div>';
+        pauseHtml += '<div class="popup-yes-no">';
+        pauseHtml += getHtml('button-no',);
+        pauseHtml += getHtml('button-yes');
+        pauseHtml += '</div>';
+        pauseHtml += '</div>';
+        const popupPause = new Popup({
+            scene: this,
+            className: 'popup-pause small-popup',
+            titleHtml: 'Pause',
+            innerHtml: pauseHtml,
+            depth: 2
+        });
+
+        const dom = new DOM({scene: this, depth: 1});
+        const progress = new DOM({scene: this, html: 'Progress', className: 'game-timer', depth: 1});
+
+        // button pause no
+        popupPause.get().find('[data-button="no"]').click(() => {
+            this.goChooseLevel();
+        });
+
+        // button pause yes
+        popupPause.get().find('[data-button="yes"]').click(() => {
+            this.gameControl.play();
+            popupPause.hide();
+        });
+
+        // button pause
         $('[data-button="pause"]').on('click', () => {
-            if(this.gameControl.getStatus().isPlaying){
-                this.gameControl.pause();
-            }else{
-                this.gameControl.play();
-            }
+            this.gameControl.pause();
+            popupPause.toggle();
         });
     }
 
@@ -173,5 +198,9 @@ class GamePlay extends Phaser.Scene{
             x: position.x,
             y: position.y
         });
+    }
+
+    goChooseLevel(){
+        this.scene.start('ChooseLevel', {previousScene: this.sceneData});
     }
 }

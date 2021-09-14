@@ -89,6 +89,7 @@ class Preload extends Phaser.Scene{
          * Load CSS
          */
         this.load.css('variables', 'assets/css/variables.css');
+        this.load.css('popup', 'assets/css/popup.css');
         this.load.css('styles', 'assets/css/styles.css');
 
 

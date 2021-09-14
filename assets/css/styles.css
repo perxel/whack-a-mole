@@ -1,7 +1,10 @@
 /*******************************
  * Pre-defined classes
  *******************************/
-html {-webkit-text-size-adjust:none; font-family:var(--font-primary);}
+html {-webkit-text-size-adjust:none; font-family:var(--font-primary); color:var(--color-body); font-size:var(--size-24);}
+
+/* Text alignment */
+.txt-center {display:block; text-align:center;}
 
 /* Background size cover */
 .w-bg-cover {background-size:cover; background-position:center; background-color:transparent;}
@@ -125,6 +128,12 @@ scene {
 .button.toggle.active .on,
 .button.toggle:not(.active) .off {display:block;}
 
+/* button icon */
+.button.icon {
+    --width:60px;
+    --height:60px;
+}
+.button.icon span {font-size:0;}
 
 /*******************************
  * Nav
@@ -165,26 +174,6 @@ scene {
 .w-level-grid {width:100%; max-width:700px; margin:-15px -8px;}
 .w-level-grid-item {padding:15px 8px;}
 
-/*******************************
- * Popup
- *******************************/
-.w-popup {
-    --border-width:12px;
-    --border-radius:22px;
-    --width:930px;
-    --height:460px;
-
-    position:fixed; top:0; left:0; width:100vw; height:100vh;
-    background-color:rgba(0, 0, 0, .5);
-    padding:var(--space-h);
-}
-.w-popup-title {margin-bottom:-0.65em;}
-.w-popup-content {
-    border:var(--border-width) solid var(--color-brown-dark); border-radius:var(--border-radius);
-    background-color:var(--color-neutral);
-    width:100vw; max-width:var(--width); min-height:var(--height);
-    padding:var(--space-60) var(--space-h);
-}
 
 /*******************************
  * Progress

@@ -1,3 +1,14 @@
+/**
+ * Popup
+ */
+
+// const $popup = new Popup({
+//     scene: this,
+//     className: 'popup-choose-level',
+//     titleHtml: 'Choose<br>Level',
+//     innerHtml: this.getLevelsHtml()
+// });
+
 class Popup{
     constructor(config){
         // validate
@@ -12,25 +23,55 @@ class Popup{
         this.uniqueClass = this.sceneKey + '-' + generateID();
 
         this.className = config.className || '';
+        this.className += ' w-popup-wrapper';
         this.className += ' ' + this.uniqueClass;
 
         this.depth = config.depth || 1;
         this.titleHtml = config.titleHtml || undefined;
         this.innerHtml = config.innerHtml || undefined;
 
+        this.visible = config.visible || false;
+
         // load popup to dom
-        const popup = new DOM({scene: this.scene, html: 'Popup', className: this.className, depth: this.depth});
+        const popup = new DOM({
+            scene: this.scene,
+            html: 'Popup',
+            className: this.className,
+            depth: this.depth
+        });
 
         // update popup html
-        const $popup = $(`.${this.uniqueClass}`);
+        this.$popup = $(`.${this.uniqueClass}`);
+
+        if(this.visible){
+            this.show();
+        }
 
         if(this.titleHtml){
-            $popup.find('[data-popup-title]').html(this.titleHtml);
+            this.$popup.find('[data-popup-title]').html(this.titleHtml);
         }
         if(this.innerHtml){
-            $popup.find('[data-popup-content]').html(this.innerHtml);
+            this.$popup.find('[data-popup-content]').html(this.innerHtml);
         }
+    }
 
-        return $popup;
+    get(){
+        return this.$popup;
+    }
+
+    show(){
+        this.$popup.addClass('show-popup');
+    }
+
+    hide(){
+        this.$popup.removeClass('show-popup');
+    }
+
+    toggle(){
+        if(!this.$popup.hasClass('show-popup')){
+            this.show();
+        }else{
+            this.hide();
+        }
     }
 }

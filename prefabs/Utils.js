@@ -199,3 +199,17 @@ function isPointerInsideZone(pointerX, pointerY, zoneX, zoneY, zoneWidth, zoneHe
 
     return insideHorizontally && insideVertically;
 }
+
+
+/**
+ * Format millisecond to 00:00:00
+ * @param millis
+ * @returns {string}
+ */
+function formatMillisecond(millis){
+    const minutes = Math.floor(millis / 60000).toString().padStart(2, '0');
+    const seconds = ((millis % 60000) / 1000).toFixed(0).toString().padStart(2, '0');
+    const ms = (((millis % 60000) % 1000) / 100).toString().padStart(2, '0');
+
+    return `${minutes}:${seconds}:${ms}`;
+}

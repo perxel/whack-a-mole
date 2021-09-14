@@ -27,6 +27,7 @@ class GamePlay extends Phaser.Scene{
          * Load HTML
          */
         const dom = new DOM({scene: this});
+        const progress = new DOM({scene: this, html: 'Progress', className: 'game-timer'});
 
         /**
          * Images
@@ -38,6 +39,34 @@ class GamePlay extends Phaser.Scene{
          * Create holes
          */
         this.createHoles();
+
+        $('[data-button="pause"]').on('click', function(){
+            timer.paused = true;
+        });
+
+        /**
+         * Timer
+         */
+        this.fulltime = 60 * 1000;
+        this.timeLeft = this.fulltime;
+        this.countStep = 100;
+        const timer = this.time.addEvent({
+            delay: this.countStep,
+            callback: onCountDown,
+            callbackScope: this,
+            loop: true
+        });
+
+        function onCountDown(){
+            this.timeLeft -= this.countStep; // One second
+            $('.w-progress text').html(formatMillisecond(this.timeLeft));
+            $('.w-progress-bar').width(`${this.timeLeft * 100 / this.fulltime}%`);
+
+            if(this.timeLeft <= 0){
+                timer.stop();
+                alert('Time up!');
+            }
+        }
     }
 
 
@@ -66,9 +95,9 @@ class GamePlay extends Phaser.Scene{
 
         // Waves
         const tryTime = 60 * 1000; // total time of each try [ms]
-        const waveTime = 3000; // delay between each wave [ms]
+        const waveTime = 700; // delay between each wave [ms]
         const waveCount = Math.round(tryTime / waveTime); // number of waves in each try
-        const waveCharactersNumber = 5; // number of characters could appear in one wave
+        const waveCharactersNumber = 1; // number of characters could appear in one wave
         const waves = []; // store each wave's data
 
         for(let i = 0; i < waveCount; i++){

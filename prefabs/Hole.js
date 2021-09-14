@@ -100,15 +100,12 @@ class Hole{
         for(let i = 0; i < this.characters.length; i++){
             const character = this.characters[i].character;
             const showTime = this.characters[i].showtime; // time to show this character count from 0 [ms]
-            const duration = 1100;
-            const prevShowtime = i === 0 ? 0 : this.characters[i - 1].showtime;
-            const offset = showTime - (prevShowtime + duration);
 
             // show
             this.timeline.add({
                 targets: character,
                 ease: 'Power0',
-                offset: `+=${offset}`,
+                offset: showTime,
                 duration: 300,
                 y: 100
             });

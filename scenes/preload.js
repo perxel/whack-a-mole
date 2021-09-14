@@ -62,7 +62,6 @@ class Preload extends Phaser.Scene{
         this.load.image('desktopBg', 'assets/img/desktop-bg.jpg');
         this.load.image('welcomeWhack', 'assets/img/welcome/whack.png');
 
-
         this.load.image('level1', 'assets/img/backgrounds/1.jpg');
         this.load.image('level2', 'assets/img/backgrounds/2.jpg');
         this.load.image('level3', 'assets/img/backgrounds/3.jpg');
@@ -83,6 +82,7 @@ class Preload extends Phaser.Scene{
         this.load.html('GamePlay', 'assets/dom/game-play.html');
         this.load.html('ChooseLevel', 'assets/dom/choose-level.html');
         this.load.html('Popup', 'assets/dom/popup.html');
+        this.load.html('Progress', 'assets/dom/progress.html');
 
 
         /**

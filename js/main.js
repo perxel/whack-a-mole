@@ -6,7 +6,12 @@ const MUSIC_VOL = 0.5;
 const SOUND_FX = true;
 const SOUND_FX_VOL = 0.3;
 
-const GAME_DURATION = 5; // [s]
+const GAME_DURATION = 10 * 1000; // [ms]
+const CHARACTER_PER_WAVE = 1;
+const WAVE_TIME = 1300; // [ms]
+const CHARACTER_SHOW = 300; // [ms]
+const CHARACTER_IDLE = 1000; // [ms]
+const CHARACTER_HIDE = 300; // [ms]
 
 window.onload = function(){
     'use strict';

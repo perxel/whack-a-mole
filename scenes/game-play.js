@@ -137,10 +137,10 @@ class GamePlay extends Phaser.Scene{
         }
 
         // Waves
-        const tryTime = GAME_DURATION * 1000; // total time of each try [ms]
-        const waveTime = 700; // delay between each wave [ms]
+        const tryTime = GAME_DURATION; // total time of each try [ms]
+        const waveTime = WAVE_TIME; // delay between each wave [ms]
         const waveCount = Math.round(tryTime / waveTime); // number of waves in each try
-        const waveCharactersNumber = 1; // number of characters could appear in one wave
+        const characterPerWave = CHARACTER_PER_WAVE; // number of characters could appear in one wave
         const waves = []; // store each wave's data
 
         for(let i = 0; i < waveCount; i++){
@@ -149,7 +149,7 @@ class GamePlay extends Phaser.Scene{
             const waveCharacters = [];
             const waveHoles = [];
 
-            for(let j = 0; j < waveCharactersNumber; j++){
+            for(let j = 0; j < characterPerWave; j++){
                 const characterTime = waveBegin;
 
                 // get random character

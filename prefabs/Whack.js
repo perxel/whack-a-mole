@@ -22,7 +22,7 @@ class Whack{
         };
 
         // Countdown
-        this.gameDuration = GAME_DURATION * 1000; // 1 minute
+        this.gameDuration = GAME_DURATION; // 1 minute
         this.timeLeft = this.gameDuration;
         this.loopStep = 100;
         this.countdown = this.createCountDown();
@@ -61,15 +61,15 @@ class Whack{
                     targets: character,
                     ease: 'Power0',
                     offset: showtime,
-                    duration: 300,
+                    duration: CHARACTER_SHOW,
                     y: 100
                 });
                 // tween hide
                 timeline.add({
                     targets: character,
                     ease: 'Power0',
-                    offset: '+=500',
-                    duration: 300,
+                    offset: `+=${CHARACTER_IDLE}`,
+                    duration: CHARACTER_HIDE,
                     y: character.height
                 });
 

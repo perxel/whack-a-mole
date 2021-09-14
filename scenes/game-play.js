@@ -29,18 +29,6 @@ class GamePlay extends Phaser.Scene{
         // background
         this.bg = new Helpers({scene: this, key: 'getBackgroundImage'});
 
-        /**
-         * Init game
-         */
-        this.gameControl = new Whack({
-            scene: this,
-            holes: this.createHoles(),
-            onPause: (status) => {
-                console.log(status)
-            }
-        });
-        this.gameControl.play();
-
 
         /**
          * Load HTML
@@ -61,9 +49,42 @@ class GamePlay extends Phaser.Scene{
             depth: 2
         });
 
+        // Popup Time over
+        let timeOverHtml = '<div class="pause-html">';
+        timeOverHtml += '<div class="txt-center">Your time is over. Play again?</div>';
+        timeOverHtml += '<div class="popup-yes-no">';
+        timeOverHtml += getHtml('button-no',);
+        timeOverHtml += getHtml('button-yes');
+        timeOverHtml += '</div>';
+        timeOverHtml += '</div>';
+        const popupTimeOver = new Popup({
+            scene: this,
+            className: 'popup-time-over small-popup',
+            titleHtml: 'Time Over',
+            innerHtml: timeOverHtml,
+            depth: 2
+        });
+
         const dom = new DOM({scene: this, depth: 1});
         const progress = new DOM({scene: this, html: 'Progress', className: 'game-timer', depth: 1});
 
+
+        /**
+         * Init game
+         */
+        this.gameControl = new Whack({
+            scene: this,
+            holes: this.createHoles(),
+            onEndGame: (status) => {
+                popupTimeOver.show();
+            }
+        });
+        this.gameControl.play();
+
+
+        /**
+         * Buttons
+         */
         // button pause no
         popupPause.get().find('[data-button="no"]').click(() => {
             this.goChooseLevel();
@@ -73,6 +94,16 @@ class GamePlay extends Phaser.Scene{
         popupPause.get().find('[data-button="yes"]').click(() => {
             this.gameControl.play();
             popupPause.hide();
+        });
+
+        // button time over no
+        popupTimeOver.get().find('[data-button="no"]').click(() => {
+            this.goChooseLevel();
+        });
+
+        // button time over yes
+        popupTimeOver.get().find('[data-button="yes"]').click(() => {
+            this.scene.start("GamePlay", {previousScene: this.sceneData, levelId: this.level});
         });
 
         // button pause
@@ -106,7 +137,7 @@ class GamePlay extends Phaser.Scene{
         }
 
         // Waves
-        const tryTime = 60 * 1000; // total time of each try [ms]
+        const tryTime = GAME_DURATION * 1000; // total time of each try [ms]
         const waveTime = 700; // delay between each wave [ms]
         const waveCount = Math.round(tryTime / waveTime); // number of waves in each try
         const waveCharactersNumber = 1; // number of characters could appear in one wave

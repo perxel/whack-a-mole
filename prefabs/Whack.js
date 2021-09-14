@@ -18,9 +18,11 @@ class Whack{
         };
         this.onResume = config.onResume || function(){
         };
+        this.onEndGame = config.onEndGame || function(){
+        };
 
         // Countdown
-        this.gameDuration = 60 * 1000; // 1 minute
+        this.gameDuration = GAME_DURATION * 1000; // 1 minute
         this.timeLeft = this.gameDuration;
         this.loopStep = 100;
         this.countdown = this.createCountDown();
@@ -37,6 +39,7 @@ class Whack{
             timeLeft: this.timeLeft,
             prettyTime: formatMillisecond(this.timeLeft),
             isRushing: false,
+            isEnd: false,
         };
     }
 
@@ -78,35 +81,35 @@ class Whack{
         return timeline;
     }
 
-    createCountDown(){
-        function onCountDown(){
-            // update time left
-            this.timeLeft -= this.loopStep;
-            this.status.timeLeft = this.timeLeft;
-            this.status.prettyTime = formatMillisecond(this.timeLeft);
-            this.status.progress = this.timeLeft / this.gameDuration;
+    onCountDown(){
+        // update time left
+        this.timeLeft -= this.loopStep;
+        this.status.timeLeft = this.timeLeft;
+        this.status.prettyTime = formatMillisecond(this.timeLeft);
+        this.status.progress = this.timeLeft / this.gameDuration;
 
-            // update countdown html
-            $('.w-progress text').html(this.status.prettyTime);
-            $('.w-progress-bar').width(`${this.status.progress * 100}%`);
+        // update countdown html
+        $('.w-progress text').html(this.status.prettyTime);
+        $('.w-progress-bar').width(`${this.status.progress * 100}%`);
 
-            // callback
-            this.onPlaying(this.status);
+        // callback
+        this.onPlaying(this.status);
 
-            // timeout
-            if(this.timeLeft <= 0){
-                this.endGame();
-            }
-
-            // rushing
-            if(this.status.progress <= this.rushTime){
-                this.triggerRushingTime();
-            }
+        // rushing
+        if(this.status.progress <= this.rushTime && !this.status.isRushing){
+            this.triggerRushingTime(true);
         }
 
+        // timeout
+        if(this.timeLeft <= 0){
+            this.endGame();
+        }
+    }
+
+    createCountDown(){
         return this.scene.time.addEvent({
             delay: this.loopStep,
-            callback: onCountDown,
+            callback: this.onCountDown,
             callbackScope: this,
             loop: true,
             paused: true
@@ -153,12 +156,22 @@ class Whack{
     }
 
     endGame(){
+        // update status
+        this.status.isPlaying = false;
+        this.status.isEnd = true;
+
         this.countdown.remove();
-        alert('Time up!');
+        this.onEndGame(this.status);
+
+        this.triggerRushingTime(false);
     }
 
-    triggerRushingTime(){
-        this.status.isRushing = true;
-        $('.w-progress').addClass('rushing');
+    triggerRushingTime(bool){
+        this.status.isRushing = bool;
+        if(bool){
+            $('.w-progress').addClass('rushing');
+        }else{
+            $('.w-progress').removeClass('rushing');
+        }
     }
 }

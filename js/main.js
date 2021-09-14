@@ -6,6 +6,8 @@ const MUSIC_VOL = 0.5;
 const SOUND_FX = true;
 const SOUND_FX_VOL = 0.3;
 
+const GAME_DURATION = 5; // [s]
+
 window.onload = function(){
     'use strict';
 

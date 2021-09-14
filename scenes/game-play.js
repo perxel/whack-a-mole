@@ -36,39 +36,26 @@ class GamePlay extends Phaser.Scene{
         this.bg = new Helpers({scene: this, key: 'getBackgroundImage'});
 
         /**
-         * Create holes
+         * Init game
          */
-        this.createHoles();
-
-        $('[data-button="pause"]').on('click', function(){
-            timer.paused = true;
-        });
-
-        /**
-         * Timer
-         */
-        this.fulltime = 60 * 1000;
-        this.timeLeft = this.fulltime;
-        this.countStep = 100;
-        const timer = this.time.addEvent({
-            delay: this.countStep,
-            callback: onCountDown,
-            callbackScope: this,
-            loop: true
-        });
-
-        function onCountDown(){
-            this.timeLeft -= this.countStep; // One second
-            $('.w-progress text').html(formatMillisecond(this.timeLeft));
-            $('.w-progress-bar').width(`${this.timeLeft * 100 / this.fulltime}%`);
-
-            if(this.timeLeft <= 0){
-                timer.stop();
-                alert('Time up!');
+        this.gameControl = new Whack({
+            scene: this,
+            holes: this.createHoles(),
+            onPause: (status) => {
+                console.log(status)
             }
-        }
-    }
+        });
+        this.gameControl.play();
 
+        // pause
+        $('[data-button="pause"]').on('click', () => {
+            if(this.gameControl.getStatus().isPlaying){
+                this.gameControl.pause();
+            }else{
+                this.gameControl.play();
+            }
+        });
+    }
 
     createHoles(){
         // Characters
@@ -133,15 +120,12 @@ class GamePlay extends Phaser.Scene{
             waves.push({waveBegin, waveEnd, characters: waveCharacters});
         }
 
-        if(DEV) console.log(waves);
+        if(DEV) console.log(gameHoles);
 
         // re-draw mask after alignment
         for(let i = 0; i < gameHoles.length; i++){
-            // update timeline
-            gameHoles[i].updateTimeline();
-
-            // play game
-            gameHoles[i].play();
+            // setup hole
+            gameHoles[i].setupHole();
 
             // get holes for alignment
             holesAlignment.push(gameHoles[i].get());
@@ -152,6 +136,8 @@ class GamePlay extends Phaser.Scene{
         this.scale.on('resize', () => {
             this.gridAlign(this, holesAlignment);
         });
+
+        return gameHoles;
     }
 
     gridAlign(scene, array){

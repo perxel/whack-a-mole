@@ -90,44 +90,4 @@ class Hole{
             this.setMask();
         });
     }
-
-    updateTimeline(){
-        this.setupHole();
-
-        //if(DEV) console.log(`Setup timeline for hole #${this.order}`);
-        this.timeline = this.scene.tweens.createTimeline(); // store animation for all character in this hole
-
-        for(let i = 0; i < this.characters.length; i++){
-            const character = this.characters[i].character;
-            const showTime = this.characters[i].showtime; // time to show this character count from 0 [ms]
-
-            // show
-            this.timeline.add({
-                targets: character,
-                ease: 'Power0',
-                offset: showTime,
-                duration: 300,
-                y: 100
-            });
-            // hide
-            this.timeline.add({
-                targets: character,
-                ease: 'Power0',
-                offset: '+=500',
-                duration: 300,
-                y: character.height
-            });
-        }
-    }
-
-    play(){
-        if(typeof this.timeline === 'undefined'){
-            console.warn(`Cannot play hole #${this.order} due to missing timeline!`);
-            return;
-        }
-
-        //if(DEV) console.log(`Play hole #${this.order}`);
-
-        this.timeline.play();
-    }
 }

@@ -35,9 +35,11 @@ class Hole{
         // create mask
         const maskShape = this.scene.make.graphics();
         maskShape.fillStyle(0xffffff);
-        const x = this.holeContainer.x - this.holeContainer.width * 0.5;
-        const y = this.holeContainer.y - this.holeContainer.height * 0.5;
-        maskShape.fillRect(x, y, this.holeContainer.width, this.holeContainer.height);
+        const width = this.holeContainer.width * 1.2;
+        const height = this.holeContainer.height * 1.2;
+        const x = this.holeContainer.x - width * 0.5;
+        const y = this.holeContainer.y - height * 0.5;
+        maskShape.fillRect(x, y, width, height);
 
         // set mask
         for(let i = 0; i < this.characters.length; i++){
@@ -62,11 +64,11 @@ class Hole{
         }
 
         // create hole front & back
-        this.holeBack = this.scene.add.sprite(0, 113, 'whack', `bg/${this.level}-0`).setDepth(1);
-        this.holeFront = this.scene.add.sprite(0, 113, 'whack', `bg/${this.level}-1`).setDepth(3);
+        this.holeBack = this.scene.add.sprite(0, 95, 'whack', `bg/${this.level}-0`).setDepth(1).setScale(0.8);
+        this.holeFront = this.scene.add.sprite(0, 95, 'whack', `bg/${this.level}-1`).setDepth(3).setScale(0.8);
 
         // create hole container todo: adjust hole size
-        this.holeContainer = this.scene.add.container(0, 0, [this.holeBack, ...characters, this.holeFront]).setDepth(2).setSize(200, 200);
+        this.holeContainer = this.scene.add.container(0, 0, [this.holeBack, ...characters, this.holeFront]).setDepth(2).setSize(150, 150);
 
         // debug
         if(this.debug){

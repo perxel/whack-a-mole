@@ -43,7 +43,7 @@ class GamePlay extends Phaser.Scene{
 
     createHoles(){
         // Characters
-        this.characters = ['one']; // list of characters in this level
+        this.characters = ['one', 'two']; // list of characters in this level
 
         // Hammer
         this.hammer = new Hammer({scene: this, name: '1'});
@@ -68,7 +68,7 @@ class GamePlay extends Phaser.Scene{
         const tryTime = 60 * 1000; // total time of each try [ms]
         const waveTime = 3000; // delay between each wave [ms]
         const waveCount = Math.round(tryTime / waveTime); // number of waves in each try
-        const waveCharactersNumber = 2; // number of characters could appear in one wave
+        const waveCharactersNumber = 5; // number of characters could appear in one wave
         const waves = []; // store each wave's data
 
         for(let i = 0; i < waveCount; i++){
@@ -128,10 +128,10 @@ class GamePlay extends Phaser.Scene{
     gridAlign(scene, array){
         const cols = 3;
         const rows = 3;
-        const gap = 80;
+        const gap = 100;
         const space = 30;
-        const width = 200;
-        const height = 200;
+        const width = 150;
+        const height = 150;
         const cellWidth = width + gap;
         const cellHeight = height + space;
         const gridWidth = cols * cellWidth - gap;

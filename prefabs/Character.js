@@ -56,12 +56,10 @@ class Character{
         // todo: justify anchor position
 
         // adjust the hit area
-        const hitAreaDiameter = this.height * 0.8;
-        const hitAreaX = this.width * 0.6;
-        const hitAreaY = this.height * 0.8;
-        const hitAreaRadius = hitAreaDiameter * 0.5;
-        const shape = new Phaser.Geom.Circle(hitAreaX, hitAreaY, hitAreaRadius);
-        this.character.setInteractive(shape, Phaser.Geom.Circle.Contains);
+        const hitAreaX = this.width * 0.67;
+        const hitAreaY = this.height;
+        const shape = new Phaser.Geom.Ellipse(hitAreaX, hitAreaY, this.width, this.height * 1.3);
+        this.character.setInteractive(shape, Phaser.Geom.Ellipse.Contains);
 
 
         // Play idle animation

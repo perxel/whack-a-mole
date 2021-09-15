@@ -9,6 +9,7 @@ class GamePlay extends Phaser.Scene{
         this.sceneData = {
             name: this.scene.key,
             background: `level${this.level}`,
+            backgroundMobile: `level${this.level}-m`,
             previousScene: generatePreviousSceneData(this, data)
         };
 

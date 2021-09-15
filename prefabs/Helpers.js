@@ -15,6 +15,7 @@ class Helpers{
 
         // for background
         this.texture = this.scene.sceneData.background;
+        this.textureMobile = this.scene.sceneData.backgroundMobile || undefined;
 
         // switch
         switch(this.key){
@@ -34,8 +35,10 @@ class Helpers{
         const hasBgTransition = this.previousScene && this.texture !== this.previousScene.background;
         if(DEV) console.log(`Add background image [${this.texture}] to scene ${this.sceneKey} ${hasBgTransition ? "with" : "without"} transition.`);
 
-        // add background to scene
-        const background = this.scene.add.image(0, 0, this.texture);
+        // add background to scene // todo update bg on resize
+        const isMobile = window.innerWidth <= 768;
+        const background = this.scene.add.image(0, 0, isMobile ? this.textureMobile : this.texture);
+
 
         // resize background to cover the screen
         keepBackgroundCover(this.scene, background);

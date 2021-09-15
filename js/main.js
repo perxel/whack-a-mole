@@ -1,12 +1,12 @@
 const DEV = false;
-const VERSION = '0.0.5';
+const VERSION = '0.0.6';
 
 const MUSIC = true; // sound off in dev mode
 const MUSIC_VOL = 0.5;
 const SOUND_FX = true;
 const SOUND_FX_VOL = 0.3;
 
-const GAME_DURATION = 300 * 1000; // [ms]
+const GAME_DURATION = 60 * 1000; // [ms]
 const CHARACTER_PER_WAVE = 1;
 const WAVE_TIME = 2300; // [ms]
 const CHARACTER_SHOW = 300; // [ms]

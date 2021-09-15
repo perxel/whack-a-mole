@@ -1,7 +1,7 @@
 const DEV = true;
 const VERSION = '0.0.5';
 
-const MUSIC = !DEV; // sound off in dev mode
+const MUSIC = true; // sound off in dev mode
 const MUSIC_VOL = 0.5;
 const SOUND_FX = true;
 const SOUND_FX_VOL = 0.3;

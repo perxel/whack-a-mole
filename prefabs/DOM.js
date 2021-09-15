@@ -29,6 +29,13 @@ class DOM{
             const type = button.getAttributeNode("data-button").value;
             const isDisabled = button.classList.contains('disabled');
 
+            // check flag
+            if(button.classList.contains("event-added")){
+                continue;
+            }
+
+            // set flag
+            button.classList.add("event-added");
 
             button.addEventListener('click', () => {
                 // click sound
@@ -64,6 +71,9 @@ class DOM{
                     case 'choose-level':
                         this.scene.scene.start('ChooseLevel', {previousScene: this.scene.sceneData});
                         break;
+                    case 'menu':
+                        this.scene.scene.start('Menu', {previousScene: this.scene.sceneData});
+                        break;
                     case 'full-screen-toggle':
                         // todo: DOM disappear in full screen
                         this.scene.scale.toggleFullscreen();
@@ -76,6 +86,8 @@ class DOM{
                 }
             });
         }
+
+        this.updateButtonState();
     }
 
     /**
@@ -101,5 +113,14 @@ class DOM{
         }
 
         this.scene.scene.start(this.previousScene.name, {previousScene: this.scene.sceneData});
+    }
+
+    updateButtonState(){
+        const $button = $('[data-button="sound-toggle"]');
+        if(this.scene.sys.game.CONFIG.sound.isPlaying()){
+            $button.addClass("active");
+        }else{
+            $button.removeClass("active");
+        }
     }
 }

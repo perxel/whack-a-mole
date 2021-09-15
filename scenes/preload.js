@@ -109,6 +109,9 @@ class Preload extends Phaser.Scene{
 
         // Add music
         this.sys.game.CONFIG.sound.set(this.sound.add('bgMusic', {volume: MUSIC_VOL, loop: true}));
+        if(MUSIC){
+            this.sys.game.CONFIG.sound.play();
+        }
 
         // Add sound
         this.sys.game.CONFIG.sound.setSoundFx('click', this.sound.add('click', {volume: SOUND_FX_VOL}));
@@ -119,8 +122,8 @@ class Preload extends Phaser.Scene{
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            //callback: () => this.scene.start("Menu"),
-            callback: () => this.scene.start("GamePlay", {levelId: 1}),
+            callback: () => this.scene.start("Menu"),
+            //callback: () => this.scene.start("GamePlay", {levelId: 1}),
             callbackScope: this
         });
     }

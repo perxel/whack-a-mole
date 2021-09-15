@@ -201,33 +201,36 @@ scene {
     border-radius:8px; text-align:center;
     transition:all .3s ease;
 }
-.w-progress-bar svg {
+.w-progress-bar svg, .w-progress-timer svg {
     position:absolute; top:50%; left:50%;
     transform:translate(-50%, -50%);
+    width:100%; height:100%;
 }
 .w-progress-bar.w-point {--font-size:var(--size-24); --color:var(--color-cyan); --sw:8px;}
 
 .w-progress-timer {
+    width:92px; height:92px;
     position:absolute; top:50%; left:0; z-index:2;
     transform:translate(-70%, -50%);
 }
 .w-progress.rushing .w-progress-timer svg {animation:shake 0.82s cubic-bezier(.36, .07, .19, .97) infinite;}
 @keyframes shake {
-    10%, 90% {
-        transform:translate3d(-1px, 0, 0);
+    10%, 90% {transform:translate3d(-1px, 0, 0);}
+    20%, 80% {transform:translate3d(2px, 0, 0);}
+    30%, 50%, 70% {transform:translate3d(-4px, 0, 0);}
+    40%, 60% {transform:translate3d(4px, 0, 0);}
+}
+@media only screen and (max-width:1180px) {
+    .w-progress-track {
+        height:35px; width:260px;
+        box-shadow:0 0 0 3px #fff; border-radius:8px;
+        border:5px solid #f3cdd5;
     }
-
-    20%, 80% {
-        transform:translate3d(2px, 0, 0);
-    }
-
-    30%, 50%, 70% {
-        transform:translate3d(-4px, 0, 0);
-    }
-
-    40%, 60% {
-        transform:translate3d(4px, 0, 0);
-    }
+    .w-progress-bar {border-radius:5px;}
+    .w-progress-timer {width:53px; height:53px;}
+}
+@media only screen and (max-width:768px){
+    .w-progress {bottom:50px;}
 }
 
 

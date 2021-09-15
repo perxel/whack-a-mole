@@ -16,7 +16,7 @@ class Character{
         this.y = config.y || 0;
         this.debug = config.debug || DEV;
         this.name = config.name || '';
-        this.hurtTime = 2000; // ms
+        this.hurtTime = CHARACTER_IDLE; // ms
         this.point = config.point || 10;
 
         this.createAnimations();
@@ -50,10 +50,9 @@ class Character{
         this.character = this.scene.add.sprite(this.x, this.y, 'whack', `characters/${this.name}/normal-1`);
         this.hurtTimer = undefined;
         this.ratio = this.character.height / this.character.width;
-        this.width = 220;
+        this.width = CHARACTER_WIDTH;
         this.height = this.width * this.ratio;
         this.character.setDisplaySize(this.width, this.height);
-        // todo: justify anchor position
 
         // adjust the hit area
         const hitAreaX = this.width * 0.67;

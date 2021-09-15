@@ -62,7 +62,7 @@ class Whack{
                     ease: 'Power0',
                     offset: showtime,
                     duration: CHARACTER_SHOW,
-                    y: 100
+                    y: CHARACTER_Y
                 });
                 // tween hide
                 timeline.add({
@@ -70,7 +70,7 @@ class Whack{
                     ease: 'Power0',
                     offset: `+=${CHARACTER_IDLE}`,
                     duration: CHARACTER_HIDE,
-                    y: character.height
+                    y: CHARACTER_Y * 3
                 });
 
             }

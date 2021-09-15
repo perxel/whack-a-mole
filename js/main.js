@@ -13,6 +13,32 @@ const CHARACTER_SHOW = 300; // [ms]
 const CHARACTER_IDLE = 2000; // [ms]
 const CHARACTER_HIDE = 300; // [ms]
 
+let HOLE_SIZE = 150;
+let HOLE_SCALE = 0.8; // scale
+let HOLE_SPRITE_Y = 95; // scale
+let HOLE_GAP = 100;
+let HOLE_SPACE = 30;
+let CHARACTER_WIDTH = 220;
+let CHARACTER_Y = 80;
+
+if(window.matchMedia("(max-width:480px)").matches){
+    HOLE_SIZE = 90;
+    HOLE_SCALE = 0.4;
+    HOLE_SPRITE_Y = 55;
+    HOLE_GAP = 20;
+    HOLE_SPACE = 30;
+    CHARACTER_WIDTH = 120;
+    CHARACTER_Y = 50;
+}else if(window.matchMedia("(max-width:768px)").matches){
+    HOLE_SIZE = 120;
+    HOLE_SCALE = 0.55;
+    HOLE_SPRITE_Y = 75;
+    HOLE_GAP = 40;
+    HOLE_SPACE = 40;
+    CHARACTER_WIDTH = 150;
+    CHARACTER_Y = 65;
+}
+
 window.onload = function(){
     'use strict';
 

@@ -199,10 +199,10 @@ class GamePlay extends Phaser.Scene{
     gridAlign(scene, array){
         const cols = 3;
         const rows = 3;
-        const gap = 100;
-        const space = 30;
-        const width = 150;
-        const height = 150;
+        const gap = HOLE_GAP;
+        const space = HOLE_SPACE;
+        const width = HOLE_SIZE;
+        const height = HOLE_SIZE;
         const cellWidth = width + gap;
         const cellHeight = height + space;
         const gridWidth = cols * cellWidth - gap;

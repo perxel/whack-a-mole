@@ -59,16 +59,15 @@ class Hole{
         const characters = [];
         for(let i = 0; i < this.characters.length; i++){
             characters.push(this.characters[i].character);
-            const height = this.characters[i].character.height;
-            this.characters[i].character.setPosition(0, height).setDisplayOrigin(0.5, 0.5).setDepth(2);
+            this.characters[i].character.setPosition(0, CHARACTER_Y * 3).setDisplayOrigin(0.5, 0.5).setDepth(2);
         }
 
         // create hole front & back
-        this.holeBack = this.scene.add.sprite(0, 95, 'whack', `bg/${this.level}-0`).setDepth(1).setScale(0.8);
-        this.holeFront = this.scene.add.sprite(0, 95, 'whack', `bg/${this.level}-1`).setDepth(3).setScale(0.8);
+        this.holeBack = this.scene.add.sprite(0, HOLE_SPRITE_Y, 'whack', `bg/${this.level}-0`).setDepth(1).setScale(HOLE_SCALE);
+        this.holeFront = this.scene.add.sprite(0, HOLE_SPRITE_Y, 'whack', `bg/${this.level}-1`).setDepth(3).setScale(HOLE_SCALE);
 
         // create hole container todo: adjust hole size
-        this.holeContainer = this.scene.add.container(0, 0, [this.holeBack, ...characters, this.holeFront]).setDepth(2).setSize(150, 150);
+        this.holeContainer = this.scene.add.container(0, 0, [this.holeBack, ...characters, this.holeFront]).setDepth(2).setSize(HOLE_SIZE, HOLE_SIZE);
 
         // debug
         if(this.debug){

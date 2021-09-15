@@ -1,4 +1,4 @@
-const DEV = true;
+const DEV = false;
 const VERSION = '0.0.5';
 
 const MUSIC = true; // sound off in dev mode
@@ -20,6 +20,10 @@ let HOLE_GAP = 100;
 let HOLE_SPACE = 30;
 let CHARACTER_WIDTH = 220;
 let CHARACTER_Y = 80;
+let HIT_WIDTH = 220;
+let HIT_HEIGHT = HIT_WIDTH * 1.3;
+let HIT_X = CHARACTER_WIDTH * 0.67;
+let HIT_Y = CHARACTER_WIDTH;
 
 if(window.matchMedia("(max-width:480px)").matches){
     HOLE_SIZE = 90;
@@ -29,6 +33,8 @@ if(window.matchMedia("(max-width:480px)").matches){
     HOLE_SPACE = 30;
     CHARACTER_WIDTH = 120;
     CHARACTER_Y = 50;
+    HIT_X = CHARACTER_WIDTH * 1.1;
+    HIT_Y = CHARACTER_WIDTH * 1.5;
 }else if(window.matchMedia("(max-width:768px)").matches){
     HOLE_SIZE = 120;
     HOLE_SCALE = 0.55;
@@ -37,6 +43,8 @@ if(window.matchMedia("(max-width:480px)").matches){
     HOLE_SPACE = 40;
     CHARACTER_WIDTH = 150;
     CHARACTER_Y = 65;
+    HIT_X = CHARACTER_WIDTH * 0.9;
+    HIT_Y = CHARACTER_WIDTH * 1.25;
 }
 
 window.onload = function(){

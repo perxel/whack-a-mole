@@ -57,7 +57,7 @@ class Character{
         // adjust the hit area
         const hitAreaX = this.width * 0.67;
         const hitAreaY = this.height;
-        const shape = new Phaser.Geom.Ellipse(hitAreaX, hitAreaY, this.width, this.height * 1.3);
+        const shape = new Phaser.Geom.Ellipse(HIT_X, HIT_Y, HIT_WIDTH, HIT_HEIGHT);
         this.character.setInteractive(shape, Phaser.Geom.Ellipse.Contains);
 
 

@@ -2,7 +2,6 @@
  * Variables
  *******************************/
 :root {
-
     --btn-width:60px;
     --btn-height:58px;
     --btn-width-how-to:94px;
@@ -12,8 +11,8 @@
     --btn-width-level:116px;
     --btn-height-level:112px;
 
-    --space-h:50px;
-    --space-v:50px;
+    --space-h-50:50px;
+    --space-h-80:80px;
 
     --space-60:60px;
     --space-50:50px;
@@ -30,16 +29,44 @@
 
     --size-96:96px;
     --size-64:64px;
+    --size-36:36px;
     --size-24:24px;
 }
 
 /*******************************
  * Responsive
  *******************************/
+.show-mobile {display:none !important;}
+@media only screen and (max-width:1360px) {
+    :root {
+        --btn-width:48px;
+        --btn-height:46px;
+        --btn-width-how-to:94px;
+        --btn-height-how-to:90px;
+        --btn-width-play:136px;
+        --btn-height-play:132px;
+        --btn-width-level:116px;
+        --btn-height-level:112px;
+
+        --space-h-50:30px;
+        --space-h-80:50px;
+
+        --space-50:30px;
+
+        --size-96:60px;
+        --size-64:40px;
+        --size-36:30px;
+        --size-24:20px;
+    }
+}
+@media only screen and (max-width:1024px) {
+    .hide-mobile {display:none !important;}
+    .show-mobile {display:block !important;}
+}
 @media only screen and (max-width:768px) {
     :root {
         --space-h:20px;
-        --space-v:30px;
+        --space-50:30px;
 
         --btn-width:48px;
         --btn-height:46px;
@@ -47,5 +74,10 @@
         --btn-height-how-to:var(--btn-height);
         --btn-width-play:108px;
         --btn-height-play:104px;
+
+        --size-96:48px;
+        --size-64:25px;
+        --size-36:18px;
+        --size-24:18px;
     }
 }

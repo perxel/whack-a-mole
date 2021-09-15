@@ -9,7 +9,7 @@
 
     position:fixed; top:0; left:0; width:100vw; height:100vh;
     background-color:rgba(0, 0, 0, .5);
-    padding:var(--space-h);
+    padding:var(--space-h-50);
     opacity:0; visibility:hidden;
     transition:all .3s ease;
 }
@@ -20,7 +20,7 @@
     border:var(--border-width) solid var(--color-brown-dark); border-radius:var(--border-radius);
     background-color:var(--color-neutral);
     width:100vw; max-width:var(--width); min-height:var(--height);
-    padding:var(--space-60) var(--space-h);
+    padding:var(--space-60) var(--space-h-50);
 }
 
 /* visibility */

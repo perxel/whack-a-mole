@@ -6,7 +6,7 @@ const MUSIC_VOL = 0.5;
 const SOUND_FX = true;
 const SOUND_FX_VOL = 0.3;
 
-const GAME_DURATION = 30 * 1000; // [ms]
+const GAME_DURATION = 300 * 1000; // [ms]
 const CHARACTER_PER_WAVE = 1;
 const WAVE_TIME = 2300; // [ms]
 const CHARACTER_SHOW = 300; // [ms]

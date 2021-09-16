@@ -40,7 +40,10 @@ class Game{
             prettyTime: formatMillisecond(this.timeLeft),
             isRushing: false,
             isEnd: false,
+            point: 0
         };
+
+        this.updatePoint();
     }
 
     getStatus(){
@@ -164,6 +167,9 @@ class Game{
         this.onEndGame(this.status);
 
         this.triggerRushingTime(false);
+
+        // update player data
+        this.scene.sys.game.PLAYER.setScoreHistory(this.status.point, this.scene.levelID);
     }
 
     triggerRushingTime(bool){
@@ -173,5 +179,14 @@ class Game{
         }else{
             $('.w-progress').removeClass('rushing');
         }
+    }
+
+    updatePoint(point){
+        if(typeof point !== 'undefined'){
+            this.status.point += parseInt(point);
+        }
+
+        const $pointTarget = $('.w-stat.point [data-text]');
+        $pointTarget.text(this.status.point);
     }
 }

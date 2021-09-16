@@ -36,9 +36,6 @@ class Player{
                 "timestamp": "",
             }
         ];
-
-        // init game settings
-        this.initGameSettings();
     }
 
     get(){
@@ -60,8 +57,15 @@ class Player{
         return false;
     }
 
-    initGameSettings(){
+    setScoreHistory(totalPoint, levelID){
+        if(typeof totalPoint !== 'undefined'){
+            this.score_history.push({
+                "score": totalPoint,
+                "level_id": parseInt(levelID),
+                "timestamp": new Date(),
+            });
 
+            if(DEV) console.log('Score', this.score_history);
+        }
     }
-
 }

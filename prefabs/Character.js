@@ -90,7 +90,7 @@ class Character{
 
         // On attack
         this.character.on('pointerdown', (pointer) => {
-            this.attack(pointer);
+            this.onAttack(pointer);
         });
     }
 
@@ -121,7 +121,7 @@ class Character{
         }
     }
 
-    attack(pointer){
+    onAttack(pointer){
         const container = this.character.parentContainer;
         const isGoodAttack = isPointerInsideZone(
             pointer.x,
@@ -132,7 +132,9 @@ class Character{
             container.height
         );
 
-        if(isGoodAttack){
+        const isGameEnded = this.scene.gameControl.status.isEnd;
+
+        if(isGoodAttack && !isGameEnded){
             if(DEV) console.log(`Attack ${this.characterData.sprite_name}`);
 
             // play anim
@@ -148,6 +150,9 @@ class Character{
             const x = Phaser.Math.Between(pointer.x - container.width * 0.5, pointer.x + container.width * 0.5);
             const y = pointer.y - container.height * 0.5;
             const point = this.scene.add.dom(x, y, html);
+
+            // update point
+            this.scene.gameControl.updatePoint(this.point);
 
             // animate
             this.scene.tweens.add({

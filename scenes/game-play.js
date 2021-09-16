@@ -76,7 +76,7 @@ class GamePlay extends Phaser.Scene{
         highScoreHtml += '<div class="your-score txt-center">';
         highScoreHtml += '<div class="high-score-icon w-bg-contain" style="background-image:url(assets/img/btn/point.svg)"></div>\n' +
             '        <div class="high-score-point w-point">\n' +
-            '          <svg width="auto" height="70">\n' +
+            '          <svg width="150" height="70">\n' +
             '            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" data-text>00</text>\n' +
             '          </svg>\n' +
             '        </div>';
@@ -152,7 +152,8 @@ class GamePlay extends Phaser.Scene{
 
     createHoles(){
         // Characters
-        this.characters = this.sys.game.PLAYER.getCharactersByLevelID(this.levelID); // list of characters in this level
+        const availableCharacterIDs = this.sys.game.PLAYER.getCharacterIDsByLevelID(this.levelID); // list of characters in this level
+        this.rareArray = new Helpers({scene: this}).generateCharacterRareArray(availableCharacterIDs);
 
         // Hammer
         this.hammer = new Hammer({scene: this, name: '3'});
@@ -190,7 +191,7 @@ class GamePlay extends Phaser.Scene{
                 const characterTime = waveBegin;
 
                 // get random character
-                const characterID = this.characters[Phaser.Math.Between(0, this.characters.length - 1)];
+                const characterID = this.rareArray[Phaser.Math.Between(0, this.rareArray.length - 1)];
 
                 // find random unique hole
                 let holeIndex = Phaser.Math.Between(0, holeCount - 1);

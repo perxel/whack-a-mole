@@ -1,7 +1,7 @@
 class Helpers{
     constructor(config){
         // validate
-        if(!config.scene){
+        if(typeof config === 'undefined' || !config.scene){
             console.warn("Missing scene!");
             return;
         }
@@ -21,8 +21,6 @@ class Helpers{
         switch(this.key){
             case 'getBackgroundImage':
                 return this.getBackgroundImage();
-            default:
-                console.warn(`Component ${this.key} is not found!`);
         }
     }
 
@@ -57,5 +55,25 @@ class Helpers{
         }
 
         return background;
+    }
+
+
+    /**
+     * Generate array of character IDs by rare level
+     * @param characterIDs
+     * @returns {*[]}
+     */
+    generateCharacterRareArray(characterIDs){
+        const rareIDsArray = [];
+        for(let i = 0; i < characterIDs.length; i++){
+            const character = new GameData().getCharacters(characterIDs[i]);
+            const quantity = parseFloat(character.rare_level) * 100;
+
+            for(let j = 0; j < quantity; j++){
+                rareIDsArray.push(characterIDs[i]);
+            }
+        }
+
+        return rareIDsArray;
     }
 }

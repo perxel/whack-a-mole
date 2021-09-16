@@ -41,7 +41,7 @@ class Player{
         return this.unlocked_level;
     }
 
-    getCharactersByLevelID(levelID){
+    getCharacterIDsByLevelID(levelID){
         levelID = parseInt(levelID);
 
         // check if player has unlocked this level

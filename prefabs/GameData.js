@@ -43,42 +43,42 @@ class GameData{
                 "id": 6,
                 "name": "6",
                 "point": 60,
-                "rare_level": 0.9,
+                "rare_level": 0.09,
                 "sprite_name": "6"
             },
             {
                 "id": 7,
                 "name": "7",
                 "point": 80,
-                "rare_level": 0.7,
+                "rare_level": 0.07,
                 "sprite_name": "7"
             },
             {
                 "id": 8,
                 "name": "8",
                 "point": 80,
-                "rare_level": 0.6,
+                "rare_level": 0.06,
                 "sprite_name": "8"
             },
             {
                 "id": 9,
                 "name": "9",
                 "point": 90,
-                "rare_level": 0.4,
+                "rare_level": 0.04,
                 "sprite_name": "9"
             },
             {
                 "id": 10,
                 "name": "10",
                 "point": 100,
-                "rare_level": 0.2,
+                "rare_level": 0.02,
                 "sprite_name": "10"
             },
             {
                 "id": 11,
                 "name": "Bomb",
                 "point": -50,
-                "rare_level": 15,
+                "rare_level": 0.15,
                 "sprite_name": "bomb"
             }
         ]

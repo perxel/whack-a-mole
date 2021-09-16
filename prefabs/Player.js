@@ -49,6 +49,17 @@ class Player{
         return this.unlocked_level;
     }
 
+    getCharactersByLevelID(levelID){
+        levelID = parseInt(levelID);
+
+        // check if player has unlocked this level
+        if(getObjectInArray(this.unlocked_level, 'id', levelID) !== 'undefined'){
+            return new GameData().getLevels(levelID).characters;
+        }
+
+        return false;
+    }
+
     initGameSettings(){
 
     }

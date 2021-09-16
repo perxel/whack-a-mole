@@ -226,3 +226,7 @@ function getHtml(key){
                 '</button>';
     }
 }
+
+function getObjectInArray(array, key, value){
+    return array.find(x => x[key] === value);
+}

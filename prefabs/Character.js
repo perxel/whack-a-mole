@@ -5,19 +5,20 @@ class Character{
             console.warn("Missing scene!");
             return;
         }
-        if(!config.name){
-            console.warn("Missing character name!");
+        if(!config.characterID){
+            console.warn("Missing character ID!");
             return;
         }
 
         this.scene = config.scene;
-        this.id = config.id || generateID();
+        this.characterID = config.characterID || undefined;
+        this.characterData = new GameData().getCharacters(this.characterID);
+
         this.x = config.x || 0;
         this.y = config.y || 0;
         this.debug = config.debug || DEV;
-        this.name = config.name || '';
         this.hurtTime = CHARACTER_IDLE; // ms
-        this.point = config.point || 10;
+        this.point = this.characterData.point || 0;
 
         this.createAnimations();
         this.createPorcupine();
@@ -29,25 +30,42 @@ class Character{
         // create frames
         const idleFrames = this.scene.anims.generateFrameNames('charactersAtlas', {
             start: 1, end: 4,
-            prefix: `${this.name}/smirky-`
+            prefix: `${this.characterData.sprite_name}/smirky-`
         });
         const attackFrame = this.scene.anims.generateFrameNames('charactersAtlas', {
             frames: [1],
-            prefix: `${this.name}/hurt-`
+            prefix: `${this.characterData.sprite_name}/hurt-`
         });
         const hurtFrames = this.scene.anims.generateFrameNames('charactersAtlas', {
             start: 2, end: 3,
-            prefix: `${this.name}/hurt-`
+            prefix: `${this.characterData.sprite_name}/hurt-`
         });
 
         // create anims
-        this.scene.anims.create({key: `${this.name}-idle`, frames: idleFrames, frameRate: 8, repeat: -1, yoyo: true});
-        this.scene.anims.create({key: `${this.name}-attack`, frames: attackFrame, frameRate: 2, duration: 0.5});
-        this.scene.anims.create({key: `${this.name}-hurt`, frames: hurtFrames, frameRate: 8, repeat: -1, yoyo: true});
+        this.scene.anims.create({
+            key: `${this.characterData.sprite_name}-idle`,
+            frames: idleFrames,
+            frameRate: 8,
+            repeat: -1,
+            yoyo: true
+        });
+        this.scene.anims.create({
+            key: `${this.characterData.sprite_name}-attack`,
+            frames: attackFrame,
+            frameRate: 2,
+            duration: 0.5
+        });
+        this.scene.anims.create({
+            key: `${this.characterData.sprite_name}-hurt`,
+            frames: hurtFrames,
+            frameRate: 8,
+            repeat: -1,
+            yoyo: true
+        });
     }
 
     createPorcupine(){
-        this.character = this.scene.add.sprite(this.x, this.y, 'charactersAtlas', `${this.name}/normal-1`);
+        this.character = this.scene.add.sprite(this.x, this.y, 'charactersAtlas', `${this.characterData.sprite_name}/normal-1`);
         this.hurtTimer = undefined;
         this.ratio = this.character.height / this.character.width;
         this.width = CHARACTER_WIDTH;
@@ -78,7 +96,7 @@ class Character{
 
     playAnimation(key){
         // play animation
-        this.character.anims.play(`${this.name}-${key}`);
+        this.character.anims.play(`${this.characterData.sprite_name}-${key}`);
 
         // on attack
         if(key === 'attack'){
@@ -115,16 +133,16 @@ class Character{
         );
 
         if(isGoodAttack){
-            if(DEV) console.log(`Attack ${this.name}`);
+            if(DEV) console.log(`Attack ${this.characterData.sprite_name}`);
 
             // play anim
             this.playAnimation('attack');
 
             // create html
+            const pointText = this.point > 0 ? '+' : '';
             const html = document.createElement('div');
             html.classList.add('w-point');
-            html.innerText = `+${this.point}`;
-            html.innerHTML = `<svg width="150" height="150"><text x="75" y="75">+${this.point}</text></svg>`;
+            html.innerHTML = `<svg width="150" height="150"><text x="75" y="75">${pointText}${this.point}</text></svg>`;
 
             // show point
             const x = Phaser.Math.Between(pointer.x - container.width * 0.5, pointer.x + container.width * 0.5);

@@ -112,13 +112,11 @@ class GamePlay extends Phaser.Scene{
             this.gameControl.pause();
             popupPause.toggle();
         });
-
-        console.log(this.sys.game.PLAYER.get())
     }
 
     createHoles(){
         // Characters
-        this.characters = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'bomb']; // list of characters in this level
+        this.characters = this.sys.game.PLAYER.getCharactersByLevelID(this.levelID); // list of characters in this level
 
         // Hammer
         this.hammer = new Hammer({scene: this, name: '3'});
@@ -156,8 +154,7 @@ class GamePlay extends Phaser.Scene{
                 const characterTime = waveBegin;
 
                 // get random character
-                const characterIndex = Phaser.Math.Between(0, this.characters.length - 1);
-                const characterName = this.characters[characterIndex];
+                const characterID = this.characters[Phaser.Math.Between(0, this.characters.length - 1)];
 
                 // find random unique hole
                 let holeIndex = Phaser.Math.Between(0, holeCount - 1);
@@ -167,11 +164,19 @@ class GamePlay extends Phaser.Scene{
                 waveHoles.push(holeIndex);
 
                 // save character to wave
-                waveCharacters.push({showtime: characterTime, name: characterName, holeIndex: holeIndex});
+                waveCharacters.push({
+                    showtime: characterTime,
+                    characterID: characterID,
+                    holeIndex: holeIndex
+                });
 
                 // save character to hole
-                const character = new Character({scene: this, name: characterName});
-                gameHoles[holeIndex].addCharacter({showtime: characterTime, character: character, name: characterName});
+                const character = new Character({scene: this, characterID: characterID});
+                gameHoles[holeIndex].addCharacter({
+                    showtime: characterTime,
+                    character: character,
+                    characterID: characterID
+                });
             }
 
 

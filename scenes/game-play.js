@@ -38,7 +38,7 @@ class GamePlay extends Phaser.Scene{
         let pauseHtml = '<div class="pause-html">';
         pauseHtml += '<div class="txt-center">DO YOU WANT TO CONTINUE?</div>';
         pauseHtml += '<div class="popup-yes-no">';
-        pauseHtml += getHtml('button-no',);
+        pauseHtml += getHtml('button-no');
         pauseHtml += getHtml('button-yes');
         pauseHtml += '</div>';
         pauseHtml += '</div>';
@@ -54,7 +54,7 @@ class GamePlay extends Phaser.Scene{
         let timeOverHtml = '<div class="time-over-html">';
         timeOverHtml += '<div class="txt-center">Your time is over. Play again?</div>';
         timeOverHtml += '<div class="popup-yes-no">';
-        timeOverHtml += getHtml('button-no',);
+        timeOverHtml += getHtml('button-no');
         timeOverHtml += getHtml('button-yes');
         timeOverHtml += '</div>';
         timeOverHtml += '</div>';
@@ -68,6 +68,9 @@ class GamePlay extends Phaser.Scene{
 
         // Popup New high score
         let highScoreHtml = '<div class="high-score-html">';
+        highScoreHtml += '<div class="popup-close-button">';
+        highScoreHtml += getHtml('button-no');
+        highScoreHtml += '</div>';
         highScoreHtml += '<div class="txt-center">congratulation! you have new high score! \n' +
             'Share it now!</div>';
         highScoreHtml += '<div class="your-score txt-center">';
@@ -133,6 +136,11 @@ class GamePlay extends Phaser.Scene{
         // button time over yes
         popupTimeOver.get().find('[data-button="yes"]').click(() => {
             this.scene.start("GamePlay", {previousScene: this.sceneData, levelID: this.levelID});
+        });
+
+        // button high score no
+        popupHighScore.get().find('[data-button="no"]').click(() => {
+            this.goChooseLevel();
         });
 
         // button pause

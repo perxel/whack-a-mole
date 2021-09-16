@@ -18,13 +18,8 @@ class Player{
 
         this.turn_left = config.turn_left || 10;
         this.turn_played = config.turn_played || 0;
-        this.score_history = config.score_history || [
-            {
-                "score": 120,
-                "level_id": 1,
-                "timestamp": "",
-            }
-        ];
+        this.score_history = config.score_history || []; // {"score": 0, "level_id": 1, "timestamp": ""}
+        this.high_score = config.high_score || 0;
         this.whack_coin = config.whack_coin || 0;
         this.wup_coin = config.wup_coin || 0;
         this.game_settings = config.game_settings || {"sound": MUSIC};
@@ -59,13 +54,28 @@ class Player{
 
     setScoreHistory(totalPoint, levelID){
         if(typeof totalPoint !== 'undefined'){
+            // save new score
             this.score_history.push({
                 "score": totalPoint,
                 "level_id": parseInt(levelID),
                 "timestamp": new Date(),
             });
 
-            if(DEV) console.log('Score', this.score_history);
+            if(totalPoint > this.high_score){
+                // update high score
+                this.high_score = totalPoint;
+                if(DEV) console.log('New high score', this.high_score);
+            }else{
+                if(DEV) console.log('New score', totalPoint);
+            }
         }
+    }
+
+    getHighScore(){
+        return this.high_score;
+    }
+
+    getScoreHistory(){
+        return this.score_history;
     }
 }

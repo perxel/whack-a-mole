@@ -164,12 +164,17 @@ class Game{
         this.status.isEnd = true;
 
         this.countdown.remove();
-        this.onEndGame(this.status);
-
         this.triggerRushingTime(false);
+
+
+        // check high score
+        this.status.isNewHighScore = this.status.point > this.scene.sys.game.PLAYER.getHighScore();
 
         // update player data
         this.scene.sys.game.PLAYER.setScoreHistory(this.status.point, this.scene.levelID);
+
+        // callback
+        this.onEndGame(this.status);
     }
 
     triggerRushingTime(bool){

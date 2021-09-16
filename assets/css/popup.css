@@ -36,3 +36,7 @@
 
 /* buttons */
 .popup-yes-no {display:flex; justify-content:space-around; padding-top:var(--space-30);}
+
+/* high score */
+.your-score > div {display:inline-block;}
+.high-score-icon {width:63px; height:70px; margin-right:26px;}

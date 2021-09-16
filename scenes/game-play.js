@@ -51,7 +51,7 @@ class GamePlay extends Phaser.Scene{
         });
 
         // Popup Time over
-        let timeOverHtml = '<div class="pause-html">';
+        let timeOverHtml = '<div class="time-over-html">';
         timeOverHtml += '<div class="txt-center">Your time is over. Play again?</div>';
         timeOverHtml += '<div class="popup-yes-no">';
         timeOverHtml += getHtml('button-no',);
@@ -66,6 +66,27 @@ class GamePlay extends Phaser.Scene{
             depth: 2
         });
 
+        // Popup New high score
+        let highScoreHtml = '<div class="high-score-html">';
+        highScoreHtml += '<div class="txt-center">congratulation! you have new high score! \n' +
+            'Share it now!</div>';
+        highScoreHtml += '<div class="your-score txt-center">';
+        highScoreHtml += '<div class="high-score-icon w-bg-contain" style="background-image:url(assets/img/btn/point.svg)"></div>\n' +
+            '        <div class="high-score-point w-point">\n' +
+            '          <svg width="auto" height="70">\n' +
+            '            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" data-text>00</text>\n' +
+            '          </svg>\n' +
+            '        </div>';
+        highScoreHtml += '</div>';
+        highScoreHtml += '</div>';
+        const popupHighScore = new Popup({
+            scene: this,
+            className: 'popup-high-score small-popup',
+            titleHtml: 'New High<br>Score',
+            innerHtml: highScoreHtml,
+            depth: 2
+        });
+
         const dom = new DOM({scene: this, depth: 1});
         const progress = new DOM({scene: this, html: 'Progress', className: 'game-timer', depth: 1});
 
@@ -77,7 +98,14 @@ class GamePlay extends Phaser.Scene{
             scene: this,
             holes: this.createHoles(),
             onEndGame: (status) => {
-                popupTimeOver.show();
+                if(status.isNewHighScore){
+                    // todo: style popup
+                    const $text = popupHighScore.get().find('[data-text]');
+                    $text.text(status.point);
+                    popupHighScore.show();
+                }else{
+                    popupTimeOver.show();
+                }
             }
         });
         this.gameControl.play();

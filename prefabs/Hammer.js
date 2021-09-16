@@ -27,9 +27,9 @@ class Hammer{
 
     createAnimations(){
         // create frames
-        const attackFrames = this.scene.anims.generateFrameNames('whack', {
+        const attackFrames = this.scene.anims.generateFrameNames('hammersAtlas', {
             start: 2, end: 3,
-            prefix: `hammers/${this.name}/`
+            prefix: `${this.name}/`
         });
 
         // create anim
@@ -37,7 +37,7 @@ class Hammer{
     }
 
     createHammer(){
-        this.hammer = this.scene.add.sprite(this.x, this.y, 'whack', `hammers/${this.name}/1`).setDepth(4).setAlpha(0).setScale(0.5);
+        this.hammer = this.scene.add.sprite(this.x, this.y, 'hammersAtlas', `${this.name}/1`).setDepth(4).setAlpha(0).setScale(0.5);
         this.attackTimer = undefined;
 
         this.scene.input.on("pointerdown", (data) => {

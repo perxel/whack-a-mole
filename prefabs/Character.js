@@ -27,17 +27,17 @@ class Character{
 
     createAnimations(){
         // create frames
-        const idleFrames = this.scene.anims.generateFrameNames('whack', {
+        const idleFrames = this.scene.anims.generateFrameNames('charactersAtlas', {
             start: 1, end: 4,
-            prefix: `characters/${this.name}/smirky-`
+            prefix: `${this.name}/smirky-`
         });
-        const attackFrame = this.scene.anims.generateFrameNames('whack', {
+        const attackFrame = this.scene.anims.generateFrameNames('charactersAtlas', {
             frames: [1],
-            prefix: `characters/${this.name}/hurt-`
+            prefix: `${this.name}/hurt-`
         });
-        const hurtFrames = this.scene.anims.generateFrameNames('whack', {
+        const hurtFrames = this.scene.anims.generateFrameNames('charactersAtlas', {
             start: 2, end: 3,
-            prefix: `characters/${this.name}/hurt-`
+            prefix: `${this.name}/hurt-`
         });
 
         // create anims
@@ -47,7 +47,7 @@ class Character{
     }
 
     createPorcupine(){
-        this.character = this.scene.add.sprite(this.x, this.y, 'whack', `characters/${this.name}/normal-1`);
+        this.character = this.scene.add.sprite(this.x, this.y, 'charactersAtlas', `${this.name}/normal-1`);
         this.hurtTimer = undefined;
         this.ratio = this.character.height / this.character.width;
         this.width = CHARACTER_WIDTH;

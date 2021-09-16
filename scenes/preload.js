@@ -44,7 +44,9 @@ class Preload extends Phaser.Scene{
         /**
          * Atlas
          */
-        this.load.multiatlas('whack', 'assets/sprites/sprites.json', 'assets/sprites');
+        this.load.multiatlas('charactersAtlas', 'assets/sprites/characters.json', 'assets/sprites');
+        this.load.multiatlas('holesAtlas', 'assets/sprites/holes.json', 'assets/sprites');
+        this.load.multiatlas('hammersAtlas', 'assets/sprites/hammers.json', 'assets/sprites');
 
         /**
          * Music and Sound effects
@@ -117,8 +119,8 @@ class Preload extends Phaser.Scene{
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            callback: () => this.scene.start("Menu"),
-            //callback: () => this.scene.start("GamePlay", {levelId: 1}),
+            //callback: () => this.scene.start("Menu"),
+            callback: () => this.scene.start("GamePlay", {levelId: 1}),
             callbackScope: this
         });
     }

@@ -116,10 +116,10 @@ class GamePlay extends Phaser.Scene{
 
     createHoles(){
         // Characters
-        this.characters = ['one', 'two']; // list of characters in this level
+        this.characters = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'bomb']; // list of characters in this level
 
         // Hammer
-        this.hammer = new Hammer({scene: this, name: '1'});
+        this.hammer = new Hammer({scene: this, name: '3'});
 
         // Holes
         const holeCount = 9;

@@ -70,7 +70,7 @@ class Whack{
                     ease: 'Power0',
                     offset: `+=${CHARACTER_IDLE}`,
                     duration: CHARACTER_HIDE,
-                    y: CHARACTER_Y * 3
+                    y: CHARACTER_HIDE_Y
                 });
 
             }

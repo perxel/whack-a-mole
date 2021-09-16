@@ -5,11 +5,11 @@ class GamePlay extends Phaser.Scene{
 
     init(data){
         this.CONFIG = this.sys.game.CONFIG;
-        this.level = data.levelId || 1;
+        this.levelID = data.levelID || 1;
         this.sceneData = {
             name: this.scene.key,
-            background: `level${this.level}`,
-            backgroundMobile: `level${this.level}-m`,
+            background: `level${this.levelID}`,
+            backgroundMobile: `level${this.levelID}-m`,
             previousScene: generatePreviousSceneData(this, data)
         };
 
@@ -73,7 +73,7 @@ class GamePlay extends Phaser.Scene{
         /**
          * Init game
          */
-        this.gameControl = new Whack({
+        this.gameControl = new Game({
             scene: this,
             holes: this.createHoles(),
             onEndGame: (status) => {
@@ -104,7 +104,7 @@ class GamePlay extends Phaser.Scene{
 
         // button time over yes
         popupTimeOver.get().find('[data-button="yes"]').click(() => {
-            this.scene.start("GamePlay", {previousScene: this.sceneData, levelId: this.level});
+            this.scene.start("GamePlay", {previousScene: this.sceneData, levelID: this.levelID});
         });
 
         // button pause
@@ -112,6 +112,8 @@ class GamePlay extends Phaser.Scene{
             this.gameControl.pause();
             popupPause.toggle();
         });
+
+        console.log(this.sys.game.PLAYER.get())
     }
 
     createHoles(){
@@ -129,7 +131,7 @@ class GamePlay extends Phaser.Scene{
             // create hole
             const hole = new Hole({
                 scene: this,
-                level: this.level,
+                level: this.levelID,
                 order: i + 1
             });
 

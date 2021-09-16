@@ -81,7 +81,7 @@ class DOM{
                     case 'go-level':
                         const level = button.getAttributeNode("data-level").value;
                         if(DEV) console.log(`Go to level ${level}`);
-                        this.scene.scene.start("GamePlay", {previousScene: this.scene.sceneData, levelId: level});
+                        this.scene.scene.start("GamePlay", {previousScene: this.scene.sceneData, levelID: level});
                         break;
                 }
             });

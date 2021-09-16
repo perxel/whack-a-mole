@@ -13,6 +13,24 @@ class Preload extends Phaser.Scene{
     preload(){
         ///if(DEV) console.log('Preload preload()');
 
+
+        /**
+         * Load player
+         */
+        this.sys.game.PLAYER = new Player();
+
+
+        /**
+         * Load level background
+         */
+        const levels = new GameData().getLevels();
+        for(let i = 0; i < levels.length; i++){
+            const levelID = levels[i].id;
+            this.load.image(`level${levelID}`, levels[i].desktop_bg_url);
+            this.load.image(`level${levelID}-m`, levels[i].mobile_bg_url);
+        }
+
+
         /**
          * Plugins
          */
@@ -64,12 +82,6 @@ class Preload extends Phaser.Scene{
         this.load.image('desktopBg', 'assets/img/desktop-bg.jpg');
         this.load.image('welcomeWhack', 'assets/img/welcome/whack.png');
 
-        // Load level background
-        for(let i = 0; i < 10; i++){
-            this.load.image(`level${i + 1}`, `assets/img/backgrounds/${i + 1}.jpg`);
-            this.load.image(`level${i + 1}-m`, `assets/img/backgrounds/${i + 1}-m.jpg`);
-        }
-
 
         /**
          * Load HTML
@@ -106,7 +118,7 @@ class Preload extends Phaser.Scene{
 
         // Add music
         this.sys.game.CONFIG.sound.set(this.sound.add('bgMusic', {volume: MUSIC_VOL, loop: true}));
-        if(MUSIC){
+        if(this.sys.game.PLAYER.get().game_settings.sound){
             this.sys.game.CONFIG.sound.play();
         }
 
@@ -119,8 +131,8 @@ class Preload extends Phaser.Scene{
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            //callback: () => this.scene.start("Menu"),
-            callback: () => this.scene.start("GamePlay", {levelId: 1}),
+            callback: () => this.scene.start("Menu"),
+            //callback: () => this.scene.start("GamePlay", {levelID: 1}),
             callbackScope: this
         });
     }

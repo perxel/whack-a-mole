@@ -1,4 +1,4 @@
-class Whack{
+class Game{
     constructor(config){
         // validate
         if(!config.scene){

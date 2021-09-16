@@ -1,0 +1,181 @@
+class GameData{
+    constructor(){
+    }
+
+    getCharacters(){
+        return [
+            {
+                "id": 1,
+                "name": "1",
+                "point": 10,
+                "rare_level": 0.18,
+                "sprite_id": ""
+            },
+            {
+                "id": 2,
+                "name": "2",
+                "point": 20,
+                "rare_level": 0.16,
+                "sprite_id": ""
+            },
+            {
+                "id": 3,
+                "name": "3",
+                "point": 30,
+                "rare_level": 0.15,
+                "sprite_id": ""
+            },
+            {
+                "id": 4,
+                "name": "4",
+                "point": 40,
+                "rare_level": 0.13,
+                "sprite_id": ""
+            },
+            {
+                "id": 5,
+                "name": "5",
+                "point": 50,
+                "rare_level": 0.10,
+                "sprite_id": ""
+            },
+            {
+                "id": 6,
+                "name": "6",
+                "point": 60,
+                "rare_level": 0.9,
+                "sprite_id": ""
+            },
+            {
+                "id": 7,
+                "name": "7",
+                "point": 80,
+                "rare_level": 0.7,
+                "sprite_id": ""
+            },
+            {
+                "id": 8,
+                "name": "8",
+                "point": 80,
+                "rare_level": 0.6,
+                "sprite_id": ""
+            },
+            {
+                "id": 9,
+                "name": "9",
+                "point": 90,
+                "rare_level": 0.4,
+                "sprite_id": ""
+            },
+            {
+                "id": 10,
+                "name": "10",
+                "point": 100,
+                "rare_level": 0.2,
+                "sprite_id": ""
+            },
+            {
+                "id": 11,
+                "name": "Bomb",
+                "point": -50,
+                "rare_level": 15,
+                "sprite_id": ""
+            }
+        ];
+    }
+
+    getLevels(){
+        return [
+            {
+                "id": 1,
+                "name": "1",
+                "require_point": 0,
+                "desktop_bg_url": "assets/img/backgrounds/1.jpg",
+                "mobile_bg_url": "assets/img/backgrounds/1-m.jpg",
+                "characters": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                "next_level": [2]
+            },
+            {
+                "id": 2,
+                "name": "2",
+                "require_point": 0,
+                "desktop_bg_url": "assets/img/backgrounds/2.jpg",
+                "mobile_bg_url": "assets/img/backgrounds/2-m.jpg",
+                "characters": [],
+                "next_level": [3]
+            },
+            {
+                "id": 3,
+                "name": "3",
+                "require_point": 0,
+                "desktop_bg_url": "assets/img/backgrounds/3.jpg",
+                "mobile_bg_url": "assets/img/backgrounds/3-m.jpg",
+                "characters": [],
+                "next_level": [4]
+            },
+            {
+                "id": 4,
+                "name": "4",
+                "require_point": 0,
+                "desktop_bg_url": "assets/img/backgrounds/4.jpg",
+                "mobile_bg_url": "assets/img/backgrounds/4-m.jpg",
+                "characters": [],
+                "next_level": [5]
+            },
+            {
+                "id": 5,
+                "name": "5",
+                "require_point": 0,
+                "desktop_bg_url": "assets/img/backgrounds/5.jpg",
+                "mobile_bg_url": "assets/img/backgrounds/5-m.jpg",
+                "characters": [],
+                "next_level": [6]
+            },
+            {
+                "id": 6,
+                "name": "6",
+                "require_point": 0,
+                "desktop_bg_url": "assets/img/backgrounds/6.jpg",
+                "mobile_bg_url": "assets/img/backgrounds/6-m.jpg",
+                "characters": [],
+                "next_level": [7]
+            },
+            {
+                "id": 7,
+                "name": "7",
+                "require_point": 0,
+                "desktop_bg_url": "assets/img/backgrounds/7.jpg",
+                "mobile_bg_url": "assets/img/backgrounds/7-m.jpg",
+                "characters": [],
+                "next_level": [8]
+            },
+            {
+                "id": 8,
+                "name": "8",
+                "require_point": 0,
+                "desktop_bg_url": "assets/img/backgrounds/8.jpg",
+                "mobile_bg_url": "assets/img/backgrounds/8-m.jpg",
+                "characters": [],
+                "next_level": [9]
+            },
+            {
+                "id": 9,
+                "name": "9",
+                "require_point": 0,
+                "desktop_bg_url": "assets/img/backgrounds/9.jpg",
+                "mobile_bg_url": "assets/img/backgrounds/9-m.jpg",
+                "characters": [],
+                "next_level": [10]
+            },
+            {
+                "id": 10,
+                "name": "10",
+                "require_point": 0,
+                "desktop_bg_url": "assets/img/backgrounds/10.jpg",
+                "mobile_bg_url": "assets/img/backgrounds/10-m.jpg",
+                "characters": [],
+                "next_level": []
+            },
+        ];
+    }
+}

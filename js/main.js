@@ -1,5 +1,5 @@
-const DEV = true;
-const VERSION = '0.0.6';
+const DEV = false;
+const VERSION = '0.0.7';
 
 window.onload = function(){
     'use strict';

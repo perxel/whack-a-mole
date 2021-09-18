@@ -39,7 +39,10 @@ class GamePlay extends Phaser.Scene{
             scene: this,
             size: 'small-popup',
             name: 'PopupPause',
-            onNoClick: () => this.goChooseLevel(),
+            onNoClick: () => {
+                this.gameControl.endGame();
+                this.goChooseLevel();
+            },
             onYesClick: () => {
                 this.gameControl.play();
                 popupPause.hide();

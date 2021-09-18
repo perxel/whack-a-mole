@@ -26,9 +26,17 @@ class Preload extends Phaser.Scene{
          */
         const levels = new GameData().getLevels();
         for(let i = 0; i < levels.length; i++){
-            const levelID = levels[i].id;
-            this.load.image(`level${levelID}`, levels[i].desktop_bg_url);
-            this.load.image(`level${levelID}-m`, levels[i].mobile_bg_url);
+            this.load.image(`level${levels[i].id}`, levels[i].desktop_bg_url);
+            this.load.image(`level${levels[i].id}-m`, levels[i].mobile_bg_url);
+        }
+
+        /**
+         * Load hammer sounds
+         */
+        const hammers = new GameData().getHammers();
+        for(let i = 0; i < hammers.length; i++){
+            const key = `hammer-attack-${hammers[i].id}`;
+            this.load.audio(key, [hammers[i].attack_sound_url]);
         }
 
 
@@ -72,9 +80,10 @@ class Preload extends Phaser.Scene{
          */
         // background music
         this.load.audio('bgMusic', ['assets/audio/music.mp3']);
+
         this.load.audio('click', ['assets/audio/click.mp3']);
-        this.load.audio('zap', ['assets/audio/hammer-flesh.mp3']);
         this.load.audio('die', ['assets/audio/die.mp3']);
+
 
         /**
          * Load image
@@ -128,9 +137,17 @@ class Preload extends Phaser.Scene{
 
         // Add sound
         this.sys.game._SOUND.setSoundFx('click', this.sound.add('click', {volume: gameSettings.sound_fx_vol}));
-        this.sys.game._SOUND.setSoundFx('zap', this.sound.add('zap', {volume: gameSettings.sound_fx_vol}));
         this.sys.game._SOUND.setSoundFx('die', this.sound.add('die', {volume: gameSettings.sound_fx_vol}));
 
+        /**
+         * Load hammer sounds
+         */
+        const hammers = new GameData().getHammers();
+        for(let i = 0; i < hammers.length; i++){
+            const key = `hammer-attack-${hammers[i].id}`;
+
+            this.sys.game._SOUND.setSoundFx(key, this.sound.add(key, {volume: gameSettings.sound_fx_vol}));
+        }
 
         // Go Menu
         this.time.addEvent({

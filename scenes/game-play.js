@@ -24,11 +24,6 @@ class GamePlay extends Phaser.Scene{
     create(){
         //if(DEV) console.log('Play create()');
 
-        /**
-         * Update player data
-         */
-        this.sys.game.PLAYER.setTurnPlayed(this.levelID);
-
 
         /**
          * Images
@@ -162,7 +157,7 @@ class GamePlay extends Phaser.Scene{
         this.rareArray = new Helpers({scene: this}).generateCharacterRareArray(availableCharacterIDs);
 
         // Hammer
-        this.hammer = new Hammer({scene: this, name: '3'});
+        this.hammer = new Hammer({scene: this, id: this.sys.game.PLAYER.getHammer()});
 
         // Holes
         const holeCount = 9;

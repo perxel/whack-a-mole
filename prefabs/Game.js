@@ -46,6 +46,7 @@ class Game{
         // Init
         this.updatePoint();
         this.updateWhackCoin();
+        this.updatePlayerTurnPlayed();
     }
 
     getStatus(){
@@ -208,8 +209,10 @@ class Game{
      * @param number
      */
     updateWhackCoin(number){
-        // update whack coin
-        this.scene.sys.game.PLAYER.setWhackCoin(number);
+        if(typeof number !== 'undefined'){
+            // update whack coin
+            this.scene.sys.game.PLAYER.setWhackCoin(number);
+        }
 
         // get current whack of player
         const whackCoin = this.scene.sys.game.PLAYER.get().whack_coin;
@@ -217,5 +220,12 @@ class Game{
         // update display
         const $target = $('.w-stat.whack [data-text]');
         $target.text(whackCoin);
+    }
+
+    /**
+     * Update player's turn played
+     */
+    updatePlayerTurnPlayed(){
+        this.scene.sys.game.PLAYER.setTurnPlayed(this.scene.levelID);
     }
 }

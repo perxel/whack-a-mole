@@ -290,4 +290,56 @@ class GameData{
             return levels;
         }
     }
+
+
+    /**
+     * Hammers
+     * @param hammerID
+     * @returns {*}
+     */
+    getHammers(hammerID){
+        const hammers = [
+            {
+                id: 1,
+                attack_sound_url: 'assets/audio/hammer-flesh.mp3',
+                whack_cost: 100,
+                usage_gain: 5,
+                sprite_name: '1',
+            },
+            {
+                id: 2,
+                attack_sound_url: 'assets/audio/hammer-flesh.mp3',
+                whack_cost: 200,
+                usage_gain: 5,
+                sprite_name: '2',
+            },
+            {
+                id: 3,
+                attack_sound_url: 'assets/audio/hammer-flesh.mp3',
+                whack_cost: 300,
+                usage_gain: 5,
+                sprite_name: '3',
+            },
+            {
+                id: 4,
+                attack_sound_url: 'assets/audio/hammer-flesh.mp3',
+                whack_cost: 400,
+                usage_gain: 5,
+                sprite_name: '4',
+            },
+            {
+                id: 5,
+                attack_sound_url: 'assets/audio/hammer-flesh.mp3',
+                whack_cost: 500,
+                usage_gain: 5,
+                sprite_name: '5',
+            },
+        ];
+
+        if(typeof hammerID !== 'undefined'){
+            return getObjectInArray(hammers, 'id', parseInt(hammerID));
+        }else{
+            return hammers;
+        }
+    }
 }

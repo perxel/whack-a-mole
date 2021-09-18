@@ -1,7 +1,10 @@
 class Player{
     constructor(config = {}){
+        // ID
         this.uuid = config.uuid || generateID();
         this.display_name = config.display_name || "Felix";
+
+        // Game
         this.unlocked_level = config.unlocked_level || [
             {
                 "id": 1,
@@ -15,18 +18,29 @@ class Player{
                 "id": 3
             }
         ];
-
         this.total_turn_played = config.total_turn_played || 0;
+
+        // Score
         this.score_history = config.score_history || []; // {"score": 0, "level_id": 1, "timestamp": ""}
         this.high_score = config.high_score || 0;
+
+        // Hammer
+        this.hammer_id = config.hammer_id || 1; // default hammer is 1
+        this.hammer_usage_left = config.hammer_usage_left || 5;
+
+        // Coin
         this.whack_coin = config.whack_coin || 1000;
         this.wup_coin = config.wup_coin || 0;
+
+        // Setting
         this.game_settings = config.game_settings || {
             music: false,
             music_vol: 0.5,
             sound_fx: true,
             sound_fx_vol: 0.5,
         };
+
+        // Shop
         this.shopping_history = config.shopping_history || [
             {
                 "item_id": "",
@@ -77,6 +91,10 @@ class Player{
         if(level !== 'undefined'){
             return level.total_turn_played || 0;
         }
+    }
+
+    getHammer(){
+        return this.hammer_id;
     }
 
     /*************************** SETTERS ******************************/
@@ -134,5 +152,20 @@ class Player{
             }
         }
         return false;
+    }
+
+    setHammerUsage(){
+        // update hammer usage
+        this.hammer_usage_left -= 1;
+        return true;
+    }
+
+    setNewHammer(hammer_id){
+        if(hammer_id === this.hammer_id){
+            // add more usage
+        }else{
+            // re-new hammer
+            this.hammer_id = hammer_id;
+        }
     }
 }

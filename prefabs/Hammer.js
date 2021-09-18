@@ -5,17 +5,18 @@ class Hammer{
             console.warn("Missing scene!");
             return;
         }
-        if(!config.name){
-            console.warn("Missing character name!");
+        if(!config.id){
+            console.warn("Hammer is undefined!");
             return;
         }
 
         this.scene = config.scene;
-        this.id = config.id || generateID();
-        this.x = config.x || 0;
-        this.y = config.y || 0;
-        this.name = config.name || '';
-        this.anchor = config.anchor || {};
+        this.id = config.id || undefined;
+
+        // sprite
+        this.sprite_name = new GameData().getHammers(this.id).sprite_name;
+
+        // animation
         this.attackDuration = 100; // ms
         this.attackAnim = `${this.id}-attack`;
 
@@ -29,7 +30,7 @@ class Hammer{
         // create frames
         const attackFrames = this.scene.anims.generateFrameNames('hammersAtlas', {
             start: 2, end: 3,
-            prefix: `${this.name}/`
+            prefix: `${this.sprite_name}/`
         });
 
         // create anim
@@ -37,12 +38,12 @@ class Hammer{
     }
 
     createHammer(){
-        this.hammer = this.scene.add.sprite(this.x, this.y, 'hammersAtlas', `${this.name}/1`).setDepth(4).setAlpha(0).setScale(0.5);
+        this.hammer = this.scene.add.sprite(0, 0, 'hammersAtlas', `${this.sprite_name}/1`).setDepth(4).setAlpha(0).setScale(0.5);
         this.attackTimer = undefined;
 
         this.scene.input.on("pointerdown", (data) => {
             // sound fx
-            this.scene.sys.game._SOUND.playSoundFx('zap');
+            this.scene.sys.game._SOUND.playSoundFx(`hammer-attack-${this.id}`);
 
             // update position
             this.hammer.setPosition(data.position.x + this.hammer.displayWidth * 0.5, data.position.y + this.hammer.displayHeight * 0.5).setAlpha(1);

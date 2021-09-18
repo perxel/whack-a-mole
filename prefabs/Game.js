@@ -43,7 +43,9 @@ class Game{
             point: 0
         };
 
+        // Init
         this.updatePoint();
+        this.updateWhackCoin();
     }
 
     getStatus(){
@@ -186,12 +188,34 @@ class Game{
         }
     }
 
+    /**
+     * Update display point in the current game
+     * @param point
+     */
     updatePoint(point){
         if(typeof point !== 'undefined'){
             this.status.point += parseInt(point);
         }
 
+        // update display
         const $pointTarget = $('.w-stat.point [data-text]');
         $pointTarget.text(this.status.point);
+    }
+
+    /**
+     * Update display whack coin in the current game
+     * Update player's whack coin amount
+     * @param number
+     */
+    updateWhackCoin(number){
+        // update whack coin
+        this.scene.sys.game.PLAYER.setWhackCoin(number);
+
+        // get current whack of player
+        const whackCoin = this.scene.sys.game.PLAYER.get().whack_coin;
+
+        // update display
+        const $target = $('.w-stat.whack [data-text]');
+        $target.text(whackCoin);
     }
 }

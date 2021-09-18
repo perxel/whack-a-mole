@@ -10,7 +10,7 @@ class GameData{
      */
     getSettings(){
         const settings = {
-            game_duration: 10 * 1000,// total time of each try [ms]
+            game_duration: 100 * 1000,// total time of each try [ms]
             character_per_wave: 1, // number of characters could appear in one wave
             wave_duration: 2300, // duration of each wave [ms]
             character_show_duration: 300, // [ms]

@@ -28,22 +28,54 @@ class Helpers{
         const backgroundDesktop = this.scene.add.image(0, 0, this.textureDesktop).setAlpha(0);
         const backgroundMobile = this.scene.add.image(0, 0, this.textureMobile).setAlpha(0);
 
-
         // resize background to cover the screen
         keepBackgroundCover(this.scene, backgroundDesktop);
         keepBackgroundCover(this.scene, backgroundMobile);
 
-        const isMobile = window.innerWidth <= 768;
+        // change background on resize
+        const breakpoint = this.scene.sys.game._DATA.getConfig().background_breakpoint;
+        const bgConfig = {
+            showBackground: backgroundDesktop,
+            hideBackground: backgroundMobile,
+            hasBgTransition: hasBgTransition,
+            scene: this.scene,
+            onMatched: (data) => {
+                // hide background
+                data.settings.scene.tweens.add({
+                    targets: data.settings.hideBackground,
+                    ease: 'Linear',
+                    duration: data.settings.hasBgTransition ? 300 : 0,
+                    alpha: {
+                        getStart: () => 1,
+                        getEnd: () => 0
+                    },
+                });
 
-        // animate
-        this.scene.tweens.add({
-            targets: isMobile ? backgroundMobile : backgroundDesktop,
-            ease: 'Linear',
-            duration: hasBgTransition ? 300 : 0,
-            alpha: {
-                getStart: () => 0,
-                getEnd: () => 1
+                // show background
+                data.settings.scene.tweens.add({
+                    targets: data.settings.showBackground,
+                    ease: 'Linear',
+                    duration: data.settings.hasBgTransition ? 300 : 0,
+                    alpha: {
+                        getStart: () => 0,
+                        getEnd: () => 1
+                    },
+                });
             },
+            responsive: [
+                {
+                    breakpoint: breakpoint,
+                    settings: {
+                        showBackground: backgroundMobile,
+                        hideBackground: backgroundDesktop,
+                    }
+                }
+            ]
+        };
+
+        let lastBreakpoint = getResponsiveData(bgConfig).breakpoint;
+        window.addEventListener('resize', () => {
+            lastBreakpoint = getResponsiveData(bgConfig, lastBreakpoint).breakpoint;
         });
 
         return {backgroundDesktop, backgroundMobile};

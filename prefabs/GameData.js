@@ -46,7 +46,10 @@ class GameData{
             hit_x: 220 * 0.67, // character_width * n
             hit_y: 220, // character_width
 
-            /** Responsive **/
+            /** Mobile **/
+            background_breakpoint: 768, // change background on this breakpoint
+
+            /** Responsive config **/
             responsive: [
                 {
                     breakpoint: 480,

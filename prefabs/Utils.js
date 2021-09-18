@@ -272,7 +272,7 @@ function getResponsiveData(config, currentBreakpoint = undefined){
 
     // matching function
     let hasMatch = false;
-    let data = {currentBreakpoint};
+    let data = {breakpoint: currentBreakpoint};
 
     // loop through all breakpoints
     for(let i = 0; i < config.responsive.length; i++){
@@ -295,16 +295,16 @@ function getResponsiveData(config, currentBreakpoint = undefined){
             // and is a new breakpoint
             if(currentBreakpoint !== breakpoint.breakpoint){
                 // return new breakpoint
-                currentBreakpoint = breakpoint.breakpoint;
                 data = {
                     type: 'responsive',
-                    breakpoint: currentBreakpoint,
+                    breakpoint: breakpoint.breakpoint,
                     settings: mapNewSettings(config, breakpoint.settings)
                 };
 
                 // callback
                 if(typeof config.onMatched === 'function'){
                     config.onMatched(data);
+                    return data;
                 }
             }
 
@@ -314,14 +314,14 @@ function getResponsiveData(config, currentBreakpoint = undefined){
     }
 
     // if no matching
-    if(!hasMatch && currentBreakpoint !== 'default'){
+    if(!hasMatch && currentBreakpoint !== -1){
         // reset breakpoint to default
-        currentBreakpoint = 'default';
-        data = {type: 'responsive', breakpoint: currentBreakpoint, settings: mapNewSettings(config, config)};
+        data = {type: 'default', breakpoint: -1, settings: mapNewSettings(config, config)};
 
         // callback
         if(typeof config.onMatched === 'function'){
             config.onMatched(data);
+            return data;
         }
     }
 
@@ -351,10 +351,9 @@ function getResponsiveData(config, currentBreakpoint = undefined){
 //         }
 //     ]
 // };
-
-
-// let lastBreakpoint = undefined;
-// getResponsiveData(config, lastBreakpoint);
+//
+//
+// let lastBreakpoint = getResponsiveData(config).breakpoint;
 // window.addEventListener('resize', () => {
-//     lastBreakpoint = getResponsiveData(config, lastBreakpoint).currentBreakpoint;
+//     lastBreakpoint = getResponsiveData(config, lastBreakpoint).breakpoint;
 // });

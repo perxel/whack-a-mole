@@ -9,19 +9,6 @@ class Helpers{
         this.scene = config.scene;
         this.previousScene = this.scene.sceneData.previousScene || undefined;
         this.sceneKey = this.scene.scene.key;
-        this.key = config.key;
-        this.anchor = config.anchor || undefined;
-        this.depth = config.depth || 3;
-
-        // for background
-        this.texture = this.scene.sceneData.background;
-        this.textureMobile = this.scene.sceneData.backgroundMobile || undefined;
-
-        // switch
-        switch(this.key){
-            case 'getBackgroundImage':
-                return this.getBackgroundImage();
-        }
     }
 
     /**
@@ -29,32 +16,37 @@ class Helpers{
      * @returns {*}
      */
     getBackgroundImage(){
-        // check if the prev scene is available
-        const hasBgTransition = this.previousScene && this.texture !== this.previousScene.background;
-        if(DEV) console.log(`Add background image [${this.texture}] to scene ${this.sceneKey} ${hasBgTransition ? "with" : "without"} transition.`);
+        // get background texture
+        this.textureDesktop = this.scene.sceneData.background;
+        this.textureMobile = this.scene.sceneData.backgroundMobile || this.textureDesktop;
 
-        // add background to scene // todo update bg on resize
-        const isMobile = window.innerWidth <= 768;
-        const background = this.scene.add.image(0, 0, isMobile ? this.textureMobile : this.texture);
+        // check if the prev scene is available
+        const hasBgTransition = this.previousScene && this.textureDesktop !== this.previousScene.background;
+        if(DEV) console.log(`Add background image [${this.textureDesktop}] to scene ${this.sceneKey}`);
+
+        // add background to scene
+        const backgroundDesktop = this.scene.add.image(0, 0, this.textureDesktop).setAlpha(0);
+        const backgroundMobile = this.scene.add.image(0, 0, this.textureMobile).setAlpha(0);
 
 
         // resize background to cover the screen
-        keepBackgroundCover(this.scene, background);
+        keepBackgroundCover(this.scene, backgroundDesktop);
+        keepBackgroundCover(this.scene, backgroundMobile);
+
+        const isMobile = window.innerWidth <= 768;
 
         // animate
-        if(hasBgTransition){
-            this.scene.tweens.add({
-                targets: background,
-                ease: 'Linear',
-                duration: 300,
-                alpha: {
-                    getStart: () => 0,
-                    getEnd: () => 1
-                },
-            });
-        }
+        this.scene.tweens.add({
+            targets: isMobile ? backgroundMobile : backgroundDesktop,
+            ease: 'Linear',
+            duration: hasBgTransition ? 300 : 0,
+            alpha: {
+                getStart: () => 0,
+                getEnd: () => 1
+            },
+        });
 
-        return background;
+        return {backgroundDesktop, backgroundMobile};
     }
 
 

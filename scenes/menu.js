@@ -47,40 +47,6 @@ class Menu extends Phaser.Scene{
          * Images
          */
         // background
-        this.bg = new Helpers({scene: this, key: 'getBackgroundImage'});
-    }
-
-    createAnimations(){
-        this.timeline = this.tweens.createTimeline();
-
-        // Title image
-        this.titleImage.setAlpha(0);
-        this.timeline.add({
-            targets: this.titleImage,
-            ease: 'Bounce',
-            duration: 600,
-            alpha: {
-                getStart: () => 0,
-                getEnd: () => 1
-            },
-            y: {
-                getStart: () => this.titleImage.y - 100,
-                getEnd: () => this.titleImage.y
-            },
-        });
-
-        // Button play
-        this.btnPlay.setAlpha(0);
-        this.timeline.add({
-            targets: this.btnPlay,
-            ease: 'Power4',
-            duration: 600,
-            alpha: {
-                getStart: () => 0,
-                getEnd: () => 1
-            },
-        });
-
-        this.timeline.play();
+        this.bg = new Helpers({scene: this}).getBackgroundImage();
     }
 }

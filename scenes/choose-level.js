@@ -28,7 +28,7 @@ class ChooseLevel extends Phaser.Scene{
          * Images
          */
         // background
-        this.bg = new Helpers({scene: this, key: 'getBackgroundImage'});
+        this.bg = new Helpers({scene: this}).getBackgroundImage();
 
         /**
          * Load HTML

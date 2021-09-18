@@ -30,6 +30,7 @@ class Popup{
         this.name = config.name || 'Popup';
         this.titleHtml = config.titleHtml || undefined;
         this.innerHtml = config.innerHtml || undefined;
+        this.manipulateHtml = config.manipulateHtml || undefined;
 
         this.visible = config.visible || false;
         this.size = config.size || '';
@@ -49,6 +50,11 @@ class Popup{
 
         // get popup jQuery element
         this.$popup = $(`.${this.uniqueClass}`);
+
+        // manipulate html
+        if(typeof this.manipulateHtml === 'function'){
+            this.manipulateHtml(this.$popup);
+        }
 
         // button no
         this.$popup.find('[data-button="no"]').click(() => {

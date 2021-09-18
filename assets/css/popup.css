@@ -20,7 +20,7 @@
     border:var(--border-width) solid var(--color-brown-dark); border-radius:var(--border-radius);
     background-color:var(--color-neutral);
     width:90vw; max-width:var(--width); min-height:var(--height);
-    padding:var(--space-60) var(--space-h-50);
+    padding:calc(var(--space-60) + .65em) var(--space-h-50) var(--space-60);
 }
 
 /* visibility */
@@ -51,12 +51,30 @@
 .time-over-clock {width:70px;}
 
 /*******************************
+ * Popup Your Score
+ *******************************/
+.score-board-wrap {width:100%;}
+ul.score-board {list-style:none; font-size:var(--size-36); width:100%;}
+ul.score-board li {display:flex; align-items:center;}
+ul.score-board li:not(:last-child) {border-bottom:1px solid #d6c093; padding-bottom:var(--space-25); margin-bottom:var(--space-25);}
+ul.score-board li .right {width:100%;}
+ul.score-board .rank-medal {min-width:82px; height:68px; margin-right:21px;}
+ul.score-board .score-icon {width:25px; height:29px; margin-right:12px;}
+ul.score-board .text {transform:translateY(.15em);}
+@media only screen and (max-width:480px) {
+    ul.score-board .rank-medal {min-width:70px; height:60px;}
+    ul.score-board li .right {display:block;}
+    ul.score-board li .right .text {margin-bottom:12px;}
+    ul.score-board .text {transform:translateY(.4em);}
+}
+
+/*******************************
  * Popup Responsive
  *******************************/
 @media only screen and (max-width:768px) {
     .w-popup {
         --border-width:7px;
-        --border-radius:15px;
+        --border-radius:20px;
     }
 
     /* size */

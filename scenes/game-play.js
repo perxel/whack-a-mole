@@ -68,6 +68,7 @@ class GamePlay extends Phaser.Scene{
             scene: this,
             size: 'medium-popup',
             name: 'PopupYourScore',
+            manipulateHtml: ($popup) => this.updateScoreBoard($popup),
             onNoClick: (thisPopup) => {
                 thisPopup.hide();
                 this.gameControl.play();
@@ -215,6 +216,12 @@ class GamePlay extends Phaser.Scene{
         return gameHoles;
     }
 
+
+    /**
+     * Align objects in grid
+     * @param scene
+     * @param array
+     */
     gridAlign(scene, array){
         const cols = 3;
         const rows = 3;
@@ -250,7 +257,42 @@ class GamePlay extends Phaser.Scene{
         });
     }
 
+
+    /**
+     * Go to scene
+     */
     goChooseLevel(){
         this.scene.start('ChooseLevel', {previousScene: this.sceneData});
+    }
+
+
+    /**
+     * Update Score Board Popup
+     * @param $popup
+     * @returns {boolean}
+     */
+    updateScoreBoard($popup){
+        const history = this.sys.game.PLAYER.getScoreHistory();
+
+        if(history.length === 0){
+            $popup.find('[data-popup-content]').html('There is nothing to show.');
+            return false;
+        }
+
+        // sort history
+        history.sort((a, b) => a.score < b.score && 1 || -1);
+
+        $popup.find('[data-rank]').each((i, el) => {
+            if(history[i]){
+                const level = `Lv ${history[i].level_id}`;
+                const score = history[i].score;
+
+                $(el).find('[data-level]').html(level);
+                $(el).find('[data-point]').html(score);
+            }else{
+                // remove if empty
+                $(el).detach();
+            }
+        });
     }
 }

@@ -45,6 +45,7 @@ html {-webkit-text-size-adjust:none; font-family:var(--font-primary); color:var(
 
 /* Spacings */
 .w-space-60 {margin-bottom:var(--space-60);}
+.w-space-25 {margin-bottom:var(--space-25);}
 
 /* Titles */
 .heading-1 {
@@ -129,10 +130,6 @@ scene {
 .button.toggle:not(.active) .off {display:block;}
 
 /* button icon */
-.button.icon {
-    --width:60px;
-    --height:60px;
-}
 .button.icon span {font-size:0;}
 
 /*******************************
@@ -180,7 +177,10 @@ scene {
 .popup-choose-level .w-popup {background-color:transparent;}
 .w-level-grid {width:100%; max-width:700px; margin:-15px -8px;}
 .w-level-grid-item {padding:15px 8px;}
-
+@media only screen and (max-width:768px) {
+    .w-level-grid {margin:0;}
+    .w-level-grid-item {padding:10px 10px; width:50%; display:flex; justify-content:center;}
+}
 
 /*******************************
  * Progress

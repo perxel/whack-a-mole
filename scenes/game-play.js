@@ -53,6 +53,7 @@ class GamePlay extends Phaser.Scene{
 
         // Popup Time over
         let timeOverHtml = '<div class="time-over-html">';
+        timeOverHtml += '<div class="w-space-25 txt-center"><img class="time-over-clock" src="assets/img/timer.svg"></div>';
         timeOverHtml += '<div class="txt-center">Your time is over. Play again?</div>';
         timeOverHtml += '<div class="popup-yes-no">';
         timeOverHtml += getHtml('button-no');
@@ -72,9 +73,8 @@ class GamePlay extends Phaser.Scene{
         highScoreHtml += '<div class="popup-close-button">';
         highScoreHtml += getHtml('button-no');
         highScoreHtml += '</div>';
-        highScoreHtml += '<div class="txt-center">congratulation! you have new high score! \n' +
-            'Share it now!</div>';
-        highScoreHtml += '<div class="your-score txt-center">';
+        highScoreHtml += '<div class="txt-center w-space-25">congratulation! you have new high score! <br>Share it now!</div>';
+        highScoreHtml += '<div class="your-score w-flex w-flex--align-center w-flex--justify-center">';
         highScoreHtml += '<div class="high-score-icon w-bg-contain" style="background-image:url(assets/img/btn/point.svg)"></div>\n' +
             '        <div class="high-score-point w-point">\n' +
             '          <svg width="150" height="70">\n' +
@@ -85,7 +85,7 @@ class GamePlay extends Phaser.Scene{
         highScoreHtml += '</div>';
         const popupHighScore = new Popup({
             scene: this,
-            className: 'popup-high-score small-popup',
+            className: 'popup-high-score medium-popup',
             titleHtml: 'New High<br>Score',
             innerHtml: highScoreHtml,
             depth: 2
@@ -105,6 +105,8 @@ class GamePlay extends Phaser.Scene{
                 if(status.isNewHighScore){
                     // todo: style popup
                     const $text = popupHighScore.get().find('[data-text]');
+                    const letterWidth = parseInt(popupHighScore.get().find('.high-score-point').css('--letter-width'));
+                    popupHighScore.get().find('.high-score-point svg').attr('width', letterWidth * status.point.toString().length);
                     $text.text(status.point);
                     popupHighScore.show();
                 }else{

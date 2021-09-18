@@ -2,6 +2,7 @@
  * Variables
  *******************************/
 :root {
+    /* Buttons */
     --btn-width:60px;
     --btn-height:58px;
     --btn-width-how-to:94px;
@@ -11,12 +12,14 @@
     --btn-width-level:116px;
     --btn-height-level:112px;
 
+    /* Space */
     --space-h-50:50px;
     --space-h-80:80px;
-
     --space-60:60px;
     --space-50:50px;
     --space-30:30px;
+    --space-25:25px;
+
 
     --font-primary:"LuckiestGuy", cursive;
 
@@ -27,6 +30,7 @@
     --color-red:#ed6d70;
     --color-cyan:#00b7ed;
 
+    /* Sizes */
     --size-96:96px;
     --size-64:64px;
     --size-36:36px;
@@ -39,20 +43,27 @@
 .show-mobile {display:none !important;}
 @media only screen and (max-width:1360px) {
     :root {
+        /* Buttons */
         --btn-width:48px;
         --btn-height:46px;
         --btn-width-how-to:94px;
         --btn-height-how-to:90px;
         --btn-width-play:136px;
         --btn-height-play:132px;
-        --btn-width-level:116px;
-        --btn-height-level:112px;
+        --btn-width-level:82px;
+        --btn-height-level:79px;
 
+        /* Space */
         --space-h-50:30px;
         --space-h-80:50px;
 
+        --space-60:40px;
         --space-50:30px;
+        --space-30:20px;
+        --space-25:22px;
 
+
+        /* Sizes */
         --size-96:60px;
         --size-64:40px;
         --size-36:30px;
@@ -65,16 +76,26 @@
 }
 @media only screen and (max-width:768px) {
     :root {
-        --space-h:20px;
-        --space-50:30px;
-
+        /* Buttons */
         --btn-width:48px;
         --btn-height:46px;
         --btn-width-how-to:var(--btn-width);
         --btn-height-how-to:var(--btn-height);
         --btn-width-play:108px;
         --btn-height-play:104px;
+        --btn-width-level:70px;
+        --btn-height-level:70px;
 
+        /* Space */
+        --space-h-50:20px;
+        --space-h-80:40px;
+
+        --space-60:35px;
+        --space-50:30px;
+        --space-30:20px;
+        --space-25:22px;
+
+        /* Sizes */
         --size-96:48px;
         --size-64:25px;
         --size-36:18px;

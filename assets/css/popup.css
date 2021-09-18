@@ -13,13 +13,13 @@
     opacity:0; visibility:hidden;
     transition:all .3s ease;
 }
-.w-popup-inner {transition:all .3s ease;}
+.w-popup-inner {transition:all .3s ease; position:relative;}
 
 .w-popup-title {margin-bottom:-0.65em;}
 .w-popup-content {
     border:var(--border-width) solid var(--color-brown-dark); border-radius:var(--border-radius);
     background-color:var(--color-neutral);
-    width:100vw; max-width:var(--width); min-height:var(--height);
+    width:100%; max-width:var(--width); min-height:var(--height);
     padding:var(--space-60) var(--space-h-50);
 }
 
@@ -29,9 +29,14 @@
 .w-popup-wrapper:not(.show-popup) .w-popup-inner {transform:translateY(20%);}
 
 /* size */
-.small-popup .w-popup {
-    --width:500px;
-    --height:300px;
+.medium-popup .w-popup {--width:670px; --height:480px;}
+.small-popup .w-popup {--width:500px; --height:300px;}
+.small-popup .w-popup-content {padding:var(--space-60) var(--space-h-50) var(--space-30);}
+
+/* button close */
+.popup-close-button {
+    position:absolute; bottom:100%; right:0;
+    transform:translateY(90%);
 }
 
 /* buttons */
@@ -40,3 +45,31 @@
 /* high score */
 .your-score > div {display:inline-block;}
 .high-score-icon {width:63px; height:70px; margin-right:26px;}
+.high-score-point {--letter-width:40;}
+
+/* time over */
+.time-over-clock {width:70px;}
+
+/*******************************
+ * Popup Responsive
+ *******************************/
+@media only screen and (max-width:768px) {
+    .w-popup {
+        --border-width:7px;
+        --border-radius:15px;
+    }
+
+    /* size */
+    .medium-popup .w-popup {--height:350px;}
+    .small-popup .w-popup {--height:240px;}
+
+    /* button close */
+    .popup-close-button {transform:translateY(-20%);}
+
+    /* time over */
+    .time-over-clock {width:55px;}
+
+    /* high score */
+    .high-score-icon {width:40px; height:43px; margin-right:15px;}
+    .high-score-point {--letter-width:20;}
+}

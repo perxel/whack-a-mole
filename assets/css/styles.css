@@ -214,6 +214,7 @@ scene {
     transform:translate(-70%, -50%);
 }
 .w-progress-timer svg {position:absolute; top:0; left:0; width:100%; height:100%;}
+.anim-shake,
 .w-progress.rushing .w-progress-timer svg {animation:shake 0.82s cubic-bezier(.36, .07, .19, .97) infinite;}
 @keyframes shake {
     10%, 90% {transform:translate3d(-1px, 0, 0);}

@@ -19,7 +19,7 @@
 .w-popup-content {
     border:var(--border-width) solid var(--color-brown-dark); border-radius:var(--border-radius);
     background-color:var(--color-neutral);
-    width:100%; max-width:var(--width); min-height:var(--height);
+    width:90vw; max-width:var(--width); min-height:var(--height);
     padding:var(--space-60) var(--space-h-50);
 }
 

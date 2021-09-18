@@ -53,7 +53,7 @@ class GamePlay extends Phaser.Scene{
 
         // Popup Time over
         let timeOverHtml = '<div class="time-over-html">';
-        timeOverHtml += '<div class="w-space-25 txt-center"><img class="time-over-clock" src="assets/img/timer.svg"></div>';
+        timeOverHtml += '<div class="w-space-25 txt-center"><img class="time-over-clock anim-shake" src="assets/img/timer.svg"></div>';
         timeOverHtml += '<div class="txt-center">Your time is over. Play again?</div>';
         timeOverHtml += '<div class="popup-yes-no">';
         timeOverHtml += getHtml('button-no');
@@ -70,9 +70,7 @@ class GamePlay extends Phaser.Scene{
 
         // Popup New high score
         let highScoreHtml = '<div class="high-score-html">';
-        highScoreHtml += '<div class="popup-close-button">';
-        highScoreHtml += getHtml('button-no');
-        highScoreHtml += '</div>';
+        highScoreHtml += '<div class="popup-close-button">' + getHtml('button-no') + '</div>';
         highScoreHtml += '<div class="txt-center w-space-25">congratulation! you have new high score! <br>Share it now!</div>';
         highScoreHtml += '<div class="your-score w-flex w-flex--align-center w-flex--justify-center">';
         highScoreHtml += '<div class="high-score-icon w-bg-contain" style="background-image:url(assets/img/btn/point.svg)"></div>\n' +
@@ -91,6 +89,18 @@ class GamePlay extends Phaser.Scene{
             depth: 2
         });
 
+        // Popup Your score
+        let yourScoreHtml = '<div class="your-score-html">';
+        yourScoreHtml += '<div class="popup-close-button">' + getHtml('button-no') + '</div>';
+        yourScoreHtml += '</div>';
+        const popupYourScore = new Popup({
+            scene: this,
+            className: 'popup-your-score medium-popup',
+            titleHtml: 'Your<br>Score',
+            innerHtml: yourScoreHtml,
+            depth: 2
+        });
+
         const dom = new DOM({scene: this, depth: 1});
         const progress = new DOM({scene: this, html: 'Progress', className: 'game-timer', depth: 1});
 
@@ -103,7 +113,6 @@ class GamePlay extends Phaser.Scene{
             holes: this.createHoles(),
             onEndGame: (status) => {
                 if(status.isNewHighScore){
-                    // todo: style popup
                     const $text = popupHighScore.get().find('[data-text]');
                     const letterWidth = parseInt(popupHighScore.get().find('.high-score-point').css('--letter-width'));
                     popupHighScore.get().find('.high-score-point svg').attr('width', letterWidth * status.point.toString().length);
@@ -151,8 +160,24 @@ class GamePlay extends Phaser.Scene{
             this.gameControl.pause();
             popupPause.toggle();
         });
+
+        // button high score
+        $('[data-button="high-score"]').on('click', () => {
+            this.gameControl.pause();
+            popupYourScore.show();
+        });
+        // button high score no
+        popupYourScore.get().find('[data-button="no"]').click(() => {
+            popupYourScore.hide();
+            this.gameControl.play();
+        });
     }
 
+
+    /**
+     * Create game holes
+     * @returns {*[]}
+     */
     createHoles(){
         // Characters
         const availableCharacterIDs = this.sys.game.PLAYER.getCharacterIDsByLevelID(this.levelID); // list of characters in this level

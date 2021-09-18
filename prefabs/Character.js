@@ -137,8 +137,9 @@ class Character{
         );
 
         const isGameEnded = this.scene.gameControl.status.isEnd;
+        const isPlaying = this.scene.gameControl.status.isPlaying;
 
-        if(isGoodAttack && !isGameEnded){
+        if(isGoodAttack && !isGameEnded && isPlaying){
             if(DEV) console.log(`Attack ${this.characterData.sprite_name}`);
 
             // play ani

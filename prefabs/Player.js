@@ -166,6 +166,7 @@ class Player{
         }else{
             // re-new hammer
             this.hammer_id = hammer_id;
+            this.hammer_usage_left = parseInt(new GameData().getHammers(hammer_id).usage_gain);
         }
     }
 }

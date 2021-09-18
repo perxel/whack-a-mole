@@ -47,6 +47,7 @@ class Game{
         this.updatePoint();
         this.updateWhackCoin();
         this.updatePlayerTurnPlayed();
+        this.updatePlayerHammer();
     }
 
     getStatus(){
@@ -123,26 +124,29 @@ class Game{
     }
 
     play(){
-        // update status
-        this.status.isPlaying = true;
-
-        // resume timer
-        this.countdown.paused = false;
-
-        // resume timeline
-        if(this.status.isStarted){
-            this.timeline.resume();
-
-            // callback
-            this.onResume(this.status);
-        }else{
+        // check
+        if(this.isGoodToPlay()){
             // update status
-            this.status.isStarted = true;
+            this.status.isPlaying = true;
 
-            this.timeline.play();
+            // resume timer
+            this.countdown.paused = false;
 
-            // callback
-            this.onBegin(this.status);
+            // resume timeline
+            if(this.status.isStarted){
+                this.timeline.resume();
+
+                // callback
+                this.onResume(this.status);
+            }else{
+                // update status
+                this.status.isStarted = true;
+
+                this.timeline.play();
+
+                // callback
+                this.onBegin(this.status);
+            }
         }
     }
 
@@ -227,5 +231,25 @@ class Game{
      */
     updatePlayerTurnPlayed(){
         this.scene.sys.game.PLAYER.setTurnPlayed(this.scene.levelID);
+    }
+
+    updatePlayerHammer(){
+        this.scene.sys.game.PLAYER.setHammerUsage();
+
+        // update display
+        const $target = $('.w-stat.hammer [data-text]');
+        $target.text(Math.max(0, this.scene.sys.game.PLAYER.get().hammer_usage_left));
+    }
+
+    isGoodToPlay(){
+        let isGood = true;
+
+        // check usage
+        if(this.scene.sys.game.PLAYER.get().hammer_usage_left < 0){
+            if(DEV) console.warn('Please buy more hammer to continue');
+            isGood = false;
+        }
+
+        return isGood;
     }
 }

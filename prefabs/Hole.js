@@ -7,6 +7,7 @@ class Hole{
         }
 
         this.scene = config.scene;
+        this.gameConfig = this.scene.sys.game._DATA.getConfig();
         this.x = config.x || 0;
         this.y = config.y || 0;
         this.anchor = config.anchor || undefined;
@@ -59,15 +60,15 @@ class Hole{
         const characters = [];
         for(let i = 0; i < this.characters.length; i++){
             characters.push(this.characters[i].character);
-            this.characters[i].character.setPosition(0, CHARACTER_HIDE_Y).setDisplayOrigin(0.5, 0.5).setDepth(2);
+            this.characters[i].character.setPosition(0, this.gameConfig.character_hide_y).setDisplayOrigin(0.5, 0.5).setDepth(2);
         }
 
         // create hole front & back
-        this.holeBack = this.scene.add.sprite(0, HOLE_SPRITE_Y, 'holesAtlas', `${this.level}-0`).setDepth(1).setScale(HOLE_SCALE);
-        this.holeFront = this.scene.add.sprite(0, HOLE_SPRITE_Y, 'holesAtlas', `${this.level}-1`).setDepth(3).setScale(HOLE_SCALE);
+        this.holeBack = this.scene.add.sprite(0, this.gameConfig.hole_sprite_y, 'holesAtlas', `${this.level}-0`).setDepth(1).setScale(this.gameConfig.hole_scale);
+        this.holeFront = this.scene.add.sprite(0, this.gameConfig.hole_sprite_y, 'holesAtlas', `${this.level}-1`).setDepth(3).setScale(this.gameConfig.hole_scale);
 
         // create hole container todo: adjust hole size
-        this.holeContainer = this.scene.add.container(0, 0, [this.holeBack, ...characters, this.holeFront]).setDepth(2).setSize(HOLE_SIZE, HOLE_SIZE);
+        this.holeContainer = this.scene.add.container(0, 0, [this.holeBack, ...characters, this.holeFront]).setDepth(2).setSize(this.gameConfig.hole_size, this.gameConfig.hole_size);
 
         // debug
         if(this.debug){

@@ -52,7 +52,6 @@ class Game{
 
     createTimeline(){
         const timeline = this.scene.tweens.createTimeline();
-        const settings = this.scene.game._DATA.getSettings();
 
         // loop through all characters in all holes
         for(let holeIndex = 0; holeIndex < this.holes.length; holeIndex++){
@@ -65,16 +64,16 @@ class Game{
                     targets: character,
                     ease: 'Power0',
                     offset: showtime,
-                    duration: settings.character_show_duration,
-                    y: CHARACTER_Y
+                    duration: this.scene.game._DATA.getSettings().character_show_duration,
+                    y: this.scene.game._DATA.getConfig().character_y
                 });
                 // tween hide
                 timeline.add({
                     targets: character,
                     ease: 'Power0',
-                    offset: `+=${settings.character_idle_duration}`,
-                    duration: settings.character_hide_duration,
-                    y: CHARACTER_HIDE_Y
+                    offset: `+=${this.scene.game._DATA.getSettings().character_idle_duration}`,
+                    duration: this.scene.game._DATA.getSettings().character_hide_duration,
+                    y: this.scene.game._DATA.getConfig().character_hide_y
                 });
 
             }

@@ -1,41 +1,6 @@
 const DEV = true;
 const VERSION = '0.0.6';
 
-let HOLE_SIZE = 150;
-let HOLE_SCALE = 0.8; // scale
-let HOLE_SPRITE_Y = 60; // scale
-let HOLE_GAP = 100;
-let HOLE_SPACE = 30;
-let CHARACTER_WIDTH = 220;
-let CHARACTER_Y = 80;
-let CHARACTER_HIDE_Y = CHARACTER_Y * 4;
-let HIT_WIDTH = 220;
-let HIT_HEIGHT = HIT_WIDTH * 1.3;
-let HIT_X = CHARACTER_WIDTH * 0.67;
-let HIT_Y = CHARACTER_WIDTH;
-
-if(window.matchMedia("(max-width:480px)").matches){
-    HOLE_SIZE = 90;
-    HOLE_SCALE = 0.4;
-    HOLE_SPRITE_Y = 35;
-    HOLE_GAP = 20;
-    HOLE_SPACE = 30;
-    CHARACTER_WIDTH = 120;
-    CHARACTER_Y = 50;
-    HIT_X = CHARACTER_WIDTH * 1.1;
-    HIT_Y = CHARACTER_WIDTH * 1.5;
-}else if(window.matchMedia("(max-width:768px)").matches){
-    HOLE_SIZE = 120;
-    HOLE_SCALE = 0.55;
-    HOLE_SPRITE_Y = 48;
-    HOLE_GAP = 40;
-    HOLE_SPACE = 40;
-    CHARACTER_WIDTH = 150;
-    CHARACTER_Y = 65;
-    HIT_X = CHARACTER_WIDTH * 0.9;
-    HIT_Y = CHARACTER_WIDTH * 1.25;
-}
-
 window.onload = function(){
     'use strict';
 

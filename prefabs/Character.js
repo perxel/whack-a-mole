@@ -69,14 +69,17 @@ class Character{
         this.character = this.scene.add.sprite(this.x, this.y, 'charactersAtlas', `${this.characterData.sprite_name}/normal-1`);
         this.hurtTimer = undefined;
         this.ratio = this.character.height / this.character.width;
-        this.width = CHARACTER_WIDTH;
+        this.width = this.scene.sys.game._DATA.getConfig().character_width;
         this.height = this.width * this.ratio;
         this.character.setDisplaySize(this.width, this.height);
 
         // adjust the hit area
-        const hitAreaX = this.width * 0.67;
-        const hitAreaY = this.height;
-        const shape = new Phaser.Geom.Ellipse(HIT_X, HIT_Y, HIT_WIDTH, HIT_HEIGHT);
+        const shape = new Phaser.Geom.Ellipse(
+            this.scene.sys.game._DATA.getConfig().hit_x,
+            this.scene.sys.game._DATA.getConfig().hit_y,
+            this.scene.sys.game._DATA.getConfig().hit_width,
+            this.scene.sys.game._DATA.getConfig().hit_height
+        );
         this.character.setInteractive(shape, Phaser.Geom.Ellipse.Contains);
 
 

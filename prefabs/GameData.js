@@ -3,6 +3,7 @@ class GameData{
     }
 
     getSettings(){
+        // these are settings that admin can modify
         const settings = {
             game_duration: 10 * 1000,// total time of each try [ms]
             character_per_wave: 1, // number of characters could appear in one wave
@@ -13,6 +14,59 @@ class GameData{
         };
 
         return settings;
+    }
+
+    getConfig(){
+        // these are game config that dev can modify
+        const config = {
+            /** Hole **/
+            hole_size: 150,
+            hole_scale: 0.8,
+            hole_sprite_y: 60,
+            hole_gap: 100, // [px]
+            hole_space: 30, // [px]
+
+            /** Character **/
+            character_width: 220,
+            character_y: 80,
+            character_hide_y: 80 * 4, // character_y * 4
+
+            /** Hit area **/
+            hit_width: 220, // character_width
+            hit_height: 220 * 1.3, // hit_width * n
+            hit_x: 220 * 0.67, // character_width * n
+            hit_y: 220, // character_width
+
+        };
+
+        /** Responsive config **/
+        if(window.matchMedia("(max-width:480px)").matches){
+            config.hole_size = 90;
+            config.hole_scale = 0.4;
+            config.hole_sprite_y = 35;
+            config.hole_gap = 20;
+            config.hole_space = 30;
+
+            config.character_width = 120;
+            config.character_y = 50;
+
+            config.hit_x = config.character_width * 1.1;
+            config.hit_y = config.character_width * 1.5;
+        }else if(window.matchMedia("(max-width:768px)").matches){
+            config.hole_size = 120;
+            config.hole_scale = 0.55;
+            config.hole_sprite_y = 48;
+            config.hole_gap = 40;
+            config.hole_space = 40;
+
+            config.character_width = 150;
+            config.character_y = 65;
+
+            config.hit_x = config.character_width * 0.9;
+            config.hit_y = config.character_width * 1.25;
+        }
+
+        return config;
     }
 
     getCharacters(characterID){

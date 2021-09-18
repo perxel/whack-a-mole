@@ -4,7 +4,7 @@ class GamePlay extends Phaser.Scene{
     }
 
     init(data){
-        this.CONFIG = this.sys.game.CONFIG;
+        this.gameConfig = this.sys.game._DATA.getConfig();
         this.levelID = data.levelID || 1;
         this.sceneData = {
             name: this.scene.key,
@@ -244,10 +244,10 @@ class GamePlay extends Phaser.Scene{
     gridAlign(scene, array){
         const cols = 3;
         const rows = 3;
-        const gap = HOLE_GAP;
-        const space = HOLE_SPACE;
-        const width = HOLE_SIZE;
-        const height = HOLE_SIZE;
+        const gap = scene.sys.game._DATA.getConfig().hole_gap;
+        const space = scene.sys.game._DATA.getConfig().hole_space;
+        const width = scene.sys.game._DATA.getConfig().hole_size;
+        const height = scene.sys.game._DATA.getConfig().hole_size;
         const cellWidth = width + gap;
         const cellHeight = height + space;
         const gridWidth = cols * cellWidth - gap;

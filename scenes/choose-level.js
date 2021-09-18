@@ -33,7 +33,7 @@ class ChooseLevel extends Phaser.Scene{
         /**
          * Load HTML
          */
-        const $popup = new Popup({
+        const chooseLevelPopup = new Popup({
             scene: this,
             className: 'popup-choose-level',
             titleHtml: 'Choose<br>Level',

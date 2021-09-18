@@ -35,6 +35,9 @@ class Popup{
         this.size = config.size || '';
         this.className += ' ' + this.size;
 
+        this.onYesClick = config.onYesClick || undefined;
+        this.onNoClick = config.onNoClick || undefined;
+
         // load popup to the DOM
         const popup = new DOM({
             scene: this.scene,
@@ -46,6 +49,20 @@ class Popup{
 
         // get popup jQuery element
         this.$popup = $(`.${this.uniqueClass}`);
+
+        // button no
+        this.$popup.find('[data-button="no"]').click(() => {
+            if(typeof this.onNoClick === 'function'){
+                this.onNoClick(this);
+            }
+        });
+
+        // button yes
+        this.$popup.find('[data-button="yes"]').click(() => {
+            if(typeof this.onYesClick === 'function'){
+                this.onYesClick(this);
+            }
+        });
 
         // check visible
         if(this.visible){

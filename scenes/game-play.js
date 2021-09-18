@@ -39,29 +39,45 @@ class GamePlay extends Phaser.Scene{
             scene: this,
             size: 'small-popup',
             name: 'PopupPause',
+            onNoClick: () => this.goChooseLevel(),
+            onYesClick: () => {
+                this.gameControl.play();
+                popupPause.hide();
+            }
         });
 
         // Popup Time over
         const popupTimeOver = new Popup({
             scene: this,
             size: 'small-popup',
-            name: 'PopupTimeOver'
+            name: 'PopupTimeOver',
+            onNoClick: () => this.goChooseLevel(),
+            onYesClick: () => this.scene.start("GamePlay", {previousScene: this.sceneData, levelID: this.levelID})
         });
 
         // Popup New high score
         const popupHighScore = new Popup({
             scene: this,
             size: 'medium-popup',
-            name: 'PopupNewHighScore'
+            name: 'PopupNewHighScore',
+            onNoClick: () => this.goChooseLevel(),
         });
 
         // Popup Your score
         const popupYourScore = new Popup({
             scene: this,
             size: 'medium-popup',
-            name: 'PopupYourScore'
+            name: 'PopupYourScore',
+            onNoClick: (thisPopup) => {
+                thisPopup.hide();
+                this.gameControl.play();
+            }
         });
 
+
+        /**
+         * Add DOM
+         */
         const dom = new DOM({scene: this, depth: 1});
         const progress = new DOM({scene: this, html: 'Progress', className: 'game-timer', depth: 1});
 
@@ -90,32 +106,6 @@ class GamePlay extends Phaser.Scene{
         /**
          * Buttons
          */
-        // button pause no
-        popupPause.get().find('[data-button="no"]').click(() => {
-            this.goChooseLevel();
-        });
-
-        // button pause yes
-        popupPause.get().find('[data-button="yes"]').click(() => {
-            this.gameControl.play();
-            popupPause.hide();
-        });
-
-        // button time over no
-        popupTimeOver.get().find('[data-button="no"]').click(() => {
-            this.goChooseLevel();
-        });
-
-        // button time over yes
-        popupTimeOver.get().find('[data-button="yes"]').click(() => {
-            this.scene.start("GamePlay", {previousScene: this.sceneData, levelID: this.levelID});
-        });
-
-        // button high score no
-        popupHighScore.get().find('[data-button="no"]').click(() => {
-            this.goChooseLevel();
-        });
-
         // button pause
         $('[data-button="pause"]').on('click', () => {
             this.gameControl.pause();
@@ -126,11 +116,6 @@ class GamePlay extends Phaser.Scene{
         $('[data-button="high-score"]').on('click', () => {
             this.gameControl.pause();
             popupYourScore.show();
-        });
-        // button high score no
-        popupYourScore.get().find('[data-button="no"]').click(() => {
-            popupYourScore.hide();
-            this.gameControl.play();
         });
     }
 

@@ -14,10 +14,11 @@ class Character{
         this.characterID = config.characterID || undefined;
         this.characterData = new GameData().getCharacters(this.characterID);
 
+        this.gameSettings = this.scene.game._DATA.getSettings();
         this.x = config.x || 0;
         this.y = config.y || 0;
         this.debug = config.debug || DEV;
-        this.hurtTime = CHARACTER_IDLE; // ms
+        this.hurtTime = this.gameSettings.character_idle_duration; // ms
         this.point = this.characterData.point || 0;
 
         this.createAnimations();

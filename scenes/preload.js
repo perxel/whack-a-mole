@@ -18,7 +18,7 @@ class Preload extends Phaser.Scene{
          * Load player
          */
         this.sys.game.PLAYER = new Player();
-        this.sys.game.DATA = new GameData();
+        this.sys.game._DATA = new GameData();
 
 
         /**

@@ -22,7 +22,7 @@ class Game{
         };
 
         // Countdown
-        this.gameDuration = GAME_DURATION; // 1 minute
+        this.gameDuration = this.scene.sys.game._DATA.getSettings().game_duration;
         this.timeLeft = this.gameDuration;
         this.loopStep = 100;
         this.countdown = this.createCountDown();
@@ -52,6 +52,7 @@ class Game{
 
     createTimeline(){
         const timeline = this.scene.tweens.createTimeline();
+        const settings = this.scene.game._DATA.getSettings();
 
         // loop through all characters in all holes
         for(let holeIndex = 0; holeIndex < this.holes.length; holeIndex++){
@@ -64,15 +65,15 @@ class Game{
                     targets: character,
                     ease: 'Power0',
                     offset: showtime,
-                    duration: CHARACTER_SHOW,
+                    duration: settings.character_show_duration,
                     y: CHARACTER_Y
                 });
                 // tween hide
                 timeline.add({
                     targets: character,
                     ease: 'Power0',
-                    offset: `+=${CHARACTER_IDLE}`,
-                    duration: CHARACTER_HIDE,
+                    offset: `+=${settings.character_idle_duration}`,
+                    duration: settings.character_hide_duration,
                     y: CHARACTER_HIDE_Y
                 });
 

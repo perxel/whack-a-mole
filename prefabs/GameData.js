@@ -2,22 +2,16 @@ class GameData{
     constructor(){
     }
 
-    getGameSettings(){
+    getSettings(){
         const settings = {
-            game_duration: 300 * 1000,
-            character_per_wave: 1,
-            wave_duration: 2300,
-            character_show_duration: 300,
-            character_idle_duration: 2000,
-            character_hide_duration: 300
+            game_duration: 10 * 1000,// total time of each try [ms]
+            character_per_wave: 1, // number of characters could appear in one wave
+            wave_duration: 2300, // duration of each wave [ms]
+            character_show_duration: 300, // [ms]
+            character_idle_duration: 2000, // [ms]
+            character_hide_duration: 300 // [ms]
         };
 
-        const GAME_DURATION = 300 * 1000; // [ms]
-        const CHARACTER_PER_WAVE = 1;
-        const WAVE_TIME = 2300; // [ms]
-        const CHARACTER_SHOW = 300; // [ms]
-        const CHARACTER_IDLE = 2000; // [ms]
-        const CHARACTER_HIDE = 300; // [ms]
         return settings;
     }
 

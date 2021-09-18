@@ -175,10 +175,10 @@ class GamePlay extends Phaser.Scene{
         }
 
         // Waves
-        const tryTime = GAME_DURATION; // total time of each try [ms]
-        const waveTime = WAVE_TIME; // delay between each wave [ms]
+        const tryTime = this.sys.game._DATA.getSettings().game_duration;
+        const waveTime = this.sys.game._DATA.getSettings().wave_duration;
         const waveCount = Math.round(tryTime / waveTime); // number of waves in each try
-        const characterPerWave = CHARACTER_PER_WAVE; // number of characters could appear in one wave
+        const characterPerWave = this.sys.game._DATA.getSettings().character_per_wave;
         const waves = []; // store each wave's data
 
         for(let i = 0; i < waveCount; i++){

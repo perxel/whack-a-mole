@@ -1,14 +1,6 @@
 const DEV = true;
 const VERSION = '0.0.6';
 
-
-const GAME_DURATION = 300 * 1000; // [ms]
-const CHARACTER_PER_WAVE = 1;
-const WAVE_TIME = 2300; // [ms]
-const CHARACTER_SHOW = 300; // [ms]
-const CHARACTER_IDLE = 2000; // [ms]
-const CHARACTER_HIDE = 300; // [ms]
-
 let HOLE_SIZE = 150;
 let HOLE_SCALE = 0.8; // scale
 let HOLE_SPRITE_Y = 60; // scale

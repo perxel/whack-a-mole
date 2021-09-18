@@ -25,6 +25,12 @@ class GamePlay extends Phaser.Scene{
         //if(DEV) console.log('Play create()');
 
         /**
+         * Update player data
+         */
+        this.sys.game.PLAYER.setTurnPlayed(this.levelID);
+
+
+        /**
          * Images
          */
         // background

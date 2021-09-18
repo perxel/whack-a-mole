@@ -1,12 +1,12 @@
 class Player{
     constructor(config = {}){
         this.uuid = config.uuid || generateID();
-        this.display_name = config.display_name || "Andy";
+        this.display_name = config.display_name || "Felix";
         this.unlocked_level = config.unlocked_level || [
             {
                 "id": 1,
                 "timestamp": "",
-                "turn_played": 0,
+                "total_turn_played": 0,
             },
             {
                 "id": 2
@@ -16,11 +16,10 @@ class Player{
             }
         ];
 
-        this.turn_left = config.turn_left || 10;
-        this.turn_played = config.turn_played || 0;
+        this.total_turn_played = config.total_turn_played || 0;
         this.score_history = config.score_history || []; // {"score": 0, "level_id": 1, "timestamp": ""}
         this.high_score = config.high_score || 0;
-        this.whack_coin = config.whack_coin || 0;
+        this.whack_coin = config.whack_coin || 1000;
         this.wup_coin = config.wup_coin || 0;
         this.game_settings = config.game_settings || {
             music: false,
@@ -37,6 +36,8 @@ class Player{
             }
         ];
     }
+
+    /*************************** GETTERS ******************************/
 
     get(){
         return this;
@@ -57,6 +58,29 @@ class Player{
         return false;
     }
 
+    getHighScore(){
+        return this.high_score;
+    }
+
+    getScoreHistory(){
+        return this.score_history;
+    }
+
+    getTurnPlayed(levelID){
+        if(typeof levelID === 'undefined'){
+            // return total
+            return this.total_turn_played;
+        }
+
+        // turn by level ID
+        const level = getObjectInArray(this.unlocked_level, 'id', parseInt(levelID));
+        if(level !== 'undefined'){
+            return level.total_turn_played || 0;
+        }
+    }
+
+    /*************************** SETTERS ******************************/
+
     setScoreHistory(totalPoint, levelID){
         if(typeof totalPoint !== 'undefined'){
             // save new score
@@ -73,14 +97,42 @@ class Player{
             }else{
                 if(DEV) console.log('New score', totalPoint);
             }
+
+            return true;
         }
+
+        return false;
     }
 
-    getHighScore(){
-        return this.high_score;
+    setWhackCoin(number){
+        this.whack_coin += parseInt(number);
+        return true;
     }
 
-    getScoreHistory(){
-        return this.score_history;
+    setTurnPlayed(levelID){
+        if(typeof levelID === 'undefined'){
+            console.warn('Missing level ID');
+            return false;
+        }
+
+        // set turn by level
+        this.setLevel(levelID, 'total_turn_played', this.getTurnPlayed(levelID) + 1);
+
+        // set total
+        this.total_turn_played += 1;
+
+        return true;
+    }
+
+    setLevel(levelID, key, value){
+        for(let i = 0; i < this.unlocked_level.length; i++){
+            if(parseInt(this.unlocked_level[i].id) === parseInt(levelID)){
+
+                this.unlocked_level[i][key] = value;
+
+                return true;
+            }
+        }
+        return false;
     }
 }

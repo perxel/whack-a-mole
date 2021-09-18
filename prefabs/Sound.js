@@ -1,6 +1,6 @@
 class Sound{
     constructor(){
-        this.music = null;
+        this.music = undefined;
         this.musicOn = false;
         this.soundOn = false;
 
@@ -19,6 +19,7 @@ class Sound{
     }
 
     isPlaying(){
+        if(this.music === undefined) return false;
         return this.music.isPlaying;
     }
 

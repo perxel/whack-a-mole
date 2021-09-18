@@ -4,15 +4,12 @@ class Preload extends Phaser.Scene{
     }
 
     init(){
-        this.CONFIG = this.sys.game.CONFIG;
-
         if(DEV) console.log('--------------------');
         if(DEV) console.log('Preload init()');
     }
 
     preload(){
         ///if(DEV) console.log('Preload preload()');
-
 
         /**
          * Load player
@@ -116,18 +113,13 @@ class Preload extends Phaser.Scene{
          * Load CSS
          */
         // todo: load css
-        //this.load.css('variables', 'assets/css/variables.css');
-        //this.load.css('popup', 'assets/css/popup.css');
-        //this.load.css('styles', 'assets/css/styles.css');
+        this.load.css('styles', 'assets/css/styles.css');
+        this.load.css('popup', 'assets/css/popup.css');
 
 
         /**
          * Progress bar
          */
-        // Create loading bar
-        this.createLoadingBar();
-
-        // Progress callback
         this.load.on('progress', this.onProgress, this);
     }
 
@@ -161,34 +153,19 @@ class Preload extends Phaser.Scene{
         // Go Menu
         this.time.addEvent({
             delay: 1000,
-            callback: () => this.scene.start("Menu"),
-            //callback: () => this.scene.start("GamePlay", {levelID: 1}),
+            callback: () => {
+                $('.w-progress').detach();
+                this.scene.start("Menu");
+                //this.scene.start("GamePlay", {levelID: 1})
+            },
             callbackScope: this
         });
     }
 
-    createLoadingBar(){
-        // title
-        this.title = new Text(
-            this,
-            this.CONFIG.centerX,
-            this.CONFIG.centerY - 10,
-            'Loading',
-            'subtitle',
-            0.5
-        ).get();
-        this.title.setDepth(1);
-
-        // Progress bar
-        // todo: align container
-        this.progress = new Progress(this, this.CONFIG.centerX - 220, this.CONFIG.centerY + 20);
-        this.progressContainer = this.progress.get();
-        this.progressContainer.setDepth(2);
-    }
-
     onProgress(val){
         // update progress bar
-        this.progress.setPercentage(val);
-        this.progress.setText(Math.round(val * 100) + '%');
+        const text = Math.round(val * 100) + '%';
+        $('.w-progress text').html(text);
+        $('.w-progress-bar').width(text);
     }
 }

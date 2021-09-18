@@ -26,8 +26,10 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="assets/font/font.css">
     <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/css/popup.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <!--    <link rel="stylesheet" href="assets/css/variables.css">-->
+    <!--    <link rel="stylesheet" href="assets/css/popup.css">-->
+    <!--    <link rel="stylesheet" href="assets/css/styles.css">-->
 
     <!-- Libraries -->
     <script src="libs/phaser.js"></script>
@@ -40,7 +42,6 @@
     <script src="prefabs/Popup.js"></script>
     <script src="prefabs/Button.js"></script>
     <script src="prefabs/Sound.js"></script>
-    <script src="prefabs/Progress.js"></script>
     <script src="prefabs/Helpers.js"></script>
 
     <script src="prefabs/GameData.js"></script>
@@ -63,6 +64,16 @@
     <script src="js/main.js"></script>
 </head>
 <body>
+
+<div id="game-loading" class="w-progress">
+    <div class="w-progress-track">
+        <div class="w-progress-bar w-point">
+            <svg width="200" height="40">
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" data-text>0%</text>
+            </svg>
+        </div>
+    </div>
+</div>
 
 <div id="phaser-app"></div>
 <div style="font-family:'LuckiestGuy', sans-serif; visibility:hidden; position:absolute; top:0; pointer-events:none;">

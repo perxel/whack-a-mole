@@ -39,7 +39,7 @@ class DOM{
 
             button.addEventListener('click', () => {
                 // click sound
-                scene.sys.game.CONFIG.sound.playSoundFx('click');
+                scene.sys.game._SOUND.playSoundFx('click');
 
 
                 // skip disabled
@@ -49,16 +49,16 @@ class DOM{
                 switch(type){
                     case 'sound-toggle':
                         // update on load
-                        if(scene.sys.game.CONFIG.sound.isPlaying()){
+                        if(scene.sys.game._SOUND.isPlaying()){
                             button.classList.add("active");
                         }
 
                         // toggle sound on click
-                        if(scene.sys.game.CONFIG.sound.isPlaying()){
-                            scene.sys.game.CONFIG.sound.pause();
+                        if(scene.sys.game._SOUND.isPlaying()){
+                            scene.sys.game._SOUND.pause();
                             button.classList.remove("active");
                         }else{
-                            scene.sys.game.CONFIG.sound.play();
+                            scene.sys.game._SOUND.play();
                             button.classList.add("active");
                         }
                         break;
@@ -117,7 +117,7 @@ class DOM{
 
     updateButtonState(){
         const $button = $('[data-button="sound-toggle"]');
-        if(this.scene.sys.game.CONFIG.sound.isPlaying()){
+        if(this.scene.sys.game._SOUND.isPlaying()){
             $button.addClass("active");
         }else{
             $button.removeClass("active");

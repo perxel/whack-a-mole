@@ -32,7 +32,7 @@ class Button{
             this.button.setDisplaySize(this.width * 0.9, this.height * 0.9);
 
             // click sound
-            this.ctx.sys.game.CONFIG.sound.playSoundFx('click');
+            this.ctx.sys.game._SOUND.playSoundFx('click');
 
             // check disabled
             if(this.disabled) return;

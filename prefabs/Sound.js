@@ -1,11 +1,17 @@
 class Sound{
     constructor(){
         this.music = null;
-        this.musicOn = MUSIC;
+        this.musicOn = false;
+        this.soundOn = false;
+
         this.isResume = false;
 
         // sound effects
         this.soundFx = [];
+    }
+
+    update(key, value){
+        this[key] = value;
     }
 
     isMusicOn(){
@@ -49,6 +55,6 @@ class Sound{
     }
 
     playSoundFx(name){
-        if(SOUND_FX) this.soundFx[name].play();
+        if(this.soundOn) this.soundFx[name].play();
     }
 }

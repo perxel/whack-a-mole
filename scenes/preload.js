@@ -18,6 +18,7 @@ class Preload extends Phaser.Scene{
          * Load player
          */
         this.sys.game.PLAYER = new Player();
+        this.sys.game.DATA = new GameData();
 
 
         /**
@@ -114,18 +115,21 @@ class Preload extends Phaser.Scene{
 
     create(){
         //if(DEV) console.log('Preload create()');
-
+        const gameSettings = this.sys.game.PLAYER.get().game_settings;
+        this.sys.game._SOUND.update('soundOn', gameSettings.sound_fx);
 
         // Add music
-        this.sys.game.CONFIG.sound.set(this.sound.add('bgMusic', {volume: MUSIC_VOL, loop: true}));
-        if(this.sys.game.PLAYER.get().game_settings.sound){
-            this.sys.game.CONFIG.sound.play();
+        this.sys.game._SOUND.set(this.sound.add('bgMusic', {volume: gameSettings.music_vol, loop: true}));
+
+        // Play music by checking setting from Player
+        if(gameSettings.music){
+            this.sys.game._SOUND.play();
         }
 
         // Add sound
-        this.sys.game.CONFIG.sound.setSoundFx('click', this.sound.add('click', {volume: SOUND_FX_VOL}));
-        this.sys.game.CONFIG.sound.setSoundFx('zap', this.sound.add('zap', {volume: SOUND_FX_VOL}));
-        this.sys.game.CONFIG.sound.setSoundFx('die', this.sound.add('die', {volume: 1.5}));
+        this.sys.game._SOUND.setSoundFx('click', this.sound.add('click', {volume: gameSettings.sound_fx_vol}));
+        this.sys.game._SOUND.setSoundFx('zap', this.sound.add('zap', {volume: gameSettings.sound_fx_vol}));
+        this.sys.game._SOUND.setSoundFx('die', this.sound.add('die', {volume: gameSettings.sound_fx_vol}));
 
 
         // Go Menu

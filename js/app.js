@@ -44,9 +44,11 @@ class App{
             width: game.config.width,
             height: game.config.height,
             centerX: Math.round(0.5 * game.config.width),
-            centerY: Math.round(0.5 * game.config.height),
-            sound: new Sound()
+            centerY: Math.round(0.5 * game.config.height)
         };
+
+        // Sound
+        game._SOUND = new Sound();
 
         return game;
     }

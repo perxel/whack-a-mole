@@ -2,8 +2,13 @@ class GameData{
     constructor(){
     }
 
+
+    /**
+     * Game settings
+     * @note these are settings that admin can modify
+     * @returns {{}}
+     */
     getSettings(){
-        // these are settings that admin can modify
         const settings = {
             game_duration: 10 * 1000,// total time of each try [ms]
             character_per_wave: 1, // number of characters could appear in one wave
@@ -16,8 +21,12 @@ class GameData{
         return settings;
     }
 
+    /**
+     * Game configurations
+     * @note these are game config that dev can modify
+     * @returns {{}|*}
+     */
     getConfig(){
-        // these are game config that dev can modify
         const config = {
             /** Hole **/
             hole_size: 150,
@@ -37,38 +46,53 @@ class GameData{
             hit_x: 220 * 0.67, // character_width * n
             hit_y: 220, // character_width
 
+            /** Responsive **/
+            responsive: [
+                {
+                    breakpoint: 480,
+                    settings: {
+                        hole_size: 90,
+                        hole_scale: 0.4,
+                        hole_sprite_y: 35,
+                        hole_gap: 20,
+                        hole_space: 30,
+
+                        character_width: 120,
+                        character_y: 50,
+
+                        hit_x: 120 * 1.1,
+                        hit_y: 120 * 1.5,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        hole_size: 120,
+                        hole_scale: 0.55,
+                        hole_sprite_y: 48,
+                        hole_gap: 40,
+                        hole_space: 40,
+
+                        character_width: 150,
+                        character_y: 65,
+
+                        hit_x: 150 * 0.9,
+                        hit_y: 150 * 1.25,
+                    }
+                }
+            ]
         };
 
-        /** Responsive config **/
-        if(window.matchMedia("(max-width:480px)").matches){
-            config.hole_size = 90;
-            config.hole_scale = 0.4;
-            config.hole_sprite_y = 35;
-            config.hole_gap = 20;
-            config.hole_space = 30;
-
-            config.character_width = 120;
-            config.character_y = 50;
-
-            config.hit_x = config.character_width * 1.1;
-            config.hit_y = config.character_width * 1.5;
-        }else if(window.matchMedia("(max-width:768px)").matches){
-            config.hole_size = 120;
-            config.hole_scale = 0.55;
-            config.hole_sprite_y = 48;
-            config.hole_gap = 40;
-            config.hole_space = 40;
-
-            config.character_width = 150;
-            config.character_y = 65;
-
-            config.hit_x = config.character_width * 0.9;
-            config.hit_y = config.character_width * 1.25;
-        }
-
-        return config;
+        // return config base on responsive
+        return getResponsiveData(config).settings;
     }
 
+
+    /**
+     * Game character
+     * @param characterID
+     * @returns {*}
+     */
     getCharacters(characterID){
         const characters = [
             {
@@ -157,6 +181,12 @@ class GameData{
         }
     }
 
+
+    /**
+     * Game levels
+     * @param levelID
+     * @returns {{}}
+     */
     getLevels(levelID){
         const levels = [
             {

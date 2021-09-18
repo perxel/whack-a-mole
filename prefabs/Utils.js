@@ -37,10 +37,10 @@ function resizeApp_James(){
  */
 function getContainerSize(container, game){
     //set the top position to the bottom of the game
-    let top = game.config.height;
+    let top = game.config.responsiveheight;
     let bottom = 0;
     //set the left to the right of the game
-    let left = game.config.width;
+    let left = game.config.responsivewidth;
     let right = 0;
     //
     //
@@ -214,6 +214,12 @@ function formatMillisecond(millis){
     return `${minutes}:${seconds}:${ms}`;
 }
 
+
+/**
+ * Get HTML
+ * @param key
+ * @returns {string}
+ */
 function getHtml(key){
     switch(key){
         case 'button-yes':
@@ -227,6 +233,128 @@ function getHtml(key){
     }
 }
 
+
+/**
+ * Get object in array with key => value
+ * @param array
+ * @param key
+ * @param value
+ * @returns {*}
+ */
 function getObjectInArray(array, key, value){
     return array.find(x => x[key] === value);
 }
+
+
+/**
+ * Get responsive data by breakpoints
+ * @param config
+ * @param currentBreakpoint
+ */
+function getResponsiveData(config, currentBreakpoint = undefined){
+    // map settings
+    const mapNewSettings = (defaultConfig, newConfig) => {
+        const object = {};
+
+        // loop through all properties of default config
+        for(let key in defaultConfig){
+            // except property `responsive`
+            if(key !== 'responsive'){
+                object[key] = newConfig.hasOwnProperty(key) ? newConfig[key] : defaultConfig[key];
+            }
+        }
+
+        return object;
+    }
+
+    // sort breakpoints
+    config.responsive.sort((a, b) => a.breakpoint < b.breakpoint && 1 || -1);
+
+    // matching function
+    let hasMatch = false;
+    let data = {currentBreakpoint};
+
+    // loop through all breakpoints
+    for(let i = 0; i < config.responsive.length; i++){
+        const breakpoint = config.responsive[i];
+
+        // get query
+        let query = `screen and (max-width:${breakpoint.breakpoint}px)`;
+
+        // set the min breakpoint if any
+        const nextBreakpoint = config.responsive[i + 1];
+        if(typeof nextBreakpoint !== 'undefined'){
+            query += ` and (min-width:${nextBreakpoint.breakpoint + 1}px)`
+        }
+
+        // match query
+        hasMatch = matchMedia(query).matches;
+
+        // if matched
+        if(hasMatch){
+            // and is a new breakpoint
+            if(currentBreakpoint !== breakpoint.breakpoint){
+                // return new breakpoint
+                currentBreakpoint = breakpoint.breakpoint;
+                data = {
+                    type: 'responsive',
+                    breakpoint: currentBreakpoint,
+                    settings: mapNewSettings(config, breakpoint.settings)
+                };
+
+                // callback
+                if(typeof config.onMatched === 'function'){
+                    config.onMatched(data);
+                }
+            }
+
+            // stop looping once matched
+            break;
+        }
+    }
+
+    // if no matching
+    if(!hasMatch && currentBreakpoint !== 'default'){
+        // reset breakpoint to default
+        currentBreakpoint = 'default';
+        data = {type: 'responsive', breakpoint: currentBreakpoint, settings: mapNewSettings(config, config)};
+
+        // callback
+        if(typeof config.onMatched === 'function'){
+            config.onMatched(data);
+        }
+    }
+
+    return data;
+}
+
+// const config = {
+//     bar: 'bar',
+//     foo: 'foo',
+//     onMatched: (data) => {
+//         console.log('onMatched', data)
+//     },
+//     responsive: [
+//         {
+//             breakpoint: 768,
+//             settings: {
+//                 bar: 'bar',
+//                 foo: 'foo'
+//             }
+//         },
+//         {
+//             breakpoint: 1280,
+//             settings: {
+//                 bar: 'bar',
+//                 foo: 'foo'
+//             }
+//         }
+//     ]
+// };
+
+
+// let lastBreakpoint = undefined;
+// getResponsiveData(config, lastBreakpoint);
+// window.addEventListener('resize', () => {
+//     lastBreakpoint = getResponsiveData(config, lastBreakpoint).currentBreakpoint;
+// });

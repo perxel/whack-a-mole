@@ -33,72 +33,33 @@ class GamePlay extends Phaser.Scene{
 
 
         /**
-         * Load HTML
+         * Load Popup HTML
          */
-            // Popup pause
-        let pauseHtml = '<div class="pause-html">';
-        pauseHtml += '<div class="txt-center">DO YOU WANT TO CONTINUE?</div>';
-        pauseHtml += '<div class="popup-yes-no">';
-        pauseHtml += getHtml('button-no');
-        pauseHtml += getHtml('button-yes');
-        pauseHtml += '</div>';
-        pauseHtml += '</div>';
         const popupPause = new Popup({
             scene: this,
-            className: 'popup-pause small-popup',
-            titleHtml: 'Pause',
-            innerHtml: pauseHtml,
-            depth: 2
+            size: 'small-popup',
+            name: 'PopupPause',
         });
 
         // Popup Time over
-        let timeOverHtml = '<div class="time-over-html">';
-        timeOverHtml += '<div class="w-space-25 txt-center"><img class="time-over-clock anim-shake" src="assets/img/timer.svg"></div>';
-        timeOverHtml += '<div class="txt-center">Your time is over. Play again?</div>';
-        timeOverHtml += '<div class="popup-yes-no">';
-        timeOverHtml += getHtml('button-no');
-        timeOverHtml += getHtml('button-yes');
-        timeOverHtml += '</div>';
-        timeOverHtml += '</div>';
         const popupTimeOver = new Popup({
             scene: this,
-            className: 'popup-time-over small-popup',
-            titleHtml: 'Time Over',
-            innerHtml: timeOverHtml,
-            depth: 2
+            size: 'small-popup',
+            name: 'PopupTimeOver'
         });
 
         // Popup New high score
-        let highScoreHtml = '<div class="high-score-html">';
-        highScoreHtml += '<div class="popup-close-button">' + getHtml('button-no') + '</div>';
-        highScoreHtml += '<div class="txt-center w-space-25">congratulation! you have new high score! <br>Share it now!</div>';
-        highScoreHtml += '<div class="your-score w-flex w-flex--align-center w-flex--justify-center">';
-        highScoreHtml += '<div class="high-score-icon w-bg-contain" style="background-image:url(assets/img/btn/point.svg)"></div>\n' +
-            '        <div class="high-score-point w-point">\n' +
-            '          <svg width="150" height="70">\n' +
-            '            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" data-text>00</text>\n' +
-            '          </svg>\n' +
-            '        </div>';
-        highScoreHtml += '</div>';
-        highScoreHtml += '</div>';
         const popupHighScore = new Popup({
             scene: this,
-            className: 'popup-high-score medium-popup',
-            titleHtml: 'New High<br>Score',
-            innerHtml: highScoreHtml,
-            depth: 2
+            size: 'medium-popup',
+            name: 'PopupNewHighScore'
         });
 
         // Popup Your score
-        let yourScoreHtml = '<div class="your-score-html">';
-        yourScoreHtml += '<div class="popup-close-button">' + getHtml('button-no') + '</div>';
-        yourScoreHtml += '</div>';
         const popupYourScore = new Popup({
             scene: this,
-            className: 'popup-your-score medium-popup',
-            titleHtml: 'Your<br>Score',
-            innerHtml: yourScoreHtml,
-            depth: 2
+            size: 'medium-popup',
+            name: 'PopupYourScore'
         });
 
         const dom = new DOM({scene: this, depth: 1});

@@ -26,27 +26,33 @@ class Popup{
         this.className += ' w-popup-wrapper';
         this.className += ' ' + this.uniqueClass;
 
-        this.depth = config.depth || 1;
+        this.depth = config.depth || 2;
+        this.name = config.name || 'Popup';
         this.titleHtml = config.titleHtml || undefined;
         this.innerHtml = config.innerHtml || undefined;
 
         this.visible = config.visible || false;
+        this.size = config.size || '';
+        this.className += ' ' + this.size;
 
-        // load popup to dom
+        // load popup to the DOM
         const popup = new DOM({
             scene: this.scene,
-            html: 'Popup',
+            html: this.name,
             className: this.className,
             depth: this.depth
         });
 
-        // update popup html
+
+        // get popup jQuery element
         this.$popup = $(`.${this.uniqueClass}`);
 
+        // check visible
         if(this.visible){
             this.show();
         }
 
+        // inject dynamic HTML if any
         if(this.titleHtml){
             this.$popup.find('[data-popup-title]').html(this.titleHtml);
         }

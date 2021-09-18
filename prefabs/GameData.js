@@ -305,6 +305,7 @@ class GameData{
                 whack_cost: 100,
                 usage_gain: 5,
                 sprite_name: '1',
+                multiplier: 1
             },
             {
                 id: 2,
@@ -312,6 +313,7 @@ class GameData{
                 whack_cost: 200,
                 usage_gain: 5,
                 sprite_name: '2',
+                multiplier: 2
             },
             {
                 id: 3,
@@ -319,6 +321,7 @@ class GameData{
                 whack_cost: 300,
                 usage_gain: 5,
                 sprite_name: '3',
+                multiplier: 3
             },
             {
                 id: 4,
@@ -326,13 +329,15 @@ class GameData{
                 whack_cost: 400,
                 usage_gain: 5,
                 sprite_name: '4',
+                multiplier: 4
             },
             {
                 id: 5,
-                attack_sound_url: 'assets/audio/hammer-flesh.mp3',
+                attack_sound_url: 'assets/audio/electric-zap.mp3',
                 whack_cost: 500,
                 usage_gain: 5,
                 sprite_name: '5',
+                multiplier: 5
             },
         ];
 

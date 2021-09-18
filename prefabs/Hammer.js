@@ -13,8 +13,10 @@ class Hammer{
         this.scene = config.scene;
         this.id = config.id || undefined;
 
-        // sprite
-        this.sprite_name = new GameData().getHammers(this.id).sprite_name;
+        // hammer data
+        const data = new GameData().getHammers(this.id);
+        this.sprite_name = data.sprite_name;
+        this.multiplier = data.multiplier;
 
         // animation
         this.attackDuration = 100; // ms
@@ -22,7 +24,9 @@ class Hammer{
 
         this.createAnimations();
         this.createHammer();
+    }
 
+    get(){
         return this.hammer;
     }
 

@@ -25,7 +25,7 @@ class Player{
         this.high_score = config.high_score || 0;
 
         // Hammer
-        this.hammer_id = config.hammer_id || 1; // default hammer is 1
+        this.hammer_id = config.hammer_id || 5; // default hammer is 1
         this.hammer_usage_left = config.hammer_usage_left || 5;
 
         // Coin

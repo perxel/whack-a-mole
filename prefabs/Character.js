@@ -141,22 +141,26 @@ class Character{
         if(isGoodAttack && !isGameEnded){
             if(DEV) console.log(`Attack ${this.characterData.sprite_name}`);
 
-            // play anim
+            // play ani
             this.playAnimation('attack');
 
+            // calculate gained point
+            const multiplier = this.scene.hammer.multiplier;
+            const gainedPoint = this.point > 0 ? this.point * multiplier : this.point; // do not multiply minus point
+
             // create html
-            const pointText = this.point > 0 ? '+' : '';
+            const pointText = gainedPoint > 0 ? '+' : '';
             const html = document.createElement('div');
             html.classList.add('w-point');
-            html.innerHTML = `<svg width="150" height="150"><text x="75" y="75">${pointText}${this.point}</text></svg>`;
+            html.innerHTML = `<svg width="150" height="150"><text x="75" y="75">${pointText}${gainedPoint}</text></svg>`;
 
-            // show point
+            // display point
             const x = Phaser.Math.Between(pointer.x - container.width * 0.5, pointer.x + container.width * 0.5);
             const y = pointer.y - container.height * 0.5;
             const point = this.scene.add.dom(x, y, html);
 
             // update point
-            this.scene.gameControl.updatePoint(this.point);
+            this.scene.gameControl.updatePoint(gainedPoint);
 
             // animate
             this.scene.tweens.add({

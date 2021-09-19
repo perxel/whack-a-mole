@@ -25,7 +25,7 @@ class Player{
         this.high_score = config.high_score || 0;
 
         // Hammer
-        this.hammer_id = config.hammer_id || 1; // no hammer by default
+        this.hammer_id = config.hammer_id || -1; // no hammer by default
         this.hammer_usage_left = config.hammer_usage_left || 5;
 
         // Coin
@@ -160,13 +160,33 @@ class Player{
         return true;
     }
 
-    setNewHammer(hammer_id){
+    buyHammer(hammer_id){
+        hammer_id = parseInt(hammer_id);
         if(hammer_id === this.hammer_id){
-            // add more usage
+            // add more usage if is duplicated
+            if(DEV) console.warn('Cannot buy the same hammer!');
         }else{
-            // re-new hammer
+            // validate hammer
+            const newHammer = new GameData().getHammers(hammer_id);
+            if(typeof newHammer === 'undefined'){
+                if(DEV) console.warn('This hammer is not available!');
+                return false;
+            }
+
+            // check whack
+            if(this.whack_coin < newHammer.whack_cost){
+                if(DEV) console.warn('Not enough $WHACK to buy this hammer!');
+                return false;
+            }
+
+            // pay for new hammer
+            this.whack_coin -= newHammer.whack_cost;
+
+            // update new hammer
             this.hammer_id = hammer_id;
-            this.hammer_usage_left = parseInt(new GameData().getHammers(hammer_id).usage_gain);
+            this.hammer_usage_left = parseInt(newHammer.usage_gain);
+
+            if(DEV) console.log(`Buy hammer [${newHammer.display_name}] successfully.`);
         }
     }
 }

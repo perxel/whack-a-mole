@@ -17,7 +17,7 @@ class Button{
         const $buttons = $('.button');
         $buttons.each((i, el) => {
             const $button = $(el);
-            const type = $button.attr("data-button").value;
+            const type = $button.attr("data-button");
             const isDisabled = $button.hasClass('disabled');
 
             // check flag
@@ -31,7 +31,6 @@ class Button{
             $button.on('click', () => {
                 // click sound
                 this.scene.sys.game._SOUND.playSoundFx('click');
-
 
                 // skip disabled
                 if(isDisabled) return;
@@ -70,10 +69,13 @@ class Button{
                         this.scene.scale.toggleFullscreen();
                         break;
                     case 'go-level':
-                        const level = $button.attr("data-level").value;
+                        const level = $button.attr("data-level");
                         if(DEV) console.log(`Go to level ${level}`);
                         this.scene.scene.start("GamePlay", {previousScene: this.scene.sceneData, levelID: level});
                         break;
+                    case 'buy-hammer':
+                        const hammerID = $button.attr("data-buy-hammer");
+                        this.scene.sys.game.PLAYER.buyHammer(hammerID);
                 }
             });
         });

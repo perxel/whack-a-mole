@@ -1,4 +1,4 @@
-const DEV = false;
+const DEV = true;
 const VERSION = '0.0.7';
 
 window.onload = function(){

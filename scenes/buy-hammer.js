@@ -35,11 +35,12 @@ class BuyHammer extends Phaser.Scene{
             scene: this,
             name: 'PopupBuyHammer',
             visible: true,
-            manipulateHtml: ($popup) => new Helpers().generateBuyHammerPopupHtml(this, $popup),
+            manipulateHtml: ($popup) => new Helpers({scene: this}).generateBuyHammerPopupHtml($popup),
             onNoClick: (thisPopup) => {
                 thisPopup.hide();
             }
         });
+
         //const dom = new DOM({scene: this, depth: 2});
     }
 

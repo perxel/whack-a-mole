@@ -82,7 +82,7 @@ class GamePlay extends Phaser.Scene{
         const popupBuyHammer = new Popup({
             scene: this,
             name: 'PopupBuyHammer',
-            manipulateHtml: ($popup) => new Helpers().generateBuyHammerPopupHtml(this, $popup),
+            manipulateHtml: ($popup) => new Helpers({scene:this}).generateBuyHammerPopupHtml($popup),
             onNoClick: (thisPopup) => {
                 thisPopup.hide();
             }

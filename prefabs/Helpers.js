@@ -108,8 +108,11 @@ class Helpers{
      */
     generateBuyHammerPopupHtml($popup){
         const hammers = new GameData().getHammers();
-        const $item = $popup.find('[data-hammer-item]').detach();
+        const $item = $popup.find('[data-hammer-item]').eq(0).detach();
         const $list = $popup.find('.hammer-list');
+
+        // clean html
+        $list.html('');
 
         // get current whack of player
         const whackCoin = this.scene.sys.game.PLAYER.get().whack_coin;

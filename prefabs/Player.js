@@ -29,7 +29,7 @@ class Player{
         this.hammer_usage_left = config.hammer_usage_left || 0;
 
         // Coin
-        this.whack_coin = config.whack_coin || 1000;
+        this.whack_coin = config.whack_coin || 100;
         this.wup_coin = config.wup_coin || 0;
 
         // Setting
@@ -201,8 +201,6 @@ class Player{
             this.hammer_usage_left = parseInt(newHammer.usage_gain);
 
             if(DEV) console.log(`Buy hammer [${newHammer.display_name}] successfully.`);
-
-            // route
 
             return true;
         }

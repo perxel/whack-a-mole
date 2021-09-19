@@ -44,10 +44,8 @@ class Game{
         };
 
         // Init
-        this.updatePoint();
-        this.updateWhackCoin();
-        this.updatePlayerTurnPlayed();
-        this.updatePlayerHammer();
+        this.startGame();
+        this.updateDisplay();
     }
 
     getStatus(){
@@ -87,6 +85,7 @@ class Game{
 
         return timeline;
     }
+
 
     onCountDown(){
         // update time left
@@ -165,6 +164,15 @@ class Game{
         this.onPause(this.status);
     }
 
+
+    startGame(){
+        // Update player's hammer usage
+        this.scene.sys.game.PLAYER.setHammerUsage();
+
+        //  Update player's turn played
+        this.scene.sys.game.PLAYER.setTurnPlayed(this.scene.levelID);
+    }
+
     endGame(){
         // update status
         this.status.isPlaying = false;
@@ -193,6 +201,7 @@ class Game{
         }
     }
 
+
     /**
      * Update display point in the current game
      * @param point
@@ -202,45 +211,33 @@ class Game{
             this.status.point += parseInt(point);
         }
 
+        this.updateDisplay();
+    }
+
+
+    /**
+     * Update HTML data
+     */
+    updateDisplay(){
+        /** Whack **/
+        const $whack = $('.w-stat.whack [data-text]');
+        $whack.text(this.scene.sys.game.PLAYER.get().whack_coin);
+
         // update display
+        const $hammer = $('.w-stat.hammer [data-text]');
+        $hammer.text(Math.max(0, this.scene.sys.game.PLAYER.get().hammer_usage_left));
+
+
+        /** Point **/
         const $pointTarget = $('.w-stat.point [data-text]');
         $pointTarget.text(this.status.point);
     }
 
-    /**
-     * Update display whack coin in the current game
-     * Update player's whack coin amount
-     * @param number
-     */
-    updateWhackCoin(number){
-        if(typeof number !== 'undefined'){
-            // update whack coin
-            this.scene.sys.game.PLAYER.setWhackCoin(number);
-        }
-
-        // get current whack of player
-        const whackCoin = this.scene.sys.game.PLAYER.get().whack_coin;
-
-        // update display
-        const $target = $('.w-stat.whack [data-text]');
-        $target.text(whackCoin);
-    }
 
     /**
-     * Update player's turn played
+     * Check is good to play
+     * @returns {boolean}
      */
-    updatePlayerTurnPlayed(){
-        this.scene.sys.game.PLAYER.setTurnPlayed(this.scene.levelID);
-    }
-
-    updatePlayerHammer(){
-        this.scene.sys.game.PLAYER.setHammerUsage();
-
-        // update display
-        const $target = $('.w-stat.hammer [data-text]');
-        $target.text(Math.max(0, this.scene.sys.game.PLAYER.get().hammer_usage_left));
-    }
-
     isGoodToPlay(){
         // check usage
         if(!this.scene.sys.game.PLAYER.checkHammer()){

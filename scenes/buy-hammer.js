@@ -37,7 +37,7 @@ class BuyHammer extends Phaser.Scene{
             visible: true,
             manipulateHtml: ($popup) => new Helpers({scene: this}).generateBuyHammerPopupHtml($popup),
             onNoClick: (thisPopup) => {
-                thisPopup.hide();
+                new Router({scene: this, to: 'Menu'});
             }
         });
 

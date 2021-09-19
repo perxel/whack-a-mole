@@ -136,8 +136,8 @@ class Character{
             container.height
         );
 
-        const isGameEnded = this.scene.gameControl.status.isEnd;
-        const isPlaying = this.scene.gameControl.status.isPlaying;
+        const isGameEnded = this.scene.sys.game.CONTROL.status.isEnd;
+        const isPlaying = this.scene.sys.game.CONTROL.status.isPlaying;
 
         if(isGoodAttack && !isGameEnded && isPlaying){
             if(DEV) console.log(`Attack ${this.characterData.sprite_name}`);
@@ -161,7 +161,7 @@ class Character{
             const point = this.scene.add.dom(x, y, html);
 
             // update point
-            this.scene.gameControl.updatePoint(gainedPoint);
+            this.scene.sys.game.CONTROL.updatePoint(gainedPoint);
 
             // animate
             this.scene.tweens.add({

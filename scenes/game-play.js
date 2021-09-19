@@ -40,11 +40,11 @@ class GamePlay extends Phaser.Scene{
             size: 'small-popup',
             name: 'PopupPause',
             onNoClick: () => {
-                this.gameControl.endGame();
+                this.sys.game.CONTROL.endGame();
                 this.goChooseLevel();
             },
             onYesClick: () => {
-                this.gameControl.play();
+                this.sys.game.CONTROL.play();
                 popupPause.hide();
             }
         });
@@ -74,19 +74,27 @@ class GamePlay extends Phaser.Scene{
             manipulateHtml: ($popup) => this.updateScoreBoard($popup),
             onNoClick: (thisPopup) => {
                 thisPopup.hide();
-                this.gameControl.play();
+                this.sys.game.CONTROL.play();
             }
         });
 
         // Popup Buy Hammer
-        const popupBuyHammer = new Popup({
+        this.popupBuyHammer = new Popup({
             scene: this,
             name: 'PopupBuyHammer',
             manipulateHtml: ($popup) => new Helpers({scene: this}).generateBuyHammerPopupHtml($popup),
             onNoClick: (thisPopup) => {
                 thisPopup.hide();
+                this.sys.game.CONTROL.play();
             }
         });
+
+
+        /**
+         * Hammer
+         * @type {Hammer}
+         */
+        this.hammer = new Hammer({scene: this});
 
 
         /**
@@ -99,7 +107,7 @@ class GamePlay extends Phaser.Scene{
         /**
          * Init game
          */
-        this.gameControl = new Game({
+        this.sys.game.CONTROL = new Game({
             scene: this,
             holes: this.createHoles(),
             onEndGame: (status) => {
@@ -114,14 +122,7 @@ class GamePlay extends Phaser.Scene{
                 }
             }
         });
-        this.gameControl.play();
-
-
-        /**
-         * Hammer
-         * @type {Hammer}
-         */
-        this.hammer = new Hammer({scene: this, id: this.sys.game.PLAYER.getHammer()});
+        this.sys.game.CONTROL.play();
 
 
         /**
@@ -129,20 +130,20 @@ class GamePlay extends Phaser.Scene{
          */
         // button pause
         $('[data-button="pause"]').on('click', () => {
-            this.gameControl.pause();
+            this.sys.game.CONTROL.pause();
             popupPause.toggle();
         });
 
         // button high score
         $('[data-button="high-score"]').on('click', () => {
-            this.gameControl.pause();
+            this.sys.game.CONTROL.pause();
             popupYourScore.show();
         });
 
         // button shop
         $('[data-button="shop"]').on('click', () => {
-            this.gameControl.pause();
-            popupBuyHammer.show();
+            this.sys.game.CONTROL.pause();
+            this.popupBuyHammer.show();
         });
     }
 

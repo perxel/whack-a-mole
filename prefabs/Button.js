@@ -77,9 +77,22 @@ class Button{
                     case 'buy-hammer':
                         const hammerID = $button.attr("data-buy-hammer");
 
-                        // go to Choose level if buy successfully
+                        // if buy successfully
                         if(this.scene.sys.game.PLAYER.buyHammer(hammerID)){
-                            new Router({scene: this.scene, to: 'ChooseLevel'});
+                            if(typeof this.scene.sys.game.CONTROL === 'undefined'){
+                                // go to choose level if game has not started
+                                new Router({scene: this.scene, to: 'ChooseLevel'});
+                            }else if(this.scene.sys.game.CONTROL.getStatus().isStarted && !this.scene.sys.game.CONTROL.getStatus().isPlaying){
+                                // resume if game has started and is paused
+                                this.scene.sys.game.CONTROL.play();
+                                this.scene.sys.game.CONTROL.updateDisplay();
+
+                                // update new hammer
+                                this.scene.hammer = new Hammer({scene: this.scene});
+
+                                // close popup
+                                this.scene.popupBuyHammer.hide();
+                            }
                         }
                         break;
                 }

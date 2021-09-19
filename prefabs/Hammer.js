@@ -5,13 +5,15 @@ class Hammer{
             console.warn("Missing scene!");
             return;
         }
-        if(!config.id){
+
+        this.scene = config.scene;
+
+        // validate current hammer from player
+        this.id = this.scene.sys.game.PLAYER.getHammer();
+        if(!this.id){
             console.warn("Hammer is undefined!");
             return;
         }
-
-        this.scene = config.scene;
-        this.id = config.id || undefined;
         const data = new GameData().getHammers(this.id);
 
         // hammer data
@@ -24,6 +26,8 @@ class Hammer{
 
         this.createAnimations();
         this.createHammer();
+
+        if(DEV) console.log(`Hammer ${data.display_name} has been applied!`);
     }
 
     get(){

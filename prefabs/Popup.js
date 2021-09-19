@@ -89,6 +89,11 @@ class Popup{
     }
 
     show(){
+        // manipulate html
+        if(typeof this.manipulateHtml === 'function'){
+            this.manipulateHtml(this.$popup);
+        }
+
         this.$popup.addClass('show-popup');
     }
 

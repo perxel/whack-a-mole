@@ -38,9 +38,9 @@ class Player{
         // Setting
         this.game_settings = config.game_settings || {
             music: true,
-            music_vol: 0.5,
+            music_vol: 0.3,
             sound_fx: true,
-            sound_fx_vol: 0.5,
+            sound_fx_vol: 1,
         };
 
         // Shop

@@ -21,11 +21,11 @@ class Preload extends Phaser.Scene{
 
         // Creating a GUI with options.
         const gui = new dat.GUI({name: 'Whack', width: 400, useLocalStorage: true});
-        const guiGame = gui.addFolder('Game settings (modify before playing)');
+        const guiGame = gui.addFolder('Game settings');
         guiGame.add(this.sys.game._SETTINGS, 'game_duration').step(1000).min(2000).max(60000).name('Game duration [ms]');
         guiGame.add(this.sys.game._SETTINGS, 'wave_duration').step(100).min(1000).max(9000).name('Wave duration [ms]');
         guiGame.add(this.sys.game._SETTINGS, 'character_per_wave').step(1).min(1).max(9).name('Characters per wave');
-        const guiTiming = gui.addFolder('Character timing (modify before playing)');
+        const guiTiming = gui.addFolder('Character timing');
         guiTiming.add(this.sys.game._SETTINGS, 'character_show_duration').step(100).min(100).max(3000).name('Appear [ms]');
         guiTiming.add(this.sys.game._SETTINGS, 'character_idle_duration').step(100).min(100).max(3000).name('Smirky (waiting) [ms]');
         guiTiming.add(this.sys.game._SETTINGS, 'character_hurt_duration').step(100).min(100).max(3000).name('Hurt [ms]');
@@ -48,6 +48,27 @@ class Preload extends Phaser.Scene{
             const key = `hammer-attack-${hammers[i].id}`;
             this.load.audio(key, [hammers[i].attack_sound_url]);
         }
+
+        /**
+         * Load character sounds
+         */
+        const characters = new GameData().getCharacters();
+        for(let i = 0; i < characters.length; i++){
+            const hurt_sound_url = characters[i].hurt_sound_url;
+            if(hurt_sound_url){
+                const key = `character-hurt-${characters[i].id}`;
+                this.load.audio(key, [hurt_sound_url]);
+            }
+        }
+
+
+        /**
+         * Music and Sound effects
+         */
+        // background music
+        this.load.audio('bgMusic', ['assets/audio/music.mp3']);
+        this.load.audio('click', ['assets/audio/click.mp3']);
+        this.load.audio('character-die', ['assets/audio/die.mp3']);
 
 
         /**
@@ -84,15 +105,6 @@ class Preload extends Phaser.Scene{
         this.load.multiatlas('charactersAtlas', 'assets/sprites/characters.json', 'assets/sprites');
         this.load.multiatlas('holesAtlas', 'assets/sprites/holes.json', 'assets/sprites');
         this.load.multiatlas('hammersAtlas', 'assets/sprites/hammers.json', 'assets/sprites');
-
-        /**
-         * Music and Sound effects
-         */
-        // background music
-        this.load.audio('bgMusic', ['assets/audio/music.mp3']);
-
-        this.load.audio('click', ['assets/audio/click.mp3']);
-        this.load.audio('die', ['assets/audio/die.mp3']);
 
 
         /**
@@ -156,17 +168,28 @@ class Preload extends Phaser.Scene{
         }
 
         // Add sound
-        this.sys.game._SOUND.setSoundFx('click', this.sound.add('click', {volume: gameSettings.sound_fx_vol}));
-        this.sys.game._SOUND.setSoundFx('die', this.sound.add('die', {volume: gameSettings.sound_fx_vol}));
+        this.sys.game._SOUND.setSoundFx('click', this);
+        this.sys.game._SOUND.setSoundFx('character-die', this);
 
         /**
-         * Load hammer sounds
+         * Add hammer sounds
          */
         const hammers = new GameData().getHammers();
         for(let i = 0; i < hammers.length; i++){
             const key = `hammer-attack-${hammers[i].id}`;
 
-            this.sys.game._SOUND.setSoundFx(key, this.sound.add(key, {volume: gameSettings.sound_fx_vol}));
+            this.sys.game._SOUND.setSoundFx(key, this);
+        }
+
+        /**
+         * Add character sounds
+         */
+        const characters = new GameData().getCharacters();
+        for(let i = 0; i < characters.length; i++){
+            if(characters[i].hurt_sound_url){
+                const key = `character-hurt-${characters[i].id}`;
+                this.sys.game._SOUND.setSoundFx(key, this);
+            }
         }
 
         // Go Menu

@@ -51,8 +51,8 @@ class Sound{
         this.isResume = true;
     }
 
-    setSoundFx(name, obj){
-        this.soundFx[name] = obj;
+    setSoundFx(name, scene){
+        this.soundFx[name] = scene.sound.add(name, {volume: scene.sys.game.PLAYER.get().game_settings.sound_fx_vol});
     }
 
     playSoundFx(name){

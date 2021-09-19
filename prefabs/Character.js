@@ -21,6 +21,9 @@ class Character{
         this.hurtTime = this.gameSettings.character_hurt_duration; // ms
         this.point = this.characterData.point || 0;
 
+        this.hurtSound = this.characterData.hurt_sound_url ? `character-hurt-${this.characterID}` : 'character-die';
+        console.log(this.hurtSound)
+
         this.createAnimations();
         this.createPorcupine();
 
@@ -105,7 +108,7 @@ class Character{
         // on attack
         if(key === 'attack'){
             // sound fx
-            this.scene.sys.game._SOUND.playSoundFx('die');
+            this.scene.sys.game._SOUND.playSoundFx(this.hurtSound);
 
             // play hurt state
             setTimeout(() => {

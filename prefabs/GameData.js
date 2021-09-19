@@ -104,77 +104,88 @@ class GameData{
                 "name": "1",
                 "point": 10,
                 "rare_level": 0.18,
-                "sprite_name": "1"
+                "sprite_name": "1",
+                "hurt_sound_url": "assets/audio/head-explode.mp3",
             },
             {
                 "id": 2,
                 "name": "2",
                 "point": 20,
                 "rare_level": 0.16,
-                "sprite_name": "2"
+                "sprite_name": "2",
+                "hurt_sound_url": "assets/audio/goblin-vomit.mp3",
             },
             {
                 "id": 3,
                 "name": "3",
                 "point": 30,
                 "rare_level": 0.15,
-                "sprite_name": "3"
+                "sprite_name": "3",
+                "hurt_sound_url": "assets/audio/woman-hey.mp3",
             },
             {
                 "id": 4,
                 "name": "4",
                 "point": 40,
                 "rare_level": 0.13,
-                "sprite_name": "4"
+                "sprite_name": "4",
+                "hurt_sound_url": "assets/audio/male-ouch.mp3",
             },
             {
                 "id": 5,
                 "name": "5",
                 "point": 50,
                 "rare_level": 0.10,
-                "sprite_name": "5"
+                "sprite_name": "5",
+                "hurt_sound_url": "assets/audio/goblin-vomit.mp3",
             },
             {
                 "id": 6,
                 "name": "6",
                 "point": 60,
                 "rare_level": 0.09,
-                "sprite_name": "6"
+                "sprite_name": "6",
+                "hurt_sound_url": "assets/audio/male-kidding-me.mp3",
             },
             {
                 "id": 7,
                 "name": "7",
                 "point": 80,
                 "rare_level": 0.07,
-                "sprite_name": "7"
+                "sprite_name": "7",
+                "hurt_sound_url": "assets/audio/woman-why.mp3",
             },
             {
                 "id": 8,
                 "name": "8",
                 "point": 80,
                 "rare_level": 0.06,
-                "sprite_name": "8"
+                "sprite_name": "8",
+                "hurt_sound_url": "assets/audio/woman-screaming.mp3",
             },
             {
                 "id": 9,
                 "name": "9",
                 "point": 90,
                 "rare_level": 0.04,
-                "sprite_name": "9"
+                "sprite_name": "9",
+                "hurt_sound_url": "assets/audio/woman-why.mp3",
             },
             {
                 "id": 10,
                 "name": "10",
                 "point": 100,
                 "rare_level": 0.02,
-                "sprite_name": "10"
+                "sprite_name": "10",
+                "hurt_sound_url": "assets/audio/woman-screaming.mp3",
             },
             {
                 "id": 11,
                 "name": "Bomb",
                 "point": -50,
                 "rare_level": 0.15,
-                "sprite_name": "bomb"
+                "sprite_name": "bomb",
+                "hurt_sound_url": "assets/audio/boom.mp3",
             }
         ]
 
@@ -304,7 +315,7 @@ class GameData{
                 id: 1,
                 display_name: 'POWER: X1',
                 display_image_url: 'assets/img/hammers/1.png',
-                attack_sound_url: 'assets/audio/hammer-flesh.mp3',
+                attack_sound_url: 'assets/audio/zap.mp3',
                 whack_cost: 5,
                 usage_gain: 5,
                 sprite_name: '1',
@@ -314,7 +325,7 @@ class GameData{
                 id: 2,
                 display_name: 'POWER: X2',
                 display_image_url: 'assets/img/hammers/2.png',
-                attack_sound_url: 'assets/audio/hammer-flesh.mp3',
+                attack_sound_url: 'assets/audio/electric-zap.mp3',
                 whack_cost: 10,
                 usage_gain: 5,
                 sprite_name: '2',
@@ -324,7 +335,7 @@ class GameData{
                 id: 3,
                 display_name: 'POWER: X3',
                 display_image_url: 'assets/img/hammers/3.png',
-                attack_sound_url: 'assets/audio/hammer-flesh.mp3',
+                attack_sound_url: 'assets/audio/zap.mp3',
                 whack_cost: 20,
                 usage_gain: 5,
                 sprite_name: '3',

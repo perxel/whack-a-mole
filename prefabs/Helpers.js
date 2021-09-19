@@ -22,7 +22,7 @@ class Helpers{
 
         // check if the prev scene is available
         const hasBgTransition = this.previousScene && this.textureDesktop !== this.previousScene.background;
-        if(DEV) console.log(`Add background image [${this.textureDesktop}] to scene ${this.sceneKey}`);
+        //if(DEV) console.log(`Add background image [${this.textureDesktop}] to scene ${this.sceneKey}`);
 
         // add background to scene
         const backgroundDesktop = this.scene.add.image(0, 0, this.textureDesktop).setAlpha(0);

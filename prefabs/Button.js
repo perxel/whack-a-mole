@@ -56,13 +56,13 @@ class Button{
                         this.goBack();
                         break;
                     case 'how-to-play':
-                        this.scene.scene.start('HowToPlay', {previousScene: this.scene.sceneData});
+                        new Router({scene: this.scene, to: 'HowToPlay'});
                         break;
                     case 'choose-level':
-                        this.scene.scene.start('ChooseLevel', {previousScene: this.scene.sceneData});
+                        new Router({scene: this.scene, to: 'ChooseLevel'});
                         break;
                     case 'menu':
-                        this.scene.scene.start('Menu', {previousScene: this.scene.sceneData});
+                        new Router({scene: this.scene, to: 'Menu'});
                         break;
                     case 'full-screen-toggle':
                         // todo: DOM disappear in full screen
@@ -70,12 +70,18 @@ class Button{
                         break;
                     case 'go-level':
                         const level = $button.attr("data-level");
-                        if(DEV) console.log(`Go to level ${level}`);
-                        this.scene.scene.start("GamePlay", {previousScene: this.scene.sceneData, levelID: level});
+
+                        // go to game with level
+                        new Router({scene: this.scene, to: 'GamePlay', levelID: level});
                         break;
                     case 'buy-hammer':
                         const hammerID = $button.attr("data-buy-hammer");
-                        this.scene.sys.game.PLAYER.buyHammer(hammerID);
+
+                        // go to Choose level if buy successfully
+                        if(this.scene.sys.game.PLAYER.buyHammer(hammerID)){
+                            new Router({scene: this.scene, to: 'ChooseLevel'});
+                        }
+                        break;
                 }
             });
         });
@@ -100,7 +106,8 @@ class Button{
             if(DEV) console.log(`Go back from ${this.sceneKey} to ${this.previousScene.name}`);
         }
 
-        this.scene.scene.start(this.previousScene.name, {previousScene: this.scene.sceneData});
+        // go to previous scene
+        new Router({scene: this, to: this.previousScene.name});
     }
 
 

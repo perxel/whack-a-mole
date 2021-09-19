@@ -155,7 +155,7 @@ class Preload extends Phaser.Scene{
             delay: 1000,
             callback: () => {
                 $('.w-progress').detach();
-                this.scene.start("BuyHammer");
+                new Router({scene: this, to: 'Menu'});
             },
             callbackScope: this
         });

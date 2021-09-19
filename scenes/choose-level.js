@@ -70,10 +70,4 @@ class ChooseLevel extends Phaser.Scene{
 
         return html;
     }
-
-
-    goPlay(level){
-        if(DEV) console.log(`Go to level ${level}`);
-        this.scene.start("GamePlay", {previousScene: this.sceneData, levelID: level});
-    }
 }

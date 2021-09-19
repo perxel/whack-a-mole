@@ -13,7 +13,6 @@ class Boot extends Phaser.Scene{
 
     create(){
         //if(DEV) console.log('Boot create()');
-
-        this.scene.start('Preload');
+        new Router({scene: this, to: 'Preload'});
     }
 }

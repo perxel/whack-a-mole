@@ -55,7 +55,7 @@ class GamePlay extends Phaser.Scene{
             size: 'small-popup',
             name: 'PopupTimeOver',
             onNoClick: () => this.goChooseLevel(),
-            onYesClick: () => this.scene.start("GamePlay", {previousScene: this.sceneData, levelID: this.levelID})
+            onYesClick: () => new Router({scene: this, to: 'GamePlay', levelID: this.levelID})
         });
 
         // Popup New high score
@@ -82,7 +82,7 @@ class GamePlay extends Phaser.Scene{
         const popupBuyHammer = new Popup({
             scene: this,
             name: 'PopupBuyHammer',
-            manipulateHtml: ($popup) => new Helpers({scene:this}).generateBuyHammerPopupHtml($popup),
+            manipulateHtml: ($popup) => new Helpers({scene: this}).generateBuyHammerPopupHtml($popup),
             onNoClick: (thisPopup) => {
                 thisPopup.hide();
             }
@@ -215,8 +215,6 @@ class GamePlay extends Phaser.Scene{
             waves.push({waveBegin, waveEnd, characters: waveCharacters});
         }
 
-        if(DEV) console.log(gameHoles);
-
         // re-draw mask after alignment
         for(let i = 0; i < gameHoles.length; i++){
             // setup hole
@@ -281,7 +279,7 @@ class GamePlay extends Phaser.Scene{
      * Go to scene
      */
     goChooseLevel(){
-        this.scene.start('ChooseLevel', {previousScene: this.sceneData});
+        new Router({scene: this, to: 'ChooseLevel'});
     }
 
 

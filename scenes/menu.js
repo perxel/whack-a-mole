@@ -51,7 +51,7 @@ class Menu extends Phaser.Scene{
 
         // button shop
         $('[data-button="play"]').on('click', () => {
-            this.scene.start('BuyHammer', {previousScene: this.scene.sceneData});
+            new Router({scene: this, to: 'BuyHammer'});
         });
     }
 }

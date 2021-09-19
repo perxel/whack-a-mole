@@ -43,9 +43,4 @@ class BuyHammer extends Phaser.Scene{
 
         //const dom = new DOM({scene: this, depth: 2});
     }
-
-
-    goPlay(level){
-        this.scene.start("ChooseLevel", {previousScene: this.sceneData});
-    }
 }

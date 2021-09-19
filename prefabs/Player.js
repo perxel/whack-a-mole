@@ -187,6 +187,8 @@ class Player{
             this.hammer_usage_left = parseInt(newHammer.usage_gain);
 
             if(DEV) console.log(`Buy hammer [${newHammer.display_name}] successfully.`);
+
+            return true;
         }
     }
 }

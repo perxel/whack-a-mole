@@ -14,7 +14,7 @@ class Character{
         this.characterID = config.characterID || undefined;
         this.characterData = new GameData().getCharacters(this.characterID);
 
-        this.gameSettings = this.scene.game._DATA.getSettings();
+        this.gameSettings = this.scene.game._SETTINGS;
         this.x = config.x || 0;
         this.y = config.y || 0;
         this.debug = config.debug || false;
@@ -186,7 +186,7 @@ class Character{
                 targets: this.character,
                 ease: 'Power0',
                 delay: this.hurtTime,
-                duration: this.scene.game._DATA.getSettings().character_hide_duration,
+                duration: this.scene.game._SETTINGS.character_hide_duration,
                 y: this.scene.game._DATA.getConfig().character_hide_y
             });
         }

@@ -22,7 +22,7 @@ class Game{
         };
 
         // Countdown
-        this.gameDuration = this.scene.sys.game._DATA.getSettings().game_duration;
+        this.gameDuration = this.scene.sys.game._SETTINGS.game_duration;
         this.timeLeft = this.gameDuration;
         this.loopStep = 100;
         this.countdown = this.createCountDown();
@@ -66,15 +66,15 @@ class Game{
                     targets: character,
                     ease: 'Power0',
                     offset: showtime,
-                    duration: this.scene.game._DATA.getSettings().character_show_duration,
+                    duration: this.scene.game._SETTINGS.character_show_duration,
                     y: this.scene.game._DATA.getConfig().character_y
                 });
                 // tween hide
                 timeline.add({
                     targets: character,
                     ease: 'Power0',
-                    offset: `+=${this.scene.game._DATA.getSettings().character_idle_duration}`,
-                    duration: this.scene.game._DATA.getSettings().character_hide_duration,
+                    offset: `+=${this.scene.game._SETTINGS.character_idle_duration}`,
+                    duration: this.scene.game._SETTINGS.character_hide_duration,
                     y: this.scene.game._DATA.getConfig().character_hide_y
                 });
 

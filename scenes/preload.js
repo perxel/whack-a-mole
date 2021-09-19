@@ -16,7 +16,20 @@ class Preload extends Phaser.Scene{
          */
         this.sys.game.PLAYER = new Player();
         this.sys.game._DATA = new GameData();
+        this.sys.game._SETTINGS = new GameData().getSettings();
 
+
+        // Creating a GUI with options.
+        const gui = new dat.GUI({name: 'Whack', width: 400, useLocalStorage: true});
+        const guiGame = gui.addFolder('Game settings (modify before playing)');
+        guiGame.add(this.sys.game._SETTINGS, 'game_duration').step(1000).min(2000).max(60000).name('Game duration [ms]');
+        guiGame.add(this.sys.game._SETTINGS, 'wave_duration').step(100).min(1000).max(9000).name('Wave duration [ms]');
+        guiGame.add(this.sys.game._SETTINGS, 'character_per_wave').step(1).min(1).max(9).name('Characters per wave');
+        const guiTiming = gui.addFolder('Character timing (modify before playing)');
+        guiTiming.add(this.sys.game._SETTINGS, 'character_show_duration').step(100).min(100).max(3000).name('Appear [ms]');
+        guiTiming.add(this.sys.game._SETTINGS, 'character_idle_duration').step(100).min(100).max(3000).name('Smirky (waiting) [ms]');
+        guiTiming.add(this.sys.game._SETTINGS, 'character_hurt_duration').step(100).min(100).max(3000).name('Hurt [ms]');
+        guiTiming.add(this.sys.game._SETTINGS, 'character_hide_duration').step(100).min(100).max(3000).name('Run away [ms]');
 
         /**
          * Load level background

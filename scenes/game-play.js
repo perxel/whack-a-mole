@@ -48,6 +48,19 @@ class GamePlay extends Phaser.Scene{
                 popupPause.hide();
             }
         });
+        const popupLeave = new Popup({
+            scene: this,
+            size: 'small-popup',
+            name: 'PopupLeaveGame',
+            onNoClick: () => {
+                popupLeave.hide();
+                this.sys.game.CONTROL.play();
+            },
+            onYesClick: () => {
+                this.sys.game.CONTROL.endGame();
+                this.goChooseLevel();
+            }
+        });
 
         // Popup Time over
         const popupTimeOver = new Popup({
@@ -138,6 +151,12 @@ class GamePlay extends Phaser.Scene{
         /**
          * Buttons
          */
+        // button leave
+        $('[data-button="leave-game"]').on('click', () => {
+            this.sys.game.CONTROL.pause();
+            popupLeave.toggle();
+        });
+
         // button pause
         $('[data-button="pause"]').on('click', () => {
             this.sys.game.CONTROL.pause();

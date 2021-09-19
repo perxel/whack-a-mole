@@ -84,14 +84,16 @@ ul.hammer-list li {width:20%; margin-bottom:var(--space-25); text-align:center;}
     ul.hammer-list li {width:33%;}
 }
 @media only screen and (max-width:480px) {
+    .your-whack-coin {margin-bottom:15px!important;}
     .current-coin {padding-right:20px;}
-    ul.hammer-list li:not(:last-child) {margin-bottom:20px;}
+    ul.hammer-list li:not(:last-child) {margin-bottom:15px;}
     ul.hammer-list li {width:100%; display:flex; align-items:center; margin-bottom:0; justify-content:space-between;}
     .hammer-item-thumb, .hammer-item-meta {margin-bottom:0 !important;}
     .hammer-item-thumb img {height:45px;}
     .hammer-item-cost {justify-content:flex-start!important;}
     .hammer-item-cost img {width:20px;}
     .hammer-item-meta {width:100%; text-align:left; padding-left:20px;}
+    .hammer-item-name.w-point {margin-bottom:-10px;}
 
 }
 
@@ -119,3 +121,44 @@ ul.hammer-list li {width:20%; margin-bottom:var(--space-25); text-align:center;}
     .high-score-icon {width:40px; height:43px; margin-right:15px;}
     .high-score-point {--letter-width:20;}
 }
+@media only screen and (max-width:480px) {
+    /* button close */
+    .popup-close-button {transform:translateY(-15%); bottom:auto; top:0;}
+}
+
+
+/*******************************
+ * Mobile Menu
+ *******************************/
+.mobile-menu-popup {
+    position:fixed; top:0; left:0; width:100vw; height:100vh; padding:80px var(--space-h-50);
+    background-color:#c8e082;
+    display:flex; flex-direction:column; justify-content:center;
+}
+.mobile-menu-popup .welcome-image {width:100%; transform:translateX(3%);}
+
+/* Settings */
+.setting-label.w-point {--font-size:26px; --color:#f8e8ce; --stroke:#7d5628; --sw:8px; padding-left:var(--sw);}
+.button.toggle.states {--width:67px; --height:35px;}
+.toggle-icon {
+    position:absolute; top:50%; left:0;
+    transform:translateY(-50%);
+    width:35px; height:35px; z-index:2;
+    transition:all .3s ease;
+}
+.toggle-text {
+    position:absolute; top:50%; left:0;
+    transform:translateY(-50%);
+    width:100%; height:23px; line-height:27px; z-index:1;
+    background-color:#805b2d;
+    border-radius:40px; color:#f8e8ce; font-size:12px;
+}
+.toggle-text span {transition:all .3s ease; padding:0 7px;}
+.button.toggle:not(.active) .on,
+.button.toggle.active .off {opacity:0;}
+.button.toggle:not(.active) .toggle-icon {left:100%; transform:translate(-100%, -50%) rotate(89deg);}
+
+
+/* Buttons */
+.mobile-buttons {display:flex; flex-direction:column; align-items:center;}
+.mobile-buttons > button:not(:last-child) {margin-bottom:20px;}

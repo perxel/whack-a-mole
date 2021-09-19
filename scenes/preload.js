@@ -113,6 +113,7 @@ class Preload extends Phaser.Scene{
         this.load.html('PopupYourScore', 'assets/dom/popup/your-score.html');
         this.load.html('PopupBuyHammer', 'assets/dom/popup/buy-hammer.html');
         this.load.html('PopupMobileMenu', 'assets/dom/popup/mobile-menu.html');
+        this.load.html('PopupLeaveGame', 'assets/dom/popup/leave-game.html');
 
 
         /**

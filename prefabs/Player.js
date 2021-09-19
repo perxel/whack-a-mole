@@ -7,16 +7,19 @@ class Player{
         // Game
         this.unlocked_level = config.unlocked_level || [
             {
-                "id": 1,
-                "timestamp": "",
-                "total_turn_played": 0,
+                id: 1,
+                timestamp: "",
+                total_turn_played: 0,
             },
-            {
-                "id": 2
-            },
-            {
-                "id": 3
-            }
+            // {id: 2},
+            // {id: 3},
+            // {id: 4},
+            // {id: 5},
+            // {id: 6},
+            // {id: 7},
+            // {id: 8},
+            // {id: 9},
+            // {id: 10},
         ];
         this.total_turn_played = config.total_turn_played || 0;
 
@@ -34,7 +37,7 @@ class Player{
 
         // Setting
         this.game_settings = config.game_settings || {
-            music: false,
+            music: true,
             music_vol: 0.5,
             sound_fx: true,
             sound_fx_vol: 0.5,

@@ -370,8 +370,9 @@ function resizeSvgText(){
                 $(el).closest('svg').width(el.getBBox().width + 10);
                 $(el).closest('svg').height(el.getBBox().height + 10);
             });
+
+            requestAnimationFrame(resize);
         }
-        window.addEventListener('resize', resize);
         resize();
     }
 }

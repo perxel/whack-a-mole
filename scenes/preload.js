@@ -86,7 +86,8 @@ class Preload extends Phaser.Scene{
          * Load image
          */
         // Load background image
-        this.load.image('desktopBg', 'assets/img/desktop-bg.jpg');
+        this.load.image('defaultBackground', 'assets/img/backgrounds/default.jpg');
+        this.load.image('defaultBackgroundMobile', 'assets/img/backgrounds/default-m.jpg');
         this.load.image('welcomeWhack', 'assets/img/welcome/whack.png');
 
         /**

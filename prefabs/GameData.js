@@ -15,6 +15,7 @@ class GameData{
             wave_duration: 2300, // duration of each wave [ms]
             character_show_duration: 300, // [ms]
             character_idle_duration: 2000, // [ms]
+            character_hurt_duration: 600, // [ms]
             character_hide_duration: 300 // [ms]
         };
 

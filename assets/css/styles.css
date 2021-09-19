@@ -1,6 +1,7 @@
 /*******************************
  * Pre-defined classes
  *******************************/
+.hidden {display:none!important;}
 html {-webkit-text-size-adjust:none; font-family:var(--font-primary); color:var(--color-body); font-size:var(--size-24);}
 
 /* Text alignment */

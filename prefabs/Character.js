@@ -18,7 +18,7 @@ class Character{
         this.x = config.x || 0;
         this.y = config.y || 0;
         this.debug = config.debug || DEV;
-        this.hurtTime = this.gameSettings.character_idle_duration; // ms
+        this.hurtTime = this.gameSettings.character_hurt_duration; // ms
         this.point = this.characterData.point || 0;
 
         this.createAnimations();
@@ -116,12 +116,12 @@ class Character{
             if(this.hurtTimer){
                 this.hurtTimer.remove();
             }
-            this.hurtTimer = this.scene.time.addEvent({
-                delay: this.hurtTime,
-                callback: () => {
-                    this.playAnimation('idle');
-                }
-            });
+            // this.hurtTimer = this.scene.time.addEvent({
+            //     delay: this.hurtTime,
+            //     callback: () => {
+            //         this.playAnimation('idle');
+            //     }
+            // });
         }
     }
 
@@ -163,7 +163,7 @@ class Character{
             // update point
             this.scene.sys.game.CONTROL.updatePoint(gainedPoint);
 
-            // animate
+            // animate point
             this.scene.tweens.add({
                 targets: point,
                 ease: 'Power1',
@@ -179,6 +179,15 @@ class Character{
                 onComplete: () => {
                     point.destroy();
                 }
+            });
+
+            // hide character
+            this.scene.tweens.add({
+                targets: this.character,
+                ease: 'Power0',
+                delay: this.hurtTime,
+                duration: this.scene.game._DATA.getSettings().character_hide_duration,
+                y: this.scene.game._DATA.getConfig().character_hide_y
             });
         }
     }

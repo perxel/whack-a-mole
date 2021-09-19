@@ -8,7 +8,8 @@ class HowToPlay extends Phaser.Scene{
 
         this.sceneData = {
             name: this.scene.key,
-            background: 'desktopBg',
+            background: 'defaultBackground',
+            backgroundMobile: 'defaultBackgroundMobile',
             previousScene: generatePreviousSceneData(this, data)
         };
 

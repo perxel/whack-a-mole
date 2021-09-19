@@ -51,7 +51,13 @@ class Menu extends Phaser.Scene{
 
         // button shop
         $('[data-button="play"]').on('click', () => {
-            new Router({scene: this, to: 'BuyHammer'});
+            if(this.sys.game.PLAYER.checkHammer()){
+                // go to choose level if hammer is good to use
+                new Router({scene: this, to: 'ChooseLevel'});
+            }else{
+                // else go to buy hammer
+                new Router({scene: this, to: 'BuyHammer'});
+            }
         });
     }
 }

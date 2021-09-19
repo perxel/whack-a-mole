@@ -118,6 +118,13 @@ class GamePlay extends Phaser.Scene{
 
 
         /**
+         * Hammer
+         * @type {Hammer}
+         */
+        this.hammer = new Hammer({scene: this, id: this.sys.game.PLAYER.getHammer()});
+
+
+        /**
          * Buttons
          */
         // button pause
@@ -148,9 +155,6 @@ class GamePlay extends Phaser.Scene{
         // Characters
         const availableCharacterIDs = this.sys.game.PLAYER.getCharacterIDsByLevelID(this.levelID); // list of characters in this level
         this.rareArray = new Helpers({scene: this}).generateCharacterRareArray(availableCharacterIDs);
-
-        // Hammer
-        this.hammer = new Hammer({scene: this, id: this.sys.game.PLAYER.getHammer()});
 
         // Holes
         const holeCount = 9;

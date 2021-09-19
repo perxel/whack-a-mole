@@ -242,14 +242,16 @@ class Game{
     }
 
     isGoodToPlay(){
-        let isGood = true;
-
         // check usage
-        if(this.scene.sys.game.PLAYER.get().hammer_usage_left < 0){
+        if(!this.scene.sys.game.PLAYER.checkHammer()){
             if(DEV) console.warn('Please buy more hammer to continue');
-            isGood = false;
+
+            // go to buy hammer
+            new Router({scene: this.scene, to: 'BuyHammer'});
+
+            return false;
         }
 
-        return isGood;
+        return true;
     }
 }

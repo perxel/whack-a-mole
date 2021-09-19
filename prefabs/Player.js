@@ -25,8 +25,8 @@ class Player{
         this.high_score = config.high_score || 0;
 
         // Hammer
-        this.hammer_id = config.hammer_id || -1; // no hammer by default
-        this.hammer_usage_left = config.hammer_usage_left || 5;
+        this.hammer_id = config.hammer_id || undefined; // no hammer by default
+        this.hammer_usage_left = config.hammer_usage_left || 0;
 
         // Coin
         this.whack_coin = config.whack_coin || 1000;
@@ -95,6 +95,20 @@ class Player{
 
     getHammer(){
         return this.hammer_id;
+    }
+
+    checkHammer(){
+        // fail if no hammer
+        if(typeof this.hammer_id === 'undefined'){
+            return false;
+        }
+
+        // fail if no any turns left
+        if(this.hammer_usage_left < 0){
+            return false;
+        }
+
+        return true;
     }
 
     /*************************** SETTERS ******************************/
@@ -187,6 +201,8 @@ class Player{
             this.hammer_usage_left = parseInt(newHammer.usage_gain);
 
             if(DEV) console.log(`Buy hammer [${newHammer.display_name}] successfully.`);
+
+            // route
 
             return true;
         }

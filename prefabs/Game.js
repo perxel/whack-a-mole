@@ -190,6 +190,8 @@ class Game{
 
         // callback
         this.onEndGame(this.status);
+
+        if(DEV) console.log('Game ended!');
     }
 
     triggerRushingTime(bool){

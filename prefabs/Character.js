@@ -168,7 +168,7 @@ class Character{
                 targets: point,
                 ease: 'Power1',
                 duration: 500,
-                y: '-=80',
+                y: '-=' + this.scene.game._DATA.getConfig().character_y,
             });
             this.scene.tweens.add({
                 targets: point,

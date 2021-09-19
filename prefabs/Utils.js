@@ -367,8 +367,9 @@ function resizeSvgText(){
     if($text.length){
         const resize = () => {
             $text.each((i, el) => {
-                $(el).closest('svg').width(el.getBBox().width + 10);
-                $(el).closest('svg').height(el.getBBox().height + 10);
+                $(el).closest('svg').width(Math.round(el.getBBox().width) + 10);
+                $(el).closest('svg').height(Math.round(el.getBBox().height) + 10);
+                $(el).css('paint-order', 'stroke fill'); // fix svg bug on safari
             });
 
             requestAnimationFrame(resize);

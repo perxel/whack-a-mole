@@ -17,7 +17,7 @@ class Character{
         this.gameSettings = this.scene.game._DATA.getSettings();
         this.x = config.x || 0;
         this.y = config.y || 0;
-        this.debug = config.debug || DEV;
+        this.debug = config.debug || false;
         this.hurtTime = this.gameSettings.character_hurt_duration; // ms
         this.point = this.characterData.point || 0;
 

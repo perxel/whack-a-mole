@@ -11,7 +11,7 @@ class Hole{
         this.y = config.y || 0;
         this.anchor = config.anchor || undefined;
         this.characters = config.characters || [];
-        this.debug = config.debug || DEV;
+        this.debug = config.debug || false;
 
         this.level = config.level || 1;
         this.order = config.order || undefined;

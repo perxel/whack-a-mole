@@ -27,11 +27,14 @@ class App{
             },
             scene: scenes,
             backgroundColor: '#c8e082',
-            pixelArt: false,
+            render: {
+                pixelArt: false
+            },
             dom: {
                 createContainer: true
             },
-            //resolution: window.devicePixelRatio
+            resolution: window.devicePixelRatio,
+            antialias: true
         };
 
         // Create game app

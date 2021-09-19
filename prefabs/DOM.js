@@ -19,5 +19,9 @@ class DOM{
 
         // assign buttons events
         new Button({scene: this.scene});
+
+        resizeSvgText();
+
+        return this.dom;
     }
 }

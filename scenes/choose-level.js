@@ -49,6 +49,7 @@ class ChooseLevel extends Phaser.Scene{
         const levels = new GameData().getLevels();
         const playerLevels = this.sys.game.PLAYER.getLevels();
 
+        html += '<div class="w-level-grid-wrap">';
         html += '<div class="w-level-grid w-flex w-flex--wrap w-flex--justify-center">';
         for(let i = 0; i < levels.length; i++){
             const levelID = typeof playerLevels[i] !== 'undefined' ? playerLevels[i].id : generateID();
@@ -66,6 +67,7 @@ class ChooseLevel extends Phaser.Scene{
             html += `</button>`;
             html += '</div>';
         }
+        html += '</div>';
         html += '</div>';
 
         return html;

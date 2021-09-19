@@ -89,6 +89,16 @@ class GamePlay extends Phaser.Scene{
             }
         });
 
+        // Popup Mobile Menu
+        this.popupMobileMenu = new Popup({
+            scene: this,
+            name: 'PopupMobileMenu',
+            onNoClick: (thisPopup) => {
+                thisPopup.hide();
+                this.sys.game.CONTROL.play();
+            }
+        });
+
 
         /**
          * Hammer
@@ -144,6 +154,17 @@ class GamePlay extends Phaser.Scene{
         $('[data-button="shop"]').on('click', () => {
             this.sys.game.CONTROL.pause();
             this.popupBuyHammer.show();
+        });
+
+        // button mobile menu
+        $('[data-button="mobile-menu"]').on('click', () => {
+            this.sys.game.CONTROL.pause();
+            this.popupMobileMenu.show();
+        });
+
+        // button mobile menu
+        $('[data-button-mobile]').on('click', () => {
+            this.popupMobileMenu.hide();
         });
     }
 

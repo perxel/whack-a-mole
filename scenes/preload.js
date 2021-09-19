@@ -89,25 +89,29 @@ class Preload extends Phaser.Scene{
         this.load.image('desktopBg', 'assets/img/desktop-bg.jpg');
         this.load.image('welcomeWhack', 'assets/img/welcome/whack.png');
 
+        /**
+         * Load Component HTML
+         */
+        this.load.html('Progress', 'assets/dom/component/progress.html');
+        this.load.html('Popup', 'assets/dom/component/popup.html');
 
         /**
-         * Load HTML
+         * Load Scene HTML
          */
-        this.load.html('Menu', 'assets/dom/menu.html');
-        this.load.html('HowToPlay', 'assets/dom/how-to-play.html');
-        this.load.html('GamePlay', 'assets/dom/game-play.html');
-        this.load.html('ChooseLevel', 'assets/dom/choose-level.html');
-        this.load.html('Progress', 'assets/dom/progress.html');
+        this.load.html('Menu', 'assets/dom/scene/menu.html');
+        this.load.html('HowToPlay', 'assets/dom/scene/how-to-play.html');
+        this.load.html('GamePlay', 'assets/dom/scene/game-play.html');
+        this.load.html('ChooseLevel', 'assets/dom/scene/choose-level.html');
 
         /**
          * Load Popup HTML
          */
-        this.load.html('Popup', 'assets/dom/popup.html');
         this.load.html('PopupNewHighScore', 'assets/dom/popup/new-high-score.html');
         this.load.html('PopupTimeOver', 'assets/dom/popup/time-over.html');
         this.load.html('PopupPause', 'assets/dom/popup/pause.html');
         this.load.html('PopupYourScore', 'assets/dom/popup/your-score.html');
         this.load.html('PopupBuyHammer', 'assets/dom/popup/buy-hammer.html');
+        this.load.html('PopupMobileMenu', 'assets/dom/popup/mobile-menu.html');
 
 
         /**

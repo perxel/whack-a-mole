@@ -8,7 +8,7 @@ html {-webkit-text-size-adjust:none; font-family:var(--font-primary); color:var(
 
 /* Background size cover */
 .w-bg-cover {background-size:cover; background-position:center; background-color:transparent;}
-.w-bg-contain {background-size:contain; background-position:center; background-repeat:no-repeat;}
+.w-bg-contain {background-size:contain; background-position:center center; background-repeat:no-repeat;}
 .w-bg-cover > img, .w-bg-contain > img {opacity:0; max-width:100%; max-height:100%;}
 
 /* Keep aspect ratio using css */
@@ -95,10 +95,10 @@ scene {
 .button.disabled {cursor:not-allowed;}
 .button.locked {cursor:not-allowed;}
 
-.button svg, .button span {position:absolute; top:0; left:0; width:100%; height:100%;}
+.button svg, .button > span {position:absolute; top:0; left:0; width:100%; height:100%;}
 .button:active svg, .button:active span {transform:scale(.9);}
 
-.button span {color:#805b2d; font-size:var(--size-64);}
+.button > span {color:#805b2d; font-size:var(--size-64);}
 
 .button.how-to {--width:var(--btn-width-how-to); --height:var(--btn-height-how-to);}
 .button.play {--width:var(--btn-width-play); --height:var(--btn-height-play);}
@@ -118,9 +118,12 @@ scene {
 .button.text-1 span {font-size:var(--size-24);}
 .button.text-2 {width:188px; height:69px;}
 .button.text-2 span {font-size:var(--size-24);}
+.button.text-3 {width:290px; height:70px;}
+.button.text-3 span {font-size:var(--size-24);}
 @media only screen and (max-width:480px) {
     .button.text-1 {width:80px; height:35px;}
     .button.text-2 {width:100px; height:35px;}
+    .button.text-3 span {font-size:24px;}
 }
 
 /*******************************
@@ -166,11 +169,14 @@ scene {
  * Scene: Choose Level
  *******************************/
 .popup-choose-level .w-popup {background-color:transparent;}
-.w-level-grid {width:100%; max-width:700px; margin:-15px -8px;}
-.w-level-grid-item {padding:15px 8px;}
+.w-level-grid {width:100%; margin:-15px -8px;}
+.w-level-grid-item {padding:15px 8px; width:20%; display:flex; justify-content:center; align-items:center;}
 @media only screen and (max-width:768px) {
     .w-level-grid {margin:0;}
-    .w-level-grid-item {padding:10px 10px; width:50%; display:flex; justify-content:center;}
+    .w-level-grid-item {padding:10px 10px; width:33.33%; display:flex; justify-content:center;}
+}
+@media only screen and (max-width:480px) {
+    .w-level-grid-item {width:50%;}
 }
 
 
@@ -210,3 +216,40 @@ scene {
     .w-stat.hammer .w-stat-bar svg {left:calc(50% + 6px);}
     .w-stat:not(:last-child) {margin-right:15px;}
 }
+
+
+/*******************************
+ * Mobile Menu
+ *******************************/
+.mobile-menu-popup {
+    position:fixed; top:0; left:0; width:100vw; height:100vh; padding:80px var(--space-h-50);
+    background-color:#c8e082;
+    display:flex; flex-direction:column; justify-content:center;
+}
+.mobile-menu-popup .welcome-image {width:100%; transform:translateX(3%);}
+
+/* Settings */
+.setting-label.w-point {--font-size:26px; --color:#f8e8ce; --stroke:#7d5628; --sw:8px; padding-left:var(--sw);}
+.button.toggle.states {--width:67px; --height:35px;}
+.toggle-icon {
+    position:absolute; top:50%; left:0;
+    transform:translateY(-50%);
+    width:35px; height:35px; z-index:2;
+    transition:all .3s ease;
+}
+.toggle-text {
+    position:absolute; top:50%; left:0;
+    transform:translateY(-50%);
+    width:100%; height:23px; line-height:27px; z-index:1;
+    background-color:#805b2d;
+    border-radius:40px; color:#f8e8ce; font-size:12px;
+}
+.toggle-text span {transition:all .3s ease; padding:0 7px;}
+.button.toggle:not(.active) .on,
+.button.toggle.active .off {opacity:0;}
+.button.toggle:not(.active) .toggle-icon {left:100%; transform:translate(-100%, -50%) rotate(89deg);}
+
+
+/* Buttons */
+.mobile-buttons {display:flex; flex-direction:column; align-items:center;}
+.mobile-buttons > button:not(:last-child) {margin-bottom:20px;}

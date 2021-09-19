@@ -91,6 +91,8 @@ ul.hammer-list li {width:20%; margin-bottom:var(--space-25); text-align:center;}
     .hammer-item-thumb img {height:45px;}
     .hammer-item-cost {justify-content:flex-start!important;}
     .hammer-item-cost img {width:20px;}
+    .hammer-item-meta {width:100%; text-align:left; padding-left:20px;}
+
 }
 
 

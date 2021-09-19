@@ -363,7 +363,7 @@ function getResponsiveData(config, currentBreakpoint = undefined){
  * Resize SVG Text
  */
 function resizeSvgText(){
-    const $text = $('.w-point svg text');
+    const $text = $('.w-point:not(.skip-resize) svg text');
     if($text.length){
         const resize = () => {
             $text.each((i, el) => {

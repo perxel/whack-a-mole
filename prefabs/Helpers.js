@@ -100,4 +100,41 @@ class Helpers{
 
         return rareIDsArray;
     }
+
+
+    /**
+     * Generate HTML for Buy Hammer Popup
+     * @param scene
+     * @param $popup
+     */
+    generateBuyHammerPopupHtml(scene, $popup){
+        const hammers = new GameData().getHammers();
+        const $item = $popup.find('[data-hammer-item]').detach();
+        const $list = $popup.find('.hammer-list');
+
+        // get current whack of player
+        const whackCoin = scene.sys.game.PLAYER.get().whack_coin;
+        $popup.find('[data-your-whack]').html(whackCoin);
+
+        // get current hammer
+        const hammerID = scene.sys.game.PLAYER.get().hammer_id;
+
+        // generate hammers
+        for(let i in hammers){
+            // skip the current hammer
+            if(hammerID === hammers[i].id) continue;
+
+            const $thisHammer = $item.clone();
+
+            $thisHammer.find('[data-thumb]').attr('src', hammers[i].display_image_url);
+            $thisHammer.find('[data-thumb]').attr('alt', hammers[i].display_name);
+            $thisHammer.find('[data-name]').html(hammers[i].display_name);
+            $thisHammer.find('[data-price]').html(hammers[i].whack_cost);
+            $thisHammer.find('[data-buy-hammer]').attr('data-buy-hammer', hammers[i].id);
+
+            $thisHammer.appendTo($list);
+        }
+
+        resizeSvgText();
+    }
 }

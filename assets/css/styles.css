@@ -45,6 +45,7 @@ html {-webkit-text-size-adjust:none; font-family:var(--font-primary); color:var(
 
 /* Spacings */
 .w-space-60 {margin-bottom:var(--space-60);}
+.w-space-50 {margin-bottom:var(--space-50);}
 .w-space-25 {margin-bottom:var(--space-25);}
 
 /* Titles */
@@ -112,10 +113,14 @@ scene {
 .button.icon span {font-size:0;}
 
 /* button text */
+.button[class*="text-"] span {display:flex; justify-content:center; align-items:center;}
 .button.text-1 {width:106px; height:48px;}
-.button.text-1 span {font-size:var(--size-24); display:flex; justify-content:center; align-items:center;}
+.button.text-1 span {font-size:var(--size-24);}
+.button.text-2 {width:188px; height:69px;}
+.button.text-2 span {font-size:var(--size-24);}
 @media only screen and (max-width:480px) {
-    .button.text-1 {width:80px; height:32px;}
+    .button.text-1 {width:80px; height:35px;}
+    .button.text-2 {width:100px; height:35px;}
 }
 
 /*******************************

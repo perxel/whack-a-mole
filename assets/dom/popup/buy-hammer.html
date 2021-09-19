@@ -7,9 +7,29 @@
         <div class="w-popup-content w-flex w-flex--align-center w-flex--justify-center">
             <div class="w-popup-content-inner" data-popup-content>
 
-                <div class="txt-center">CHOOSE THE HAMMER YOU WANT TO use</div>
+<!--                <div class="txt-center">CHOOSE THE HAMMER YOU WANT TO use</div>-->
 
+                <div class="your-whack-coin w-flex w-flex--justify-center w-flex--align-center w-space-50">
 
+                    <div class="current-coin">
+                        <div>Your whack coin:</div>
+                        <div class="hammer-item-cost w-flex w-flex--align-center">
+                            <img src="assets/img/coin.png" alt="coin">
+                            <div class="hammer-item-cost-price w-point">
+                                <svg width="150" height="35">
+                                    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+                                          data-your-whack>0</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buy-more-coin">
+                        <button data-button="buy-coin" class="button text-2">
+                            <span class="w-bg-contain" style="background-image:url(assets/img/btn/btn-text-2.png)">BUY COIN</span>
+                        </button>
+                    </div>
+
+                </div>
 
                 <ul class="hammer-list w-flex--wrap w-flex w-flex--justify-space-around">
 

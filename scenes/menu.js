@@ -48,5 +48,10 @@ class Menu extends Phaser.Scene{
          */
         // background
         this.bg = new Helpers({scene: this}).getBackgroundImage();
+
+        // button shop
+        $('[data-button="play"]').on('click', () => {
+            this.scene.start('BuyHammer', {previousScene: this.scene.sceneData});
+        });
     }
 }

@@ -357,3 +357,21 @@ function getResponsiveData(config, currentBreakpoint = undefined){
 // window.addEventListener('resize', () => {
 //     lastBreakpoint = getResponsiveData(config, lastBreakpoint).breakpoint;
 // });
+
+
+/**
+ * Resize SVG Text
+ */
+function resizeSvgText(){
+    const $text = $('.w-point svg text');
+    if($text.length){
+        const resize = () => {
+            $text.each((i, el) => {
+                $(el).closest('svg').width(el.getBBox().width + 10);
+                $(el).closest('svg').height(el.getBBox().height + 10);
+            });
+        }
+        window.addEventListener('resize', resize);
+        resize();
+    }
+}

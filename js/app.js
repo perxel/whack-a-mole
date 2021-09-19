@@ -8,6 +8,7 @@ class App{
         scenes.push(Boot);
         scenes.push(Preload);
         scenes.push(Menu);
+        scenes.push(BuyHammer);
         scenes.push(HowToPlay);
         scenes.push(ChooseLevel);
         scenes.push(GamePlay);

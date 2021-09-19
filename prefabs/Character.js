@@ -22,7 +22,6 @@ class Character{
         this.point = this.characterData.point || 0;
 
         this.hurtSound = this.characterData.hurt_sound_url ? `character-hurt-${this.characterID}` : 'character-die';
-        console.log(this.hurtSound)
 
         this.createAnimations();
         this.createPorcupine();

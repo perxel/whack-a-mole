@@ -337,7 +337,7 @@ class GamePlay extends Phaser.Scene{
         const history = this.sys.game.PLAYER.getScoreHistory();
 
         if(history.length === 0){
-            $popup.find('[data-popup-content]').html('There is nothing to show.');
+            $popup.find('[data-popup-content]').html('<div class="txt-center">The more you play 🎮 <br>The better score you get 💪</div>');
             return false;
         }
 

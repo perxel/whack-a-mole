@@ -30,6 +30,9 @@ class Preload extends Phaser.Scene{
         guiTiming.add(this.sys.game._SETTINGS, 'character_idle_duration').step(100).min(100).max(3000).name('Smirky (waiting) [ms]');
         guiTiming.add(this.sys.game._SETTINGS, 'character_hurt_duration').step(100).min(100).max(3000).name('Hurt [ms]');
         guiTiming.add(this.sys.game._SETTINGS, 'character_hide_duration').step(100).min(100).max(3000).name('Run away [ms]');
+        guiGame.open();
+        guiTiming.open();
+        gui.hide();
 
         /**
          * Load level background

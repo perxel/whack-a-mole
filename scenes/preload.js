@@ -107,14 +107,14 @@ class Preload extends Phaser.Scene{
         this.load.html('PopupTimeOver', 'assets/dom/popup/time-over.html');
         this.load.html('PopupPause', 'assets/dom/popup/pause.html');
         this.load.html('PopupYourScore', 'assets/dom/popup/your-score.html');
+        this.load.html('PopupBuyHammer', 'assets/dom/popup/buy-hammer.html');
 
 
         /**
          * Load CSS
          */
-        // todo: load css
-        this.load.css('styles', 'assets/css/styles.css');
-        this.load.css('popup', 'assets/css/popup.css');
+        // this.load.css('styles', 'assets/css/styles.css');
+        // this.load.css('popup', 'assets/css/popup.css');
 
 
         /**
@@ -155,8 +155,8 @@ class Preload extends Phaser.Scene{
             delay: 1000,
             callback: () => {
                 $('.w-progress').detach();
-                this.scene.start("Menu");
-                //this.scene.start("GamePlay", {levelID: 1})
+                //this.scene.start("Menu");
+                this.scene.start("GamePlay", {levelID: 1})
             },
             callbackScope: this
         });

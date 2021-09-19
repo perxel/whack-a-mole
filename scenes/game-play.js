@@ -78,6 +78,16 @@ class GamePlay extends Phaser.Scene{
             }
         });
 
+        // Popup Buy Hammer
+        const popupBuyHammer = new Popup({
+            scene: this,
+            name: 'PopupBuyHammer',
+            manipulateHtml: ($popup) => this.loadBuyHammerPopup($popup),
+            onNoClick: (thisPopup) => {
+                thisPopup.hide();
+            }
+        });
+
 
         /**
          * Add DOM
@@ -120,6 +130,12 @@ class GamePlay extends Phaser.Scene{
         $('[data-button="high-score"]').on('click', () => {
             this.gameControl.pause();
             popupYourScore.show();
+        });
+
+        // button shop
+        $('[data-button="shop"]').on('click', () => {
+            this.gameControl.pause();
+            popupBuyHammer.show();
         });
     }
 
@@ -297,5 +313,31 @@ class GamePlay extends Phaser.Scene{
                 $(el).detach();
             }
         });
+    }
+
+
+    /**
+     * Load hammer into Buy Hammer popup
+     * @param $popup
+     */
+    loadBuyHammerPopup($popup){
+        const hammers = new GameData().getHammers();
+        const $item = $popup.find('[data-hammer-item]').detach();
+        const $list = $popup.find('.hammer-list');
+
+        for(let i in hammers){
+            const $thisHammer = $item.clone();
+
+            $thisHammer.find('[data-thumb]').attr('src', hammers[i].display_image_url);
+            $thisHammer.find('[data-thumb]').attr('alt', hammers[i].display_name);
+            $thisHammer.find('[data-name]').html(hammers[i].display_name);
+            $thisHammer.find('[data-price]').html(hammers[i].whack_cost);
+            $thisHammer.find('[data-buy-hammer]').attr('data-buy-hammer', hammers[i].id);
+
+            const letterWidth = 30;
+            $thisHammer.find('.hammer-item-cost-price svg').attr('width', letterWidth * hammers[i].whack_cost.toString().length);
+
+            $thisHammer.appendTo($list);
+        }
     }
 }

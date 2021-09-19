@@ -111,6 +111,13 @@ scene {
 /* button icon */
 .button.icon span {font-size:0;}
 
+/* button text */
+.button.text-1 {width:106px; height:48px;}
+.button.text-1 span {font-size:var(--size-24); display:flex; justify-content:center; align-items:center;}
+@media only screen and (max-width:480px) {
+    .button.text-1 {width:80px; height:32px;}
+}
+
 /*******************************
  * Nav
  *******************************/

@@ -22,6 +22,7 @@
     width:90vw; max-width:var(--width); min-height:var(--height);
     padding:calc(var(--space-60) + .65em) var(--space-h-50) var(--space-60);
 }
+.w-popup-content-inner {width:100%;}
 
 /* visibility */
 .w-popup-wrapper {transition:all .3s ease;}
@@ -67,6 +68,28 @@ ul.score-board .text {transform:translateY(.15em);}
     ul.score-board li .right .text {margin-bottom:12px;}
     ul.score-board .text {transform:translateY(.4em);}
 }
+
+
+/*******************************
+ * Popup Buy Hammer
+ *******************************/
+ul.hammer-list {list-style:none; margin:0; padding-top:var(--space-50);}
+ul.hammer-list li {width:20%; margin-bottom:var(--space-25); text-align:center;}
+.hammer-item-thumb img {height:80px; width:auto;}
+.hammer-item-name.w-point {--font-size:var(--size-24); --sw:8px; --color:#83b84a;}
+.hammer-item-cost img {width:33px; height:auto; margin-right:10px;}
+.hammer-item-cost-price.w-point {--font-size:var(--size-36); --sw:9px; transform:translateY(.15em);}
+@media only screen and (max-width:767px){
+    ul.hammer-list li {width:33%;}
+}
+@media only screen and (max-width:480px){
+    ul.hammer-list li:not(:last-child) {margin-bottom:var(--space-50);}
+    ul.hammer-list li {width:100%; display:flex; align-items:center; margin-bottom:0; justify-content:space-between;}
+    .hammer-item-thumb, .hammer-item-meta {margin-bottom:0!important;}
+    .hammer-item-thumb img {height:45px;}
+    .hammer-item-cost img {width:20px;}
+}
+
 
 /*******************************
  * Popup Responsive

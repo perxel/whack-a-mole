@@ -180,7 +180,7 @@ class GameData{
         if(typeof characterID !== 'undefined'){
             return getObjectInArray(characters, 'id', parseInt(characterID));
         }else{
-            return characterID;
+            return characters;
         }
     }
 
@@ -301,40 +301,50 @@ class GameData{
         const hammers = [
             {
                 id: 1,
+                display_name: 'POWER: X1',
+                display_image_url: 'assets/img/hammers/1.png',
                 attack_sound_url: 'assets/audio/hammer-flesh.mp3',
-                whack_cost: 100,
+                whack_cost: 5,
                 usage_gain: 5,
                 sprite_name: '1',
                 multiplier: 1
             },
             {
                 id: 2,
+                display_name: 'POWER: X2',
+                display_image_url: 'assets/img/hammers/2.png',
                 attack_sound_url: 'assets/audio/hammer-flesh.mp3',
-                whack_cost: 200,
+                whack_cost: 10,
                 usage_gain: 5,
                 sprite_name: '2',
                 multiplier: 2
             },
             {
                 id: 3,
+                display_name: 'POWER: X3',
+                display_image_url: 'assets/img/hammers/3.png',
                 attack_sound_url: 'assets/audio/hammer-flesh.mp3',
-                whack_cost: 300,
+                whack_cost: 20,
                 usage_gain: 5,
                 sprite_name: '3',
                 multiplier: 3
             },
             {
                 id: 4,
+                display_name: 'POWER: X4',
+                display_image_url: 'assets/img/hammers/4.png',
                 attack_sound_url: 'assets/audio/hammer-flesh.mp3',
-                whack_cost: 400,
+                whack_cost: 30,
                 usage_gain: 5,
                 sprite_name: '4',
                 multiplier: 4
             },
             {
                 id: 5,
+                display_name: 'POWER: X5',
+                display_image_url: 'assets/img/hammers/5.png',
                 attack_sound_url: 'assets/audio/electric-zap.mp3',
-                whack_cost: 500,
+                whack_cost: 50,
                 usage_gain: 5,
                 sprite_name: '5',
                 multiplier: 5

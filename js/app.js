@@ -18,7 +18,7 @@ class App{
             type: Phaser.AUTO,
             parent: 'phaser-app',
             title: `Whack A Mole v${VERSION}${DEV ? ' (DEV)' : ''}`,
-            url: 'https://phuc-dev.github.io/whack-a-mole/',
+            url: 'https://github.com/perxel/whack-a-mole',
             width: window.innerWidth,
             height: window.innerHeight,
             scale: {

@@ -77,7 +77,8 @@ class Preload extends Phaser.Scene{
         /**
          * Plugins
          */
-        this.load.plugin('rexanchorplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexanchorplugin.min.js', true);
+        // https://github.com/rexrainbow/phaser3-rex-notes
+        this.load.plugin('rexanchorplugin', 'libs/rexanchorplugin.min.js', true);
 
 
         /**
